@@ -51,5 +51,5 @@ production:
   <<: *default
   database: freemarket_sample_58a_night_production
   username: root
-  password: <%= ENV[st15641009] %>
+  password: <%= ENV['st15641009'] %>
   socket: /var/lib/mysql/mysql.sock
