@@ -30,8 +30,8 @@ Things you may want to cover:
 |birth_day|integer|null: false|
 |phone|integer|unique: true|
 ### Association
-- has_one :address
-- has_one :credit_card
+- has_one :address, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
 - has_many :products
 - has_many :comments
 - has_maby :seller, class_name: "Transaction"
@@ -78,8 +78,8 @@ Things you may want to cover:
 - belongs_to :category
 - belongs_to :brand
 - has_one :transaction
-- has_many :images
-- has_many :comments
+- has_many :images, dependent: :destroy
+- has_many :comments, dependent: :destroy
 
 ## transactionsテーブル
 |Column|Type|Options|
