@@ -109,10 +109,9 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false|
 ### Association
-## ER図
-![freemarket_sample_58a_night]
-(https://user-images.githubusercontent.com/54708394/69491210-554aa680-0ed5-11ea-9aa0-5aa9a89aa220.jpeg)
 - belongs_to :product
+## ER図
+![freemarket_sample_58a_night](https://user-images.githubusercontent.com/54708394/69491292-8a0b2d80-0ed6-11ea-9b27-b9cdd0d98cc7.jpeg)
 
 * Database initialization
 
