@@ -28,20 +28,35 @@ Things you may want to cover:
 |birth_year|integer|null: false|
 |birth_month|integer|null: false|
 |birth_day|integer|null: false|
+|phone|integer|null: false, unique: true|
+### Association
+- has_one :address
+- has_one :credit_card
+- has_many :products
+- has_many :comments
+- has_maby :seller, class_name: "Transaction"
+- has_many :buyer, class_name: "Transaction"
+
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
 |postal_code|integer|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building_name|string|null: false|
-|phone|integer|null: false, unique: true|
+|user|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+
+## credit_cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
 |card_number|integer|null: false|
 |exp_month|integer|null: false|
 |exp_year|integer|null: false|
 ### Association
-- has_many :products
-- has_many :comments
-- has_maby :seller, class_name: "Transaction"
-- has_many :buyer, class_name: "Transaction"
+- belongs_to :user
 
 ## productsテーブル
 |Column|Type|Options|
@@ -61,8 +76,8 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :category
+- belongs_to :brand
 - has_one :transaction
-- has_one :brand
 - has_many :images
 - has_many :comments
 
@@ -109,9 +124,10 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- belongs_to :product
+- has_many :products
+
 ## ER図
-![freemarket_sample_58a_night](https://user-images.githubusercontent.com/54708394/69491292-8a0b2d80-0ed6-11ea-9b27-b9cdd0d98cc7.jpeg)
+![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/69492139-cabc7400-0ee1-11ea-8543-7039443be4f4.jpeg)
 
 * Database initialization
 
