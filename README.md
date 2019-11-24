@@ -28,7 +28,7 @@ Things you may want to cover:
 |birth_year|integer|null: false|
 |birth_month|integer|null: false|
 |birth_day|integer|null: false|
-|phone|integer|null: false, unique: true|
+|phone|integer|unique: true|
 ### Association
 - has_one :address
 - has_one :credit_card
@@ -44,7 +44,7 @@ Things you may want to cover:
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|string|null: false|
-|building_name|string|null: false|
+|building_name|string||
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
