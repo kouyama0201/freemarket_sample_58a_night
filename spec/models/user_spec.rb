@@ -11,7 +11,7 @@ describe User do
       expect(user.errors[:email]).to include("can't be blank")
     end
     it "is invalid without a duplicate email address" do
-      user = create(:user)
+      user = build(:user)
       another_user = build(:user)
       another_user.valid?
       expect(another_user.errors[:email]).to include("has already been taken")
