@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+body {
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+}
+
 header {
   height: 98px;
   padding:0 200px;
@@ -38,9 +42,9 @@ header {
 
 .header-lower-left {
   width: 350px;
-  margin: 8px 0 0 9.5px; 
+  margin: 12px 0 0 10px; 
   font-size: 14px;
-  font-weight: 550;
+  font-weight: 600;
 }
 .list-icon {
   font-size: 15px;
@@ -49,7 +53,7 @@ header {
 }
 .tags-icon {
   color: rgb(234, 53, 45);
-  margin-left: 20px;
+  margin: 0 2px 0 20px;
 }
 
 .header-lower-right {
