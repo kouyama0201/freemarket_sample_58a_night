@@ -45,6 +45,12 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+end
+
+group :test do
+  gem 'faker'
 end
 
 group :development do
@@ -69,3 +75,4 @@ gem "carrierwave"
 gem "mini_magick"
 gem "font-awesome-sass"
 gem "haml-rails"
+gem "devise"
