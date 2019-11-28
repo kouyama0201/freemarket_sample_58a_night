@@ -32,17 +32,16 @@ footer {
   }
   &__icon {
     margin-top: 29px;
+    &--twitter {
+      color: #ffffff;
+      font-size: 29px;
+      margin-right: 13px;
+    }
+    &--facebook {
+      color: #ffffff;
+      font-size: 30px;
+    }
   }
-}
-
-.twitter-icon {
-  color: #ffffff;
-  font-size: 29px;
-  margin-right: 13px;
-}
-.facebook-icon {
-  color: #ffffff;
-  font-size: 30px;
 }
 
 .footer-contents-box-privacy-left {
