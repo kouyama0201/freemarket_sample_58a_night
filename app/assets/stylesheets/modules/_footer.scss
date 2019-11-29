@@ -4,8 +4,43 @@ footer {
 }
 
 .footer-upper {
-  background-color: antiquewhite;
-  height: 197px;
+  height: 260px;
+  &__banner {
+    position: relative;
+    &--title {
+      font-size: 24px;
+      font-weight: 600;
+      left: 345px;
+      bottom: 192px;
+      position: absolute;
+    }
+    &--text {
+      font-size: 35px;
+      left: 345px;
+      bottom: 139px;
+      position: absolute;
+    }
+    &--logo {
+      left: 345px;
+      bottom: 55px;
+      position: absolute;
+    }
+    &--app {
+      left: 438px;
+      bottom: 69px;
+      position: absolute;
+    }
+    &--google {
+      left: 590px;
+      bottom: 69px;
+      position: absolute;
+    }
+    &--smartphone {
+      right: 345px;
+      bottom: 5px;
+      position: absolute;
+    }
+  }
 }
 
 .footer-lower {
