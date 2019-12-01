@@ -1,0 +1,112 @@
+footer {
+  color: #ffffff;
+  bottom: 0;
+}
+
+.footer-upper {
+  height: 260px;
+  &__banner {
+    position: relative;
+    &--title {
+      font-size: 24px;
+      font-weight: 600;
+      left: 345px;
+      bottom: 192px;
+      position: absolute;
+    }
+    &--text {
+      font-size: 35px;
+      left: 345px;
+      bottom: 139px;
+      position: absolute;
+    }
+    &--logo {
+      left: 345px;
+      bottom: 55px;
+      position: absolute;
+    }
+    &--app {
+      left: 438px;
+      bottom: 69px;
+      position: absolute;
+    }
+    &--google {
+      left: 590px;
+      bottom: 69px;
+      position: absolute;
+    }
+    &--smartphone {
+      right: 345px;
+      bottom: 5px;
+      position: absolute;
+    }
+  }
+}
+
+.footer-lower {
+  background-color: #222222;
+  height: 363px;
+  width: 1210px;
+  padding: 16px 20px 10px 210px;
+  position: relative;
+}
+
+.footer-contents-box {
+  display: inline-table;
+  margin-right: 35px;
+  &__title {
+    font-weight: 600;
+  }
+  &__list {
+    margin-top: 14px;
+  }
+  &__links {
+    color: #ffffff;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  &__icon {
+    margin-top: 29px;
+    &--twitter {
+      color: #ffffff;
+      font-size: 29px;
+      margin-right: 13px;
+    }
+    &--facebook {
+      color: #ffffff;
+      font-size: 30px;
+    }
+  }
+}
+
+.footer-contents-box-privacy-left {
+  display: inline-table;
+  margin-right: 20px;
+}
+.footer-contents-box-privacy-right {
+  display: inline-table;
+  margin-top: 24px;
+  position: absolute;
+}
+.footer-contents-list-privacy {
+  width: 189px;
+  margin-top: 14px;
+}
+
+.footer-contents-box-country {
+  display: inline-table;
+  right: 281px;
+  position: absolute;
+}
+
+.footer-logo {
+  margin-top: 30px;
+}
+
+.footer-copyright {
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  left: 683px;
+  bottom: 39px;
+  position: absolute;
+}

@@ -1,0 +1,78 @@
+.main-top {
+  background-color: #eeeeee;
+  height: 390px;
+  width: 1440px;
+  position: relative;
+  &__banner {
+    left: 345px;
+    position: absolute;
+  }
+}
+
+.main-popular {
+  height: 90px;
+  width: 1440px;
+  padding: 50px 0 30px;
+  color: #333333;
+  font-weight: 600;
+  text-align: center;
+  &__title {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  &__tags {
+    display: inline-block;
+    background-color: #efefef;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    padding: 0 16px;
+    margin-right: 5px;
+    border-radius: 15px;
+  }
+}
+
+.main-new-arrival {
+  display: flex;
+  background-color: #f5f5f5;
+  height: 490px;
+  padding: 42px 210px 100px;
+  position: relative;
+  &__category {
+    color: #333333;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  &__more {
+    color: #0095ee;
+    font-size: 14px;
+    font-weight: 600;
+    top: 55px;
+    right: 209px;
+    position: absolute;
+  }
+  &__product {
+    background-color: #ffffff;
+    min-height: 252px;
+    width: 188px;
+    top: 90px;
+    font-weight: lighter;
+    position: absolute;
+    &--price {
+      background: rgba(0,0,0,.4);
+      height: 28px;
+      line-height: 28px;
+      color: #ffffff;
+      font-size: 17px;
+      top: 152px;
+      padding: 0 12px;
+      border-radius: 0 14px 14px 0;
+      position: absolute;
+    }
+    &--name {
+      font-size: 14px;
+      letter-spacing: .02em;
+      padding: 5px 10px;
+    }
+  }
+}
