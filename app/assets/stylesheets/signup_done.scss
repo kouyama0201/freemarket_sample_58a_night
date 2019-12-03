@@ -158,13 +158,13 @@ body {
       &__content {
         max-width: 343px;
         margin: 0 auto;
-
-        &__group:first-child {
-          margin: 0;
-        }
-
+        
         &__group {
           margin: 40px 0 0;
+        }
+        
+        &__group:first-child {
+          margin: 0;
         }
 
         &__message {

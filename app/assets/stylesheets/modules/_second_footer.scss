@@ -6,8 +6,6 @@
     display: block;
 
     &__clearfix {
-
-      // @include clearfix();
       &:after {
         content: '';
         display: block;
@@ -15,14 +13,14 @@
       }
     }
 
-    &__link:first-child {
-      margin: 0;
-    }
-
     &__link {
       margin: 0 0 0 16px;
       display: inline-block;
       font-size: 12px;
+
+    &__link:first-child {
+      margin: 0;
+    }
 
       &__text {
         color: #333;
