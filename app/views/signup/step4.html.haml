@@ -1,0 +1,71 @@
+.step4
+  %header.step4__header
+    %h1.step4__header__left
+      = link_to "/" , class: "step4__header__left__logo" do
+        = image_tag "logo.svg", class: "step4__header__left__logo__img"
+    %nav.step4__header__progress-bar
+      %ol.step4__header__progress-bar__clearfix
+        %li.step4__header__progress-bar__text
+          会員情報
+          .step4__header__progress-bar__status.active
+        %li.step4__header__progress-bar__text
+          電話番号認証
+          .step4__header__progress-bar__status.active
+        %li.step4__header__progress-bar__text
+          お届け先住所入力
+          .step4__header__progress-bar__status.active
+        %li.step4__header__progress-bar__text.active
+          支払い方法
+          .step4__header__progress-bar__status.active.last
+        %li.step4__header__progress-bar__text
+          完了
+          .step4__header__progress-bar__status
+  %main.step4__main
+    %section.step4__main__container
+      %h2.step4__main__container__head  支払い方法
+      %form.step4__main__form
+        %div.step4__main__form__content
+          %div.step4__main__form__content__group
+            %label.step4__main__form__content__group__label  カード番号
+            %span.step4__main__form__content__group__require   必須
+            %input.step4__main__form__content__group__input{"type":"text", "placeholder":"半角数字のみ"}
+            %ul.step4__main__form__content__group__card-list
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "visa.svg", class: "step4__main__form__content__group__card-list__img__visa"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "master-card.svg", class: "step4__main__form__content__group__card-list__img__master"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "saison-card.svg", class: "step4__main__form__content__group__card-list__img__saison"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "jcb.svg", class: "step4__main__form__content__group__card-list__img__jcb"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "american_express.svg", class: "step4__main__form__content__group__card-list__img__amex"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "dinersclub.svg", class: "step4__main__form__content__group__card-list__img__dinersclub"
+              %li.step4__main__form__content__group__card-list__img
+                = image_tag "discover.svg", class: "step4__main__form__content__group__card-list__img__discover"
+          %div.step4__main__form__content__group
+            %label.step4__main__form__content__group__label  有効期限
+            %span.step4__main__form__content__group__require   必須
+            .step4__main__form__content__group__expire
+              .step4__main__form__content__group__expire__select
+                %i.fas.fa-chevron-down.fa-lg.step4__main__form__content__group__expire__select__icon
+                %select.step4__main__form__content__group__expire__select__pulldown
+                  %option{value:"01"} 01
+              %span.step4__main__form__content__group__expire__select__text  月
+            .step4__main__form__content__group__expire
+              .step4__main__form__content__group__expire__select
+                %i.fas.fa-chevron-down.fa-lg.step4__main__form__content__group__expire__select__icon
+                %select.step4__main__form__content__group__expire__select__pulldown
+                  %option{value:"19"} 19
+              %span.step4__main__form__content__group__expire__select__text  年
+          %div.step4__main__form__content__group
+            %label.step4__main__form__content__group__label  セキュリティコード
+            %span.step4__main__form__content__group__require   必須
+            %input.step4__main__form__content__group__input{"type":"text", "placeholder":"カード背面4桁もしくは3桁の番号"}
+          .step4__main__form__content__text-right
+            .step4__main__form__content__text-right__text 
+              %span.step4__main__form__content__text-right__icon ?
+              カード裏面の番号とは？
+          = link_to "次へ進む", done_signup_index_path, class: "step4__main__form__content__btn"
+  = render 'layouts/second_footer'
