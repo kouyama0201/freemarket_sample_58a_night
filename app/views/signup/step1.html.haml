@@ -1,0 +1,102 @@
+.step1
+  %header.step1__header
+    %h1.step1__header__left
+      = link_to "/" , class: "step1__header__left__logo" do
+        = image_tag "logo.svg", class: "step1__header__left__logo__img"
+    %nav.step1__header__progress-bar
+      %ol.step1__header__progress-bar__clearfix
+        %li.step1__header__progress-bar__text.active
+          会員情報
+          .step1__header__progress-bar__status.active
+        %li.step1__header__progress-bar__text
+          電話番号認証
+          .step1__header__progress-bar__status
+        %li.step1__header__progress-bar__text
+          お届け先住所入力
+          .step1__header__progress-bar__status
+        %li.step1__header__progress-bar__text
+          支払い方法
+          .step1__header__progress-bar__status
+        %li.step1__header__progress-bar__text
+          完了
+          .step1__header__progress-bar__status
+  %main.step1__main
+    %section.step1__main__container
+      %h2.step1__main__container__head  会員情報入力
+      %form.step1__main__form
+        %div.step1__main__form__content
+          %div.step1__main__form__content__group
+            %label.step1__main__form__content__group__label ニックネーム
+            %span.step1__main__form__content__group__require 必須
+            %input.step1__main__form__content__group__input{"type":"text", "placeholder":"例）メルカリ太郎"}
+          %div.step1__main__form__content__group
+            %label.step1__main__form__content__group__label  メールアドレス
+            %span.step1__main__form__content__group__require   必須
+            %input.step1__main__form__content__group__input{"type":"email", "placeholder":"PC・携帯どちらでも可"}
+          %div.step1__main__form__content__group
+            %label.step1__main__form__content__group__label  パスワード
+            %span.step1__main__form__content__group__require  必須
+            %input.step1__main__form__content__group__input{"type":"password", "placeholder":"7文字以上の半角英数字"}
+            %p.step1__main__form__content__group__input__info  ※ 英字と数字の両方を含めて設定してください。
+          %div.step1__main__password-revelation
+            .step1__main__password-revelation__checkbox
+              %input.step1__main__password-revelation__checkbox__square{"type":"checkbox"}
+              %i.fas.fa-check.step1__main__password-revelation__checkbox__check
+              %label.step1__main__password-revelation__checkbox__text  パスワードを表示する
+            .step1__main__password-revelation__revealed-password-container
+              %span.step1__main__password-revelation__revealed-password
+          %div.step1__main__form__content__group
+            %h3.step1__main__form__content__group__identification__head  本人確認
+            %p.step1__main__form__content__group__identification__description
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          %div.step1__main__form__content__group
+            %div
+              %label.step1__main__form__content__group__label  お名前(全角)
+              %span.step1__main__form__content__group__require  必須
+            %input.step1__main__form__content__group__input__harf{"type":"text", "placeholder":"例）山田"}
+            %input.step1__main__form__content__group__input__harf{"type":"text", "placeholder":"例）彩"}
+          %div.step1__main__form__content__group
+            %div
+              %label.step1__main__form__content__group__label  お名前カナ(全角)
+              %span.step1__main__form__content__group__require  必須
+            %input.step1__main__form__content__group__input__harf{"type":"text", "placeholder":"例）ヤマダ"}
+            %input.step1__main__form__content__group__input__harf{"type":"text", "placeholder":"例）アヤ"}
+          %div.step1__main__form__content__group
+            %label.step1__main__form__content__group__label  生年月日
+            %span.step1__main__form__content__group__require  必須
+            .step1__main__form__content__group__birthday
+              .step1__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.step1__main__form__content__group__birthday__select__icon
+                %select.step1__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"2019"} 2019
+              %span.step1__main__form__content__group__birthday__select__text  年
+              .step1__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.step1__main__form__content__group__birthday__select__icon
+                %select.step1__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"4"} 4
+              %span.step1__main__form__content__group__birthday__select__text  月
+              .step1__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.step1__main__form__content__group__birthday__select__icon
+                %select.step1__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"4"} 1
+              %span.step1__main__form__content__group__birthday__select__text  日
+              .clearfix
+              %p.step1__main__form__content__notice  ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        %div.step1__main__form__content
+          .step1__main__form__content__recaptha
+            = image_tag "reCAPTHA.jpg", size: "309x83"
+          .step1__main__form__content__btn-text
+            %p.step1__main__form__content__btn-text「次へ進む」のボタンを押すことにより、
+            = link_to "利用規約", "", class: "step1__main__form__content__btn-text__link"
+            に
+            %br
+            %p.step1__main__form__content__btn-text__second 同意したものとみなします
+          = link_to "次へ進む", step2_signup_index_path, class: "step1__main__form__content__btn"
+          .step1__main__form__content__text-right
+            %p
+              = link_to  "本人情報の登録について", "", class: "step1__main__form__content__text-right__text"
+              %i.fas.fa-chevron-right.step1__main__form__content__text-right__icon
+  = render 'layouts/second_footer'
