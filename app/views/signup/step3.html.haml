@@ -1,0 +1,67 @@
+.step3
+  %header.step3__header
+    %h1.step3__header__left
+      = link_to "/" , class: "step3__header__left__logo" do
+        = image_tag "logo.svg", class: "step3__header__left__logo__img"
+    %nav.step3__header__progress-bar
+      %ol.step3__header__progress-bar__clearfix
+        %li.step3__header__progress-bar__text
+          会員情報
+          .step3__header__progress-bar__status.active
+        %li.step3__header__progress-bar__text
+          電話番号認証
+          .step3__header__progress-bar__status.active
+        %li.step3__header__progress-bar__text.active
+          お届け先住所入力
+          .step3__header__progress-bar__status.active.last
+        %li.step3__header__progress-bar__text
+          支払い方法
+          .step3__header__progress-bar__status
+        %li.step3__header__progress-bar__text
+          完了
+          .step3__header__progress-bar__status
+  %main.step3__main
+    %section.step3__main__container
+      %h2.step3__main__container__head  住所入力
+      %form.step3__main__form
+        %div.step3__main__form__content
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label お名前
+            %span.step3__main__form__content__group__require 必須
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）山田"}
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）彩"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label お名前カナ
+            %span.step3__main__form__content__group__require 必須
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）ヤマダ"}
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）アヤ"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  郵便番号
+            %span.step3__main__form__content__group__require   必須
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）123-4567"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  都道府県
+            %span.step3__main__form__content__group__require   必須
+            .step3__main__form__content__group__prefecture__select
+              %i.fas.fa-chevron-down.fa-lg.step3__main__form__content__group__prefecture__select__icon
+              %select.step3__main__form__content__group__prefecture__select__pulldown
+                %option{value:"北海道"} 北海道
+                %option{value:"青森"} 青森
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  市区町村
+            %span.step3__main__form__content__group__require   必須
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）横浜市緑区"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  番地
+            %span.step3__main__form__content__group__require   必須
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）青山1-1-1"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  建物名
+            %span.step3__main__form__content__group__optional  任意
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）柳ビル103"}
+          %div.step3__main__form__content__group
+            %label.step3__main__form__content__group__label  電話
+            %span.step3__main__form__content__group__optional   任意
+            %input.step3__main__form__content__group__input{"type":"text", "placeholder":"例）09012345678"}
+          = link_to "次へ進む", step4_signup_index_path, class: "step3__main__form__content__btn"
+  = render 'layouts/second_footer'
