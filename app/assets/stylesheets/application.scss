@@ -16,5 +16,34 @@
 
 @import "font-awesome-sprockets";
 @import "./font-awesome";
-@import "./reset";
-@import "modules/second_footer";
+
+a {
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+}
+
+body {
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  min-height: 100%;
+}
+
+nav {
+  display: block;
+}
+
+footer {
+  color: #ffffff;
+  bottom: 0;
+}
+
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+select:focus {
+  outline: none;
+  border-color: #0098E8;
+}
