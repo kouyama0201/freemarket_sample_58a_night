@@ -17,7 +17,6 @@ nav {
 }
 
 .signup {
-
   &__header {
     height: 128px;
     text-align: center;
@@ -47,6 +46,7 @@ nav {
       &__inner {
         height: 182px;
         padding: 40px 40px 64px;
+        margin-bottom: 60px;
         border-top: 1px solid #f5f5f5;
 
         &__content {
