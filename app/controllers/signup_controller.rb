@@ -8,7 +8,7 @@ class SignupController < ApplicationController
   def address
   end
 
-  def step4
+  def pay_way
   end
   
   def done

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get 'registration'
       get 'phone'
       get 'address'
-      get 'step4'
+      get 'pay_way'
       get 'done'
     end
   end
