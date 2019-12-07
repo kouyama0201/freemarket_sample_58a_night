@@ -1,0 +1,32 @@
+.mypage-header-wrapper
+  .header-upper-title
+    = link_to root_path do
+      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?863303983", size: "134x36"
+  %label
+    %i.fas.fa-search{class: "search-icon"}
+    %input{placeholder: "何かお探しですか？", type: "text", class: "search-box"}
+  .header-lower-left
+    %i.fas.fa-list-ul{class: "list-icon"}
+    %span カテゴリーから探す
+    %i.fas.fa-tags{class: "tags-icon"}
+    %span ブランドから探す
+  .header-lower-right-mypage
+    .header-lower-right-mypage__likes
+      .header-lower-right-mypage__likes--icon
+        %i.far.fa-heart
+      .header-lower-right-mypage__likes--title
+        いいね！一覧
+    .header-lower-right-mypage__notice
+      .header-lower-right-mypage__notice--icon
+        %i.far.fa-bell
+      .header-lower-right-mypage__notice--title
+        お知らせ
+    .header-lower-right-mypage__to-do-list
+      .header-lower-right-mypage__to-do-list--icon
+        %i.fas.fa-check
+      .header-lower-right-mypage__to-do-list--title
+        やることリスト
+    .header-lower-right-mypage__user
+      = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: "header-lower-right-mypage__user--image", size: '32x32'
+      .header-lower-right-mypage__user--title
+        マイページ
