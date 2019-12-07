@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get 'phone'
       get 'address'
       get 'pay_way'
-      get 'done'
+      get 'complete'
     end
   end
 end

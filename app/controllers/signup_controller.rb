@@ -11,7 +11,7 @@ class SignupController < ApplicationController
   def pay_way
   end
   
-  def done
+  def complete
   end
   
 end
