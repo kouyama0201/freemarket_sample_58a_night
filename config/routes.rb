@@ -10,10 +10,9 @@ Rails.application.routes.draw do
     collection do
       get 'registration'
       get 'phone'
-      get 'step3'
+      get 'address'
       get 'step4'
       get 'done'
-      get 'mypage'
     end
   end
 end

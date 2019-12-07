@@ -5,7 +5,7 @@ class SignupController < ApplicationController
   def phone
   end
 
-  def step3
+  def address
   end
 
   def step4
