@@ -1,0 +1,71 @@
+.pay_way
+  %header.pay_way__header
+    %h1.pay_way__header__left
+      = link_to "/" , class: "pay_way__header__left__logo" do
+        = image_tag "logo.svg", class: "pay_way__header__left__logo__img"
+    %nav.pay_way__header__progress-bar
+      %ol.pay_way__header__progress-bar__clearfix
+        %li.pay_way__header__progress-bar__text
+          会員情報
+          .pay_way__header__progress-bar__status.active
+        %li.pay_way__header__progress-bar__text
+          電話番号認証
+          .pay_way__header__progress-bar__status.active
+        %li.pay_way__header__progress-bar__text
+          お届け先住所入力
+          .pay_way__header__progress-bar__status.active
+        %li.pay_way__header__progress-bar__text.active
+          支払い方法
+          .pay_way__header__progress-bar__status.active.last
+        %li.pay_way__header__progress-bar__text
+          完了
+          .pay_way__header__progress-bar__status
+  %main.pay_way__main
+    %section.pay_way__main__container
+      %h2.pay_way__main__container__head  支払い方法
+      %form.pay_way__main__form
+        %div.pay_way__main__form__content
+          %div.pay_way__main__form__content__group
+            %label.pay_way__main__form__content__group__label  カード番号
+            %span.pay_way__main__form__content__group__require   必須
+            %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"半角数字のみ"}
+            %ul.pay_way__main__form__content__group__card-list
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "visa.svg", class: "pay_way__main__form__content__group__card-list__img__visa"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "master-card.svg", class: "pay_way__main__form__content__group__card-list__img__master"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "saison-card.svg", class: "pay_way__main__form__content__group__card-list__img__saison"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "jcb.svg", class: "pay_way__main__form__content__group__card-list__img__jcb"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "american_express.svg", class: "pay_way__main__form__content__group__card-list__img__amex"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "dinersclub.svg", class: "pay_way__main__form__content__group__card-list__img__dinersclub"
+              %li.pay_way__main__form__content__group__card-list__img
+                = image_tag "discover.svg", class: "pay_way__main__form__content__group__card-list__img__discover"
+          %div.pay_way__main__form__content__group
+            %label.pay_way__main__form__content__group__label  有効期限
+            %span.pay_way__main__form__content__group__require   必須
+            .pay_way__main__form__content__group__expire
+              .pay_way__main__form__content__group__expire__select
+                %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
+                %select.pay_way__main__form__content__group__expire__select__pulldown
+                  %option{value:"01"} 01
+              %span.pay_way__main__form__content__group__expire__select__text  月
+            .pay_way__main__form__content__group__expire
+              .pay_way__main__form__content__group__expire__select
+                %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
+                %select.pay_way__main__form__content__group__expire__select__pulldown
+                  %option{value:"19"} 19
+              %span.pay_way__main__form__content__group__expire__select__text  年
+          %div.pay_way__main__form__content__group
+            %label.pay_way__main__form__content__group__label  セキュリティコード
+            %span.pay_way__main__form__content__group__require   必須
+            %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"カード背面4桁もしくは3桁の番号"}
+          .pay_way__main__form__content__text-right
+            .pay_way__main__form__content__text-right__text 
+              %span.pay_way__main__form__content__text-right__icon ?
+              カード裏面の番号とは？
+          = link_to "次へ進む", complete_signup_index_path, class: "pay_way__main__form__content__btn"
+  = render 'layouts/second_footer'
