@@ -17,11 +17,12 @@
     .main-new-arrival__more
       もっと見る ＞
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
-      .main-new-arrival__product--price
-        ¥3,800
-      .main-new-arrival__product--name
-        レディース服
+      = link_to detail_products_path do
+        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+        .main-new-arrival__product--price
+          ¥3,800
+        .main-new-arrival__product--name
+          レディース服
 .main-new-arrival
   .main-new-arrival__category
     メンズ新着アイテム

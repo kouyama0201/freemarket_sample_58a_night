@@ -16,4 +16,16 @@
 
 @import "font-awesome-sprockets";
 @import "./font-awesome";
-@import "./reset";
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+}
+
+footer {
+  color: #ffffff;
+  bottom: 0;
+}
