@@ -1,0 +1,19 @@
+.header-wrapper
+  .header-upper-title
+    = link_to root_path do
+      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?863303983", size: "134x36"
+  %label
+    %i.fas.fa-search{class: "search-icon"}
+    %input{placeholder: "何かお探しですか？", type: "text", class: "search-box"}
+  .header-lower-left
+    %i.fas.fa-list-ul{class: "list-icon"}
+    %span カテゴリーから探す
+    %i.fas.fa-tags{class: "tags-icon"}
+    %span ブランドから探す
+  .header-lower-right
+    .header-lower-right__signup
+      = link_to root_path do
+        %span{class: "signup-btn"} 新規登録
+    .header-lower-right__login
+      = link_to root_path do
+        %span{class: "login-btn"} ログイン

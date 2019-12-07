@@ -15,4 +15,11 @@ Rails.application.routes.draw do
       get 'complete'
     end
   end
+
+  resources :products do
+    collection do
+      get 'detail'
+    end
+  end
+  
 end
