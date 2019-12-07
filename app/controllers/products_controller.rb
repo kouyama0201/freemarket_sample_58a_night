@@ -4,4 +4,7 @@ class ProductsController < ApplicationController
 
   def detail
   end
+
+  def logout
+  end
 end
