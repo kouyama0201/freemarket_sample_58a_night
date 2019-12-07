@@ -1,0 +1,41 @@
+.phone
+  %header.phone__header
+    %h1.phone__header__left
+      = link_to "/" , class: "phone__header__left__logo" do
+        = image_tag "logo.svg", class: "phone__header__left__logo__img"
+    %nav.phone__header__progress-bar
+      %ol.phone__header__progress-bar__clearfix
+        %li.phone__header__progress-bar__text
+          会員情報
+          .phone__header__progress-bar__status.active
+        %li.phone__header__progress-bar__text.active
+          電話番号認証
+          .phone__header__progress-bar__status.active.last
+        %li.phone__header__progress-bar__text
+          お届け先住所入力
+          .phone__header__progress-bar__status
+        %li.phone__header__progress-bar__text
+          支払い方法
+          .phone__header__progress-bar__status
+        %li.phone__header__progress-bar__text
+          完了
+          .phone__header__progress-bar__status
+  %main.phone__main
+    %section.phone__main__container
+      %h2.phone__main__container__head  電話番号の確認
+      %form.phone__main__form
+        %div.phone__main__form__content
+          %div.phone__main__form__content__group
+            %label.phone__main__form__content__group__label 携帯電話の番号
+            %input.phone__main__form__content__group__input{"type":"text", "placeholder":"携帯電話の番号を入力"}
+          %p.phone__main__form__content__group__phone-description
+            本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+          = link_to "SMSを送信する", step3_signup_index_path, class: "phone__main__form__content__btn"
+          %p.phone__main__form__content__group__phone-description
+            ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません
+          .phone__main__form__content__text-right
+            %p
+              = link_to  "電話番号の確認が必要な理由", "", class: "phone__main__form__content__text-right__text"
+              %i.fas.fa-chevron-right.phone__main__form__content__text-right__icon
+
+  = render 'layouts/second_footer'

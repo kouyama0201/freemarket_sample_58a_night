@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :signup do
     collection do
       get 'registration'
-      get 'step2'
+      get 'phone'
       get 'step3'
       get 'step4'
       get 'done'

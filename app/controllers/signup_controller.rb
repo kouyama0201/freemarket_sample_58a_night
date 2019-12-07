@@ -2,7 +2,7 @@ class SignupController < ApplicationController
   def registration
   end
 
-  def step2
+  def phone
   end
 
   def step3
