@@ -1,0 +1,102 @@
+.registration
+  %header.registration__header
+    %h1.registration__header__left
+      = link_to "/" , class: "registration__header__left__logo" do
+        = image_tag "logo.svg", class: "registration__header__left__logo__img"
+    %nav.registration__header__progress-bar
+      %ol.registration__header__progress-bar__clearfix
+        %li.registration__header__progress-bar__text.active
+          会員情報
+          .registration__header__progress-bar__status.active
+        %li.registration__header__progress-bar__text
+          電話番号認証
+          .registration__header__progress-bar__status
+        %li.registration__header__progress-bar__text
+          お届け先住所入力
+          .registration__header__progress-bar__status
+        %li.registration__header__progress-bar__text
+          支払い方法
+          .registration__header__progress-bar__status
+        %li.registration__header__progress-bar__text
+          完了
+          .registration__header__progress-bar__status
+  %main.registration__main
+    %section.registration__main__container
+      %h2.registration__main__container__head  会員情報入力
+      %form.registration__main__form
+        %div.registration__main__form__content
+          %div.registration__main__form__content__group
+            %label.registration__main__form__content__group__label ニックネーム
+            %span.registration__main__form__content__group__require 必須
+            %input.registration__main__form__content__group__input{"type":"text", "placeholder":"例）メルカリ太郎"}
+          %div.registration__main__form__content__group
+            %label.registration__main__form__content__group__label  メールアドレス
+            %span.registration__main__form__content__group__require   必須
+            %input.registration__main__form__content__group__input{"type":"email", "placeholder":"PC・携帯どちらでも可"}
+          %div.registration__main__form__content__group
+            %label.registration__main__form__content__group__label  パスワード
+            %span.registration__main__form__content__group__require  必須
+            %input.registration__main__form__content__group__input{"type":"password", "placeholder":"7文字以上の半角英数字"}
+            %p.registration__main__form__content__group__input__info  ※ 英字と数字の両方を含めて設定してください。
+          %div.registration__main__password-revelation
+            .registration__main__password-revelation__checkbox
+              %input.registration__main__password-revelation__checkbox__square{"type":"checkbox"}
+              %i.fas.fa-check.registration__main__password-revelation__checkbox__check
+              %label.registration__main__password-revelation__checkbox__text  パスワードを表示する
+            .registration__main__password-revelation__revealed-password-container
+              %span.registration__main__password-revelation__revealed-password
+          %div.registration__main__form__content__group
+            %h3.registration__main__form__content__group__identification__head  本人確認
+            %p.registration__main__form__content__group__identification__description
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          %div.registration__main__form__content__group
+            %div
+              %label.registration__main__form__content__group__label  お名前(全角)
+              %span.registration__main__form__content__group__require  必須
+            %input.registration__main__form__content__group__input__harf{"type":"text", "placeholder":"例）山田"}
+            %input.registration__main__form__content__group__input__harf{"type":"text", "placeholder":"例）彩"}
+          %div.registration__main__form__content__group
+            %div
+              %label.registration__main__form__content__group__label  お名前カナ(全角)
+              %span.registration__main__form__content__group__require  必須
+            %input.registration__main__form__content__group__input__harf{"type":"text", "placeholder":"例）ヤマダ"}
+            %input.registration__main__form__content__group__input__harf{"type":"text", "placeholder":"例）アヤ"}
+          %div.registration__main__form__content__group
+            %label.registration__main__form__content__group__label  生年月日
+            %span.registration__main__form__content__group__require  必須
+            .registration__main__form__content__group__birthday
+              .registration__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
+                %select.registration__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"2019"} 2019
+              %span.registration__main__form__content__group__birthday__select__text  年
+              .registration__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
+                %select.registration__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"4"} 4
+              %span.registration__main__form__content__group__birthday__select__text  月
+              .registration__main__form__content__group__birthday__select
+                %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
+                %select.registration__main__form__content__group__birthday__select__pulldown
+                  %option{value:"--"} --
+                  %option{value:"4"} 1
+              %span.registration__main__form__content__group__birthday__select__text  日
+              .clearfix
+              %p.registration__main__form__content__notice  ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        %div.registration__main__form__content
+          .registration__main__form__content__recaptha
+            = image_tag "reCAPTHA.jpg", size: "309x83"
+          .registration__main__form__content__btn-text
+            %p.registration__main__form__content__btn-text「次へ進む」のボタンを押すことにより、
+            = link_to "利用規約", "", class: "registration__main__form__content__btn-text__link"
+            に
+            %br
+            %p.registration__main__form__content__btn-text__second 同意したものとみなします
+          = link_to "次へ進む", step2_signup_index_path, class: "registration__main__form__content__btn"
+          .registration__main__form__content__text-right
+            %p
+              = link_to  "本人情報の登録について", "", class: "registration__main__form__content__text-right__text"
+              %i.fas.fa-chevron-right.registration__main__form__content__text-right__icon
+  = render 'layouts/second_footer'

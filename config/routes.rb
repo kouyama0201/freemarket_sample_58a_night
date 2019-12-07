@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :signup do
     collection do
-      get 'step1'
+      get 'registration'
       get 'step2'
       get 'step3'
       get 'step4'
       get 'done'
+      get 'mypage'
     end
   end
 end

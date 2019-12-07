@@ -9,11 +9,11 @@
         新規会員登録 
       .signup__main__container__inner
         .signup__main__container__inner__content
-          = link_to step1_signup_index_path, class: "signup__main__container__inner__content__btn__mail" do
+          = link_to registration_signup_index_path, class: "signup__main__container__inner__content__btn__mail" do
             %i.far.fa-envelope.fa-lg.signup__main__container__inner__content__btn__mail__icon
             メールアドレスで登録する
-          = link_to step1_signup_index_path, id: "facebook-login", class: "signup__main__container__inner__content__btn__facebook" do
+          = link_to registration_signup_index_path, id: "facebook-login", class: "signup__main__container__inner__content__btn__facebook" do
             %i.fab.fa-facebook-square.fa-2x.signup__main__container__inner__content__btn__facebook__icon
             Facebookで登録する
-          = link_to "Googleで登録する", step1_signup_index_path, id: "google-login", class: "signup__main__container__inner__content__btn__google"
+          = link_to "Googleで登録する", registration_signup_index_path, id: "google-login", class: "signup__main__container__inner__content__btn__google"
   = render 'layouts/second_footer'

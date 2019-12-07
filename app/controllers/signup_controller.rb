@@ -1,5 +1,5 @@
 class SignupController < ApplicationController
-  def step1
+  def registration
   end
 
   def step2
