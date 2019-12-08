@@ -7,4 +7,7 @@ class ProductsController < ApplicationController
 
   def logout
   end
+
+  def purchase_confirmation
+  end
 end
