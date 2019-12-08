@@ -31,18 +31,18 @@
             %br
             会員登録が完了しました。
           = link_to "メルカリをはじめる", root_path, class: "complete__main__form__content__btn"
-      %footer
-        .footer-upper
-          .footer-upper__banner
+      %complete__footer
+        .complete__footer-upper
+          .complete__footer-upper__banner
             = image_tag "bg_complete_footer"
-            .footer-upper__banner--title
+            .complete__footer-upper__banner--title
               ＼ スマホでかんたんフリマアプリ ／
-            .footer-upper__banner--text
+            .complete__footer-upper__banner--text
               今すぐ無料ダウンロード！
-            .footer-upper__banner--app
+            .complete__footer-upper__banner--app
               = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?206587138", size: "135x40")
-            .footer-upper__banner--google
+            .complete__footer-upper__banner--google
               = link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?206587138", size: "135x40")
-            .footer-upper__banner--smartphone
+            .complete__footer-upper__banner--smartphone
               = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?206587138", height: "261px", width: "300"
   = render 'layouts/second_footer'
