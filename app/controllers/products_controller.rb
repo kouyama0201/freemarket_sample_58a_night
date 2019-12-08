@@ -7,4 +7,11 @@ class ProductsController < ApplicationController
 
   def logout
   end
+
+  def card
+  end
+
+  def card_registration
+  end
+
 end

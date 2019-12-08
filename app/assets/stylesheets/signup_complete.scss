@@ -173,45 +173,45 @@
       }
     }
   }
-}
+  &__footer-upper {
+    height: 260px;
 
-.footer-upper {
-  height: 260px;
+    &__banner {
+      position: relative;
 
-  &__banner {
-    position: relative;
+      &--title {
+        font-size: 15px;
+        font-weight: 600;
+        left: 390px;
+        bottom: 192px;
+        position: absolute;
+      }
 
-    &--title {
-      font-size: 15px;
-      font-weight: 600;
-      left: 390px;
-      bottom: 192px;
-      position: absolute;
-    }
+      &--text {
+        font-size: 28px;
+        left: 360px;
+        bottom: 139px;
+        position: absolute;
+      }
 
-    &--text {
-      font-size: 28px;
-      left: 360px;
-      bottom: 139px;
-      position: absolute;
-    }
+      &--app {
+        left: 360px;
+        bottom: 69px;
+        position: absolute;
+      }
 
-    &--app {
-      left: 360px;
-      bottom: 69px;
-      position: absolute;
-    }
+      &--google {
+        left: 520px;
+        bottom: 69px;
+        position: absolute;
+      }
 
-    &--google {
-      left: 520px;
-      bottom: 69px;
-      position: absolute;
-    }
-
-    &--smartphone {
-      right: 345px;
-      bottom: 0px;
-      position: absolute;
+      &--smartphone {
+        right: 345px;
+        bottom: 0px;
+        position: absolute;
+      }
     }
   }
 }
+
