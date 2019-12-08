@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     collection do
       get 'detail'
       get 'logout'
+      get 'card'
+      get 'card_registration'
     end
   end
   
