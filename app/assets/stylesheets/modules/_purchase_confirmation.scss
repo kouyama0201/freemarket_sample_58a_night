@@ -1,0 +1,126 @@
+.products-header {
+  background-color: #f5f5f5;
+  height: 128px;
+  text-align: center;
+  &__icon {
+    padding: 21px 7px 0 0;
+  }
+}
+
+.purchase-confirmation-main {
+  background-color: #f5f5f5;
+  color: #333333;
+  height: 765px;
+  &__box {
+    background-color: #ffffff;
+    height: 765px;
+    width: 700px;
+    margin: 0 auto;
+    &--title {
+      height: 97px;
+      line-height: 97px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: solid 1px #f5f5f5;
+    }
+    &--product {
+      display: flex;
+      height: 112px;
+      border-bottom: solid 1px #f5f5f5;
+      padding: 32px 0 0 188px;
+      &--name {
+        width: 247px;
+        font-size: 14px;
+        padding-left: 29px;
+      }
+      &--price {
+        display: flex;
+        font-weight: 600;
+        margin-top: 8px;
+        &--shipping-fee {
+          font-size: 12px;
+          margin: -1px 0 0 3px;
+        }
+      }
+    }
+    &--buy-form {
+      height: 523px;
+      &--info {
+        height: 442px;
+        width: 343px;
+        margin: 32px auto 48px;
+        &--payment {
+          display: flex;
+          height: 94px;
+          font-size: 18px;
+          font-weight: 600;
+          justify-content: space-between;
+          border-bottom: solid 1px #f5f5f5;
+          padding-top: 6px;
+          &--amount {
+            font-size: 28px;
+            margin-top: -4px;
+          }
+          &--point {
+            display: flex;
+            left: 549px;
+            color: #cccccc;
+            font-size: 23px;
+            margin-top: 16px;
+            position: absolute;
+            &--text {
+              color: #888888;
+              font-size: 14px;
+              font-weight: normal;
+              margin: 1px 0 0 7px;
+            }
+          }
+        }
+        &--method-of-payment {
+          height: 78px;
+          font-size: 14px;
+          font-weight: 700;
+          border-bottom: solid 1px #f5f5f5;
+          margin-top: 29px;
+          &--credit-card {
+            color: #0099e8;
+            font-size: 14px;
+            font-weight: normal;
+            margin-top: 4px;
+          }
+        }
+        &--destination {
+          display: flex;
+          height: 122px;
+          font-size: 14px;
+          font-weight: 700;
+          border-bottom: solid 1px #f5f5f5;
+          margin-top: 29px;
+          justify-content: space-between;
+          &--change {
+            color: #0099e8;
+            font-weight: normal;
+            margin-top: 2px;
+          }
+          &--detail {
+            color: #333333;
+            left: 549px;
+            margin-top: 4px;
+            position: absolute;
+          }
+        }
+        &--purchase-btn {
+          background-color: #888888;
+          color: #ffffff;
+          font-size: 14px;
+          font-weight: 700;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          margin-top: 32px;
+        }
+      }
+    }
+  }
+}

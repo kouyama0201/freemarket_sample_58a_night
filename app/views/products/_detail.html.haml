@@ -84,8 +84,9 @@
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-    .detail__main__purchase-btn
-      購入画面に進む
+    = link_to purchase_confirmation_products_path do
+      .detail__main__purchase-btn
+        購入画面に進む
     .detail__main__description
       2018年の福袋にて購入しましたが着る機会がないため出品します。
     .detail__main__btn-box
