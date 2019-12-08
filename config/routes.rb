@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'logout'
       get 'card'
       get 'card_registration'
+      get 'mypage'
     end
   end
   
