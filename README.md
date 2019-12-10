@@ -56,6 +56,7 @@ Things you may want to cover:
 |card_number|integer|null: false|
 |exp_month|integer|null: false|
 |exp_year|integer|null: false|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -75,7 +76,7 @@ Things you may want to cover:
 |description|text|null: false|
 |category|refereces|null: false, foreign_key: true|
 |size|string|null: false|
-|brand|refereces|foreign_key: true|
+|brand|references|foreign_key: true|
 |condition|string|null: false|
 |delivery_cost|string|null: false|
 |delivery_way|string|null: false|
