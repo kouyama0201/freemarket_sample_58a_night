@@ -10,4 +10,11 @@ class ProductsController < ApplicationController
 
   def purchase_confirmation
   end
+
+  def card
+  end
+
+  def card_registration
+  end
+
 end

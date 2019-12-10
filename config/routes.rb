@@ -21,7 +21,9 @@ Rails.application.routes.draw do
       get 'detail'
       get 'logout'
       get 'purchase_confirmation'
+      get 'card'
+      get 'card_registration'
     end
   end
-  
+
 end
