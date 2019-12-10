@@ -1,0 +1,182 @@
+.mypage-box {
+  width: 700px;
+  top: 190px;
+  right: 210px;
+  position: absolute;
+  &__head {
+    height: 160px;
+    position: relative;
+    padding: 20px;
+    background: url(bg_complete_footer.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    &__link {
+      display: block;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      color: #333;
+      &__avator {
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+        &__img {
+          vertical-align: middle;
+        }
+      }
+      &__nickname {
+        margin: 8px 0 0;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      &__numbers {
+        margin: 8px 0 0;
+        font-size: 0;
+        &__name:last-child {
+          margin: 0 0 0 16px;
+        }
+        &__name {
+          display: inline-block;
+          font-size: 14px;
+        }
+        &__num {
+          margin: 0 0 0 8px;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  &__upper, &__products {
+    margin: 0;
+    background: #fff;
+    &__tabs {
+      border: 0;
+      background: #eee;
+      font-size: 0;
+      &__tab.active {
+        background: #fff;
+        border-top : 2px solid #ea352d;
+      }
+      &__tab {
+        width: 50%;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        &__name {
+          font-size: 22px;
+          font-weight: bold;
+          &__link {
+            display: block;
+            color: #333;
+            font-size: 16px;
+            line-height: 72px;
+          }
+        }
+      }
+    }
+    &__content {
+        display: block;
+        &__item {
+          border-bottom: 1px solid #eee;
+          position: relative; 
+          &__link {
+            display: block;
+            min-height: 48px;
+            padding: 16px;
+            color: #333;
+            &__logo {
+              position: relative;
+              overflow: hidden;
+              float: left;
+              width: 48px;
+              height: 48px;
+              &__img {
+                position :absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+              }
+            }
+            &__body {
+              margin: 0 40px 0 68px;
+              &__text {
+                overflow: hidden;
+                display: -webkit-box;
+                max-height: 4.4em;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                line-height: 1.5;
+                font-size: 14px;
+              }
+              &__status {
+                display: inline-block;
+                margin: 8px 0 0 0;
+                padding: 5px 6px;
+                border-radius: 2px;
+                font-size: 12px;
+                color: #fff;
+                font-weight: bold;
+                vertical-align: middle;
+                line-height: 12px;
+              }
+              &__status.not-shipped {
+                background: #ea352d;
+              }
+              &__status.not-verified {
+                background: #0099e8;
+              }
+              &__status.done {
+                background: #888;
+              }
+              &__time {
+                display: inline-block;
+                color: #888;
+                font-size: 14px;
+                &__icon {
+                  margin-left: 8px;
+                }
+                &__text {
+                  vertical-align: middle;
+                }
+              }
+              &__icon {
+                position: absolute;
+                top: 50%;
+                right: 16px;
+              }
+            }
+            &__btn {
+              display: block;
+              height: 56px;
+              margin: 0 auto;
+              background: #eee;
+              color: #333;
+              line-height: 56px;
+              text-align: center;
+            }
+          }
+      }
+    }
+  }
+  &__products {
+    margin: 40px 0 0;
+    background: #fff;
+    &__head {
+      padding: 0 16px;
+      background: #fafafa;
+      font-size: 16px;
+      line-height: 72px;
+      font-weight: bold;
+    }
+  }
+}

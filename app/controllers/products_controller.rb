@@ -17,4 +17,7 @@ class ProductsController < ApplicationController
   def card_registration
   end
 
+  def mypage
+  end
+
 end

@@ -1,0 +1,134 @@
+= render 'layouts/mypage_header'
+= render 'layouts/breadcrumbs'
+= render 'layouts/sidebar'
+.mypage-box
+  %section.mypage-box__head
+    = link_to "" "", class: "mypage-box__head__link" do
+      %figure.mypage-box__head__link__avator
+        = image_tag "user_noimage.png", class: "mypage-box__head__link__avator__img", size: "60x60"
+      %h2.mypage-box__head__link__nickname  テストユーザー
+      .mypage-box__head__link__numbers
+        .mypage-box__head__link__numbers__name 
+          評価
+          %span.mypage-box__head__link__numbers__num
+            3
+        .mypage-box__head__link__numbers__name
+          出品数
+          %span.mypage-box__head__link__numbers__num
+            4
+  %section.mypage-box__upper
+    %ul.mypage-box__upper__tabs
+      %li.mypage-box__upper__tabs__tab.active
+        %h3.mypage-box__upper__tabs__tab__name
+          = link_to "お知らせ", "", class: "mypage-box__upper__tabs__tab__name__link"
+      %li.mypage-box__upper__tabs__tab
+        %h3.mypage-box__upper__tabs__tab__name
+          = link_to "やることリスト", "", class: "mypage-box__upper__tabs__tab__name__link"
+    .mypage-box__upper__content
+      %ul.mypage-box__upper__content
+        %li.mypage-box__upper__content__item
+          = link_to root_path, class: "mypage-box__upper__content__item__link" do
+            .mypage-box__upper__content__item__link__logo
+              = image_tag "logo-notice.png", class: "mypage-box__upper__content__item__link__logo__img"
+            .mypage-box__upper__content__item__link__body
+              .mypage-box__upper__content__item__link__body__text
+                《今から3日間限定》参加ボタン押すだけでP1,000もらえるチャンス！
+              %time.mypage-box__upper__content__item__link__body__time
+                %i.far.fa-clock.mypage-box__upper__content__item__link__body__time__icon
+                %span.mypage-box__upper__content__item__link__body__time__text
+                  46分前
+            %i.fas.fa-chevron-right.mypage-box__upper__content__item__link__body__icon
+        %li.mypage-box__upper__content__item
+          = link_to root_path, class: "mypage-box__upper__content__item__link" do
+            .mypage-box__upper__content__item__link__logo
+              = image_tag "logo-notice.png", class: "mypage-box__upper__content__item__link__logo__img"
+            .mypage-box__upper__content__item__link__body
+              .mypage-box__upper__content__item__link__body__text
+                事務局からの個別メッセージ「ログイン通知」
+              %time.mypage-box__upper__content__item__link__body__time
+                %i.far.fa-clock.mypage-box__upper__content__item__link__body__time__icon
+                %span.mypage-box__upper__content__item__link__body__time__text
+                  1日前
+            %i.fas.fa-chevron-right.mypage-box__upper__content__item__link__body__icon
+        %li.mypage-box__upper__content__item
+          = link_to root_path, class: "mypage-box__upper__content__item__link" do
+            .mypage-box__upper__content__item__link__logo
+              = image_tag "logo-notice.png", class: "mypage-box__upper__content__item__link__logo__img"
+            .mypage-box__upper__content__item__link__body
+              .mypage-box__upper__content__item__link__body__text
+                事務局からの個別メッセージ「ログイン通知」
+              %time.mypage-box__upper__content__item__link__body__time
+                %i.far.fa-clock.mypage-box__upper__content__item__link__body__time__icon
+                %span.mypage-box__upper__content__item__link__body__time__text
+                  1日前
+            %i.fas.fa-chevron-right.mypage-box__upper__content__item__link__body__icon
+        %li.mypage-box__upper__content__item
+          = link_to root_path, class: "mypage-box__upper__content__item__link" do
+            .mypage-box__upper__content__item__link__logo
+              = image_tag "logo-notice.png", class: "mypage-box__upper__content__item__link__logo__img"
+            .mypage-box__upper__content__item__link__body
+              .mypage-box__upper__content__item__link__body__text
+                《P2,000かならずもらえる》メルペイスマート払いを設定して決済するだけ！買うものは何でもOK
+              %time.mypage-box__upper__content__item__link__body__time
+                %i.far.fa-clock.mypage-box__upper__content__item__link__body__time__icon
+                %span.mypage-box__upper__content__item__link__body__time__text
+                  2日前
+            %i.fas.fa-chevron-right.mypage-box__upper__content__item__link__body__icon
+        %li.mypage-box__upper__content__item
+          = link_to root_path, class: "mypage-box__upper__content__item__link" do
+            .mypage-box__upper__content__item__link__logo
+              = image_tag "logo-notice.png", class: "mypage-box__upper__content__item__link__logo__img"
+            .mypage-box__upper__content__item__link__body
+              .mypage-box__upper__content__item__link__body__text
+                事務局からの個別メッセージ「ログイン通知」
+              %time.mypage-box__upper__content__item__link__body__time
+                %i.far.fa-clock.mypage-box__upper__content__item__link__body__time__icon
+                %span.mypage-box__upper__content__item__link__body__time__text
+                  2日前
+            %i.fas.fa-chevron-right.mypage-box__upper__content__item__link__body__icon
+        %li.mypage-box__upper__content__item__link
+          = link_to "一覧を見る", root_path, class: "mypage-box__upper__content__item__link__btn"
+  %section.mypage-box__products
+    %h2.mypage-box__products__head
+      購入した商品
+    %ul.mypage-box__products__tabs
+      %li.mypage-box__products__tabs__tab.active
+        %h3.mypage-box__products__tabs__tab__name
+          = link_to "取引中", "", class: "mypage-box__products__tabs__tab__name__link"
+      %li.mypage-box__products__tabs__tab
+        %h3.mypage-box__products__tabs__tab__name
+          = link_to "過去の取引", "", class: "mypage-box__products__tabs__tab__name__link"
+    .mypage-box__products__content
+      %ul.mypage-box__products__content
+        %li.mypage-box__products__content__item
+          = link_to root_path, class: "mypage-box__products__content__item__link" do
+            .mypage-box__products__content__item__link__logo
+              = image_tag "product_sample.jpg", class: "mypage-box__products__content__item__link__logo__img"
+            .mypage-box__products__content__item__link__body
+              .mypage-box__products__content__item__link__body__text
+                作りながら学ぶ HTML/CSSデザインの教科書
+              .mypage-box__products__content__item__link__body__status.not-verified
+                受取評価待ち
+            %i.fas.fa-chevron-right.mypage-box__products__content__item__link__body__icon
+        %li.mypage-box__products__content__item
+          = link_to root_path, class: "mypage-box__products__content__item__link" do
+            .mypage-box__products__content__item__link__logo
+              = image_tag "product_sample.jpg", class: "mypage-box__products__content__item__link__logo__img"
+            .mypage-box__products__content__item__link__body
+              .mypage-box__products__content__item__link__body__text
+                作りながら学ぶ HTML/CSSデザインの教科書
+              .mypage-box__products__content__item__link__body__status.not-shipped
+                発送待ち
+            %i.fas.fa-chevron-right.mypage-box__products__content__item__link__body__icon
+        %li.mypage-box__products__content__item
+          = link_to root_path, class: "mypage-box__products__content__item__link" do
+            .mypage-box__products__content__item__link__logo
+              = image_tag "product_sample.jpg", class: "mypage-box__products__content__item__link__logo__img"
+            .mypage-box__products__content__item__link__body
+              .mypage-box__products__content__item__link__body__text
+                作りながら学ぶ HTML/CSSデザインの教科書
+              .mypage-box__products__content__item__link__body__status.not-shipped
+                発送待ち
+            %i.fas.fa-chevron-right.mypage-box__products__content__item__link__body__icon
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'

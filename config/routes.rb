@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'purchase_confirmation'
       get 'card'
       get 'card_registration'
+      get 'mypage'
     end
   end
 
