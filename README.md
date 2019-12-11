@@ -32,9 +32,10 @@ Things you may want to cover:
 ### Association
 - has_one :address, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
+- has_one :sns_credential, dependent: :destroy
 - has_many :products
 - has_many :comments
-- has_maby :seller, class_name: "Transaction"
+- has_many :seller, class_name: "Transaction"
 - has_many :buyer, class_name: "Transaction"
 
 ## addressesテーブル
@@ -55,6 +56,16 @@ Things you may want to cover:
 |card_number|integer|null: false|
 |exp_month|integer|null: false|
 |exp_year|integer|null: false|
+|user|references|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|uid|string|null: false|
+|provider|string|null: false|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
@@ -63,9 +74,9 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false, index: true|
 |description|text|null: false|
-|category|refereces|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
 |size|string|null: false|
-|brand|refereces|null: false, foreign_key: true|
+|brand|references|foreign_key: true|
 |condition|string|null: false|
 |delivery_cost|string|null: false|
 |delivery_way|string|null: false|
@@ -127,7 +138,7 @@ Things you may want to cover:
 - has_many :products
 
 ## ER図
-![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/69492139-cabc7400-0ee1-11ea-8543-7039443be4f4.jpeg)
+![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/70497807-c20da400-1b57-11ea-92a3-8619dedfbe12.jpeg)
 
 * Database initialization
 
