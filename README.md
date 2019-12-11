@@ -74,7 +74,7 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false, index: true|
 |description|text|null: false|
-|category|refereces|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
 |size|string|null: false|
 |brand|references|foreign_key: true|
 |condition|string|null: false|
