@@ -1,25 +1,25 @@
-.header-bread-crumbs {
+.breadcrumbs {
   position: relative;
-  color: #333333;
   font-size: 14px;
   height: 48px;
-  line-height: 48px;
+  line-height: 44px;
   border-top: 1px solid #eee;
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  padding: 0 210px;
   z-index: 1;
-  &__origin {
-    display: inline-flex;
-    margin: 0 210px;
+  a {
+    color: #333333;
+    font-size: 14px;
+    margin-right: 5px;
   }
-  &__2nd {
-    display: inline-flex;
-  }
-  &__3rd {
-    display: inline-flex;
-    font-weight: 600;
-  }
-  &__branch {
+  &__list {
     color: #888888;
-    margin: 0 7px 0 10px;
+    font-size: 20px;
+  }
+  .current {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 2px;
   }
 }
