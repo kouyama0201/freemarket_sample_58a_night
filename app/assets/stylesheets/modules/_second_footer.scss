@@ -1,0 +1,45 @@
+  .second__footer {
+    height: 140px;
+    width: 456px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+    display: block;
+
+    &__clearfix {
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+
+    &__link {
+      margin: 0 0 0 16px;
+      display: inline-block;
+      font-size: 12px;
+
+    &__link:first-child {
+      margin: 0;
+    }
+
+      &__text {
+        color: #333;
+      }
+    }
+
+    &__logo {
+      display: block;
+      width: 80px;
+      height: 65px;
+      margin: 40px auto 0;
+
+      &__img {
+        vertical-align: center;
+      }
+    }
+    &__text {
+      font-size: 13px;
+      color: #333333;
+    }
+  }
