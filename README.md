@@ -28,7 +28,7 @@ Things you may want to cover:
 |birth_year|integer|null: false|
 |birth_month|integer|null: false|
 |birth_day|integer|null: false|
-|phone|integer|unique: true|
+|phone|string|unique: true|
 ### Association
 - has_one :address, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
@@ -138,7 +138,7 @@ Things you may want to cover:
 - has_many :products
 
 ## ER図
-![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/70497807-c20da400-1b57-11ea-92a3-8619dedfbe12.jpeg)
+![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/70844017-3610ba80-1e7e-11ea-9415-7483168c51c1.jpeg)
 
 * Database initialization
 
