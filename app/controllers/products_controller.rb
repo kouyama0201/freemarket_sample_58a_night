@@ -22,4 +22,7 @@ class ProductsController < ApplicationController
 
   def mypage
   end
+
+  def identification
+  end
 end
