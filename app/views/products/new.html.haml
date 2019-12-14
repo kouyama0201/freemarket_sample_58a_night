@@ -1,0 +1,149 @@
+.containt
+  %header.containt__header
+    = link_to root_path, class: "containt__header__logo" do
+      = image_tag "logo.svg", class: "containt__header__logo__img"
+  %main.containt__main
+    %section.containt__main__container
+      .containt__main__container__inner
+        %h2.containt__main__container__inner__head 商品の情報を入力
+        %form.containt__main__container__inner__sell-form
+          .containt__main__container__inner__sell-form__upload-box
+            %h3.containt__main__container__inner__sell-form__upload-box__head
+              出品画像
+              %span.containt__main__container__inner__sell-form__form-require 必須
+              %p 最大10枚までアップロードできます
+              .containt__main__container__inner__sell-form__upload-box__head__drop-box
+                %input.containt__main__container__inner__sell-form__upload-box__head__drop-box__file{multiple: "multiple", name: "image1", style: "display:none;", type: "file"}
+                  %pre.containt__main__container__inner__sell-form__upload-box__head__drop-box__file__visible-pc 
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+                  %i.containt__main__container__inner__sell-form__upload-box__head__drop-box__file__icon-camera
+          .containt__main__container__inner__sell-form__information
+            .containt__main__container__inner__sell-form__information__name
+              %label
+                商品名
+                %span.containt__main__container__inner__sell-form__form-require 必須
+              %div.containt__main__container__inner__sell-form__information__name__input-form
+                %input.containt__main__container__inner__sell-form__information__name__input-form__input-name{placeholder: "商品名(必須 40文字まで)", value: ""}/
+            .containt__main__container__inner__sell-form__information__description
+              %label.containt__main__container__inner__sell-form__information__description__title
+                商品の説明
+                %span.containt__main__container__inner__sell-form__form-require 必須
+              %textarea.containt__main__container__inner__sell-form__information__description__textarea{placeholder: "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。\r\nあわせやすいのでおすすめです", rows: "5"}
+          .containt__main__container__inner__sell-form__detail
+            %h3.containt__main__container__inner__sell-form__detail__head 商品の詳細
+            .containt__main__container__inner__sell-form__detail__box
+              .containt__main__container__inner__sell-form__detail__box__form-group
+                %label
+                  カテゴリー
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                .containt__main__container__inner__sell-form__detail__box__form-group__category
+                  .containt__main__container__inner__sell-form__select-wrap
+                    %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                      %option{value: ""} ---
+                      %option{value: "1"} レディース
+                      %option{value: "2"} メンズ
+                      %option{value: "3"} ベビー・キッズ
+                      %option{value: "4"} インテリア・住まい・小物
+                      %option{value: "5"} 本・音楽・ゲーム
+                      %option{value: "1328"} おもちゃ・ホビー・グッズ
+                      %option{value: "6"} コスメ・香水・美容
+                      %option{value: "7"} 家電・スマホ・カメラ
+                      %option{value: "8"} スポーツ・レジャー
+                      %option{value: "9"} ハンドメイド
+                      %option{value: "1027"} チケット
+                      %option{value: "1318"} 自動車・オートバイ
+                      %option{value: "10"} その他
+              .containt__main__container__inner__sell-form__form-interval
+              .containt__main__container__inner__sell-form__detail__box__form-group
+                %label
+                  商品の状態
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                .containt__main__container__inner__sell-form__select-wrap
+                  %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                  %select.containt__main__container__inner__sell-form__select-wrap__list
+                    %option{value: ""} ---
+                    %option{value: "1"} 新品
+                    %option{value: "2"} 未使用に近い
+                    %option{value: "3"} 目立った傷や汚れなし
+                    %option{value: "4"} やや傷や汚れあり
+                    %option{value: "5"} 傷や汚れあり
+                    %option{value: "6"} 全体的に状態が悪い
+          .containt__main__container__inner__sell-form__delivery
+            %a.containt__main__container__inner__sell-form__delivery__sub-head 配送について
+            %a.containt__main__container__inner__sell-form__question{href: "/jp/help_center/article/68/", target: "_blank"} ?
+            .containt__main__container__inner__sell-form__delivery__box
+              .containt__main__container__inner__sell-form__delivery__box__form-group
+                %label
+                  配送料の負担
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                .containt__main__container__inner__sell-form__select-wrap
+                  %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                  %select.containt__main__container__inner__sell-form__select-wrap__list
+                    %option{value: ""} ---
+                    %option{value: "2"} 送料込(出品者負担)
+                    %option{value: "1"} 着払い(購入者負担)
+              .containt__main__container__inner__sell-form__form-interval
+              .containt__main__container__inner__sell-form__delivery__box__form-group
+                %label
+                  発送元の地域
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                = form_for '' do |f|
+                  .containt__main__container__inner__sell-form__select-wrap
+                    %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: 'containt__main__container__inner__sell-form__select-wrap__list'
+              .containt__main__container__inner__sell-form__form-interval
+              .containt__main__container__inner__sell-form__delivery__box__form-group
+                %label
+                  発送までの日数
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                .containt__main__container__inner__sell-form__select-wrap
+                  %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                  %select.containt__main__container__inner__sell-form__select-wrap__list
+                    %option{value: ""} ---
+                    %option{value: "1"} 1~2日で発送
+                    %option{value: "2"} 2~3日で発送
+                    %option{value: "3"} 4~7日で発送
+          .containt__main__container__inner__sell-form__price
+            %a.containt__main__container__inner__sell-form__delivery__sub-head 販売価格(300〜9,999,999)
+            %a.containt__main__container__inner__sell-form__question{href: "/jp/help_center/article/64/", target: "_blank"} ?
+            .containt__main__container__inner__sell-form__price__box
+              .containt__main__container__inner__sell-form__price__box__top
+                %label.containt__main__container__inner__sell-form__price__box__top__left
+                  価格
+                  %span.containt__main__container__inner__sell-form__form-require 必須
+                .containt__main__container__inner__sell-form__price__box__top__right
+                  %p.containt__main__container__inner__sell-form__price__box__top__right--yen
+                    ¥
+                  %input.containt__main__container__inner__sell-form__price__box__top__right__input{placeholder: "例)300", value: ""}/
+              .containt__main__container__inner__sell-form__price__box__center
+                .containt__main__container__inner__sell-form__price__box__center__left
+                  販売手数料(10%)
+                .containt__main__container__inner__sell-form__price__box__center__right
+                  －
+              .containt__main__container__inner__sell-form__price__box__bottom
+                .containt__main__container__inner__sell-form__price__box__bottom__left
+                  販売利益
+                .containt__main__container__inner__sell-form__price__box__bottom__right
+                  ➖
+          .containt__main__container__inner__sell-form__btn-box
+            %p.containt__main__container__inner__sell-form__btn-box__text1
+              %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/prohibited_items/", target: "_blank"} 禁止されている出品
+              、
+              %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank"} 行為
+              を必ずご確認ください。
+            %p.containt__main__container__inner__sell-form__btn-box__text2
+              またブランド品でシリアルナンバー等がある場合はご記載ください。
+              %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank"} 偽ブランドの販売
+              は犯罪であり処罰される可能性があります。
+            %p.containt__main__container__inner__sell-form__btn-box__text3
+              また、出品を持ちまして
+              %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/seller_terms/"} 加盟店規約
+              に同意したことになります。
+            %button.containt__main__container__inner__sell-form__btn-box__btn-red{type: "submit"}
+              出品する
+            %button.containt__main__container__inner__sell-form__btn-box__btn-gray{type: "submit"}
+              もどる
+  = render 'layouts/second_footer'

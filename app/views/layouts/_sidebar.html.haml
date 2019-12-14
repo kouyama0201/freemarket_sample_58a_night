@@ -1,6 +1,6 @@
 .mypage-wrapper
   .sidebar
-    .sidebar__list
+    = link_to mypage_products_path, class: "sidebar__list" do
       マイページ
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -16,7 +16,7 @@
       いいね！一覧
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to new_product_path, class: "sidebar__list" do
       出品する
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -68,7 +68,7 @@
         %i.fas.fa-chevron-right
     .sidebar__title
       設定
-    .sidebar__list
+    = link_to "", class: "sidebar__list" do
       プロフィール
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -76,7 +76,7 @@
       発送元・お届け先住所変更
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to card_products_path, class: "sidebar__list" do
       支払い方法
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -84,7 +84,7 @@
       メール/パスワード
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to "", class: "sidebar__list" do
       本人情報
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -92,10 +92,6 @@
       電話番号の確認
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    -# .sidebar__list
-    -#   ログアウト
-    -#   .sidebar__list--detail
-    -#     %i.fas.fa-chevron-right
     = link_to logout_products_path, class: "sidebar__list" do
       ログアウト
       .sidebar__list--detail
