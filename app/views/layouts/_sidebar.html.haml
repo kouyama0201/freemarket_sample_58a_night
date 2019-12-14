@@ -92,7 +92,11 @@
       電話番号の確認
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    -# .sidebar__list
+    -#   ログアウト
+    -#   .sidebar__list--detail
+    -#     %i.fas.fa-chevron-right
+    = link_to logout_products_path, class: "sidebar__list" do
       ログアウト
       .sidebar__list--detail
         %i.fas.fa-chevron-right

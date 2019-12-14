@@ -1,3 +1,4 @@
 .logout-box
-  .logout-box__btn
-    ログアウト
+  = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-box__btn"
+  -# .logout-box__btn
+  -#   ログアウト

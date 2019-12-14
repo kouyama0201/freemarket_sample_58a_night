@@ -23,12 +23,18 @@
   %main.pay_way__main
     %section.pay_way__main__container
       %h2.pay_way__main__container__head  支払い方法
-      %form.pay_way__main__form
+      -# %form.pay_way__main__form
+      -# = form_for(@card, url: signup_index_path, method: :post, html: {id:"charge-form", name: "inputForm", class: "pay_way__main__form"}) do |f|
+      = form_tag(signup_index_path, method: :post, id:"charge-form", name: "inputForm", class: "pay_way__main__form") do
         %div.pay_way__main__form__content
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  カード番号
+            -# = f.label :card_number, "カード番号", class: "pay_way__main__form__content__group__label" 
             %span.pay_way__main__form__content__group__require   必須
-            %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"半角数字のみ"}
+            -# %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"半角数字のみ"}
+            -# = f.fields_for :credit_card, @user.credit_card do |s|
+            -# = f.text_field :card_number, class: "number pay_way__main__form__content__group__input", placeholder:"半角数字のみ", id: "card_number"
+            = text_field_tag "number", "", class: "number pay_way__main__form__content__group__input", placeholder:"半角数字のみ", id: "card_number"
             %ul.pay_way__main__form__content__group__card-list
               %li.pay_way__main__form__content__group__card-list__img
                 = image_tag "visa.svg", class: "pay_way__main__form__content__group__card-list__img__visa"
@@ -46,26 +52,63 @@
                 = image_tag "discover.svg", class: "pay_way__main__form__content__group__card-list__img__discover"
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  有効期限
+            -# = f.label :exp_date, "有効期限", class: "pay_way__main__form__content__group__label" 
             %span.pay_way__main__form__content__group__require   必須
             .pay_way__main__form__content__group__expire
               .pay_way__main__form__content__group__expire__select
                 %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
-                %select.pay_way__main__form__content__group__expire__select__pulldown
-                  %option{value:"01"} 01
+                -# = f.fields_for :credit_card, @user.credit_card do |s|
+                -# = f.select :exp_month, @user.set_2digit_month, {}, {id: "exp_month", class: "pay_way__main__form__content__group__expire__select__pulldown"}
+                -# = select_tag ("exp_month" options_for_collection_from_select(@user.set_2digit_month), {id: "exp_month", class: "pay_way__main__form__content__group__expire__select__pulldown"})
+                %select#exp_month{name: "exp_month", type: "text", class: "pay_way__main__form__content__group__expire__select__pulldown"}
+                  %option{value: ""} --
+                  %option{value: "1"}01
+                  %option{value: "2"}02
+                  %option{value: "3"}03
+                  %option{value: "4"}04
+                  %option{value: "5"}05
+                  %option{value: "6"}06
+                  %option{value: "7"}07
+                  %option{value: "8"}08
+                  %option{value: "9"}09
+                  %option{value: "10"}10
+                  %option{value: "11"}11
+                  %option{value: "12"}12
               %span.pay_way__main__form__content__group__expire__select__text  月
             .pay_way__main__form__content__group__expire
               .pay_way__main__form__content__group__expire__select
                 %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
-                %select.pay_way__main__form__content__group__expire__select__pulldown
-                  %option{value:"19"} 19
+                -# = f.fields_for :credit_card, @user.credit_card do |s|
+                -# = f.select :exp_year, @user.set_2digit_year, {}, {id: "exp_year", class: "pay_way__main__form__content__group__expire__select__pulldown"}
+                -# = select_tag ("exp_year", options_for_select((@user.set_2digit_year), id: "exp_year", class: "pay_way__main__form__content__group__expire__select__pulldown"))
+                %select#exp_year{name: "exp_year", type: "text", class:"pay_way__main__form__content__group__expire__select__pulldown"}
+                  %option{value: ""} --
+                  %option{value: "2019"}19
+                  %option{value: "2020"}20
+                  %option{value: "2021"}21
+                  %option{value: "2022"}22
+                  %option{value: "2023"}23
+                  %option{value: "2024"}24
+                  %option{value: "2025"}25
+                  %option{value: "2026"}26
+                  %option{value: "2027"}27
+                  %option{value: "2028"}28
+                  %option{value: "2029"}29
               %span.pay_way__main__form__content__group__expire__select__text  年
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  セキュリティコード
+            -# = f.label :security_code, "セキュリティコード", class: "pay_way__main__form__content__group__label" 
             %span.pay_way__main__form__content__group__require   必須
-            %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"カード背面4桁もしくは3桁の番号"}
+            -# %input.pay_way__main__form__content__group__input{"type":"text", "placeholder":"カード背面4桁もしくは3桁の番号"}
+            -# = f.fields_for :credit_card, @user.credit_card do |s|
+            -# = f.password_field :security_code, id: "cvc", class: "pay_way__main__form__content__group__input", placeholder:"カード背面4桁もしくは3桁の番号"
+            = text_field_tag "cvc", "", id: "cvc", class: "pay_way__main__form__content__group__input", placeholder:"カード背面4桁もしくは3桁の番号"
           .pay_way__main__form__content__text-right
             .pay_way__main__form__content__text-right__text 
               %span.pay_way__main__form__content__text-right__icon ?
               カード裏面の番号とは？
-          = link_to "次へ進む", complete_signup_index_path, class: "pay_way__main__form__content__btn"
+          -# = link_to "次へ進む", complete_signup_index_path, class: "pay_way__main__form__content__btn"
+          #card_token
+          -# = f.submit "次へ進む", class: "pay_way__main__form__content__btn", id: "token_submit"
+          = submit_tag "次へ進む", class: "pay_way__main__form__content__btn", id: "token_submit"
   = render 'layouts/second_footer'

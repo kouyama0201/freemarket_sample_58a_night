@@ -6,7 +6,8 @@
     = link_to "" "", class: "mypage-box__head__link" do
       %figure.mypage-box__head__link__avator
         = image_tag "user_noimage.png", class: "mypage-box__head__link__avator__img", size: "60x60"
-      %h2.mypage-box__head__link__nickname  テストユーザー
+      %h2.mypage-box__head__link__nickname
+        = current_user.name
       .mypage-box__head__link__numbers
         .mypage-box__head__link__numbers__name 
           評価
