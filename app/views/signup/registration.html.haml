@@ -95,7 +95,7 @@
               %p.registration__main__form__content__notice  ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         %div.registration__main__form__content
           .registration__main__form__content__recaptha
-            = image_tag "reCAPTHA.jpg", size: "309x83"
+            = recaptcha_tags
           .registration__main__form__content__btn-text
             %p.registration__main__form__content__btn-text「次へ進む」のボタンを押すことにより、
             = link_to "利用規約", "", class: "registration__main__form__content__btn-text__link"

@@ -80,3 +80,4 @@ gem "payjp"
 gem 'dotenv-rails'
 gem "gretel"
 gem 'active_hash'
+gem "recaptcha"
