@@ -24,6 +24,7 @@ class SignupController < ApplicationController
     session[:firstname] = user_params[:firstname]
     session[:lastname_kana] = user_params[:lastname_kana]
     session[:firstname_kana] = user_params[:firstname_kana]
+    session[:address] = user_params[:address_attributes]
     session[:phone] = user_params[:phone]
     @user = User.new
   end
@@ -47,7 +48,8 @@ class SignupController < ApplicationController
     birth_month: session[:birth_month],
     birth_day: session[:birth_day]
     )
-    if @user.save
+    @user.build_address(session[:address])
+    if @user.save && verify_recaptcha(model: @user)
       session[:id] = @user.id
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       if params['payjp-token'].blank?
@@ -69,7 +71,7 @@ class SignupController < ApplicationController
     else
       render '/signup/registration'
     end
-    
+
   end
 
   private
@@ -90,15 +92,15 @@ class SignupController < ApplicationController
       :birth_month,
       :birth_day,
       :phone,
+      address_attributes: [
+        :id,
+        :postal_code,
+        :prefecture_id,
+        :city,
+        :street,
+        :building_name
+      ]
     )
   end
-
-  # def card_params
-  #   params.require(:card).permit(
-  #     :user_id,
-  #     :customer_id,
-  #     :card_id
-  #   )
-  # end
 
 end

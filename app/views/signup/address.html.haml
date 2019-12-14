@@ -42,45 +42,47 @@
             -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）アヤ"}
             = f.text_field :lastname_kana, class: "address__main__form__content__group__input", placeholder:"例）ヤマダ"
             = f.text_field :firstname_kana, class: "address__main__form__content__group__input", placeholder:"例）アヤ"
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  郵便番号
-            = f.label :postal_code, "郵便番号", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__require   必須
-            %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）123-4567"}
-            -# = f.text_field :postal_code, class: "address__main__form__content__group__input", placeholder:"例）123-4567"
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  都道府県
-            = f.label :prefecture, "都道府県", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__require   必須
-            .address__main__form__content__group__prefecture__select
-              %i.fas.fa-chevron-down.fa-lg.address__main__form__content__group__prefecture__select__icon
-              %select.address__main__form__content__group__prefecture__select__pulldown
-                %option{value:"北海道"} 北海道
-                %option{value:"青森"} 青森
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  市区町村
-            = f.label :city, "市区町村", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__require   必須
-            %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）横浜市緑区"}
-            -# = f.text_field :city, class: "address__main__form__content__group__input", placeholder:"例）横浜市緑区"
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  番地
-            = f.label :street, "番地", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__require   必須
-            %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）青山1-1-1"}
-            -# = f.text_field :street, class: "address__main__form__content__group__input", placeholder:"例）青山1-1-1"
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  建物名
-            = f.label :building_name, "建物名", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__optional  任意
-            %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）柳ビル103"}
-            -# = f.text_field :building_name, class: "address__main__form__content__group__input", placeholder:"例）柳ビル103"
-          %div.address__main__form__content__group
-            -# %label.address__main__form__content__group__label  電話
-            = f.label :phone, "電話", class: "address__main__form__content__group__label" 
-            %span.address__main__form__content__group__optional   任意
-            -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）09012345678"}
-            = f.text_field :phone, class: "address__main__form__content__group__input", placeholder:"例）09012345678"
-          -# = link_to "次へ進む", pay_way_signup_index_path, class: "address__main__form__content__btn"
-          = f.submit "次へ進む", class: "address__main__form__content__btn"
+            = f.fields_for :address, @user.build_address do |address_form|
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  郵便番号
+                = f.label :postal_code, "郵便番号", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__require   必須
+                -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）123-4567"}
+                = address_form.text_field :postal_code, class: "address__main__form__content__group__input", placeholder:"例）123-4567"
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  都道府県
+                = f.label :prefecture, "都道府県", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__require   必須
+                .address__main__form__content__group__prefecture__select
+                  %i.fas.fa-chevron-down.fa-lg.address__main__form__content__group__prefecture__select__icon
+                  = address_form.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: 'address__main__form__content__group__prefecture__select__pulldown'
+                  -# %select.address__main__form__content__group__prefecture__select__pulldown
+                  -#   %option{value:"北海道"} 北海道
+                  -#   %option{value:"青森"} 青森
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  市区町村
+                = f.label :city, "市区町村", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__require   必須
+                -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）横浜市緑区"}
+                = address_form.text_field :city, class: "address__main__form__content__group__input", placeholder:"例）横浜市緑区"
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  番地
+                = f.label :street, "番地", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__require   必須
+                -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）青山1-1-1"}
+                = address_form.text_field :street, class: "address__main__form__content__group__input", placeholder:"例）青山1-1-1"
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  建物名
+                = f.label :building_name, "建物名", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__optional  任意
+                -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）柳ビル103"}
+                = address_form.text_field :building_name, class: "address__main__form__content__group__input", placeholder:"例）柳ビル103"
+              %div.address__main__form__content__group
+                -# %label.address__main__form__content__group__label  電話
+                = f.label :phone, "電話", class: "address__main__form__content__group__label" 
+                %span.address__main__form__content__group__optional   任意
+                -# %input.address__main__form__content__group__input{"type":"text", "placeholder":"例）09012345678"}
+                = f.text_field :phone, class: "address__main__form__content__group__input", placeholder:"例）09012345678"
+              -# = link_to "次へ進む", pay_way_signup_index_path, class: "address__main__form__content__btn"
+              = f.submit "次へ進む", class: "address__main__form__content__btn"
   = render 'layouts/second_footer'
