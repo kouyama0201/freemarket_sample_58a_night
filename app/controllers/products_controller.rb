@@ -2,6 +2,9 @@ class ProductsController < ApplicationController
   def index
   end
 
+  def new
+  end
+
   def detail
   end
 
@@ -19,5 +22,4 @@ class ProductsController < ApplicationController
 
   def mypage
   end
-
 end
