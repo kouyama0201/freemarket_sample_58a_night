@@ -1,0 +1,18 @@
+.logout-box {
+  background-color: #ffffff;
+  height: 179px;
+  width: 700px;
+  top: 190px;
+  right: 210px;
+  position: absolute;
+  &__btn {
+    background-color: #ea352d;
+    color: #ffffff;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    width: 320px;
+    text-align: center;
+    margin: 64px auto;
+  }
+}

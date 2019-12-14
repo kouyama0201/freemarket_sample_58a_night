@@ -1,0 +1,25 @@
+.header-bread-crumbs {
+  position: relative;
+  color: #333333;
+  font-size: 14px;
+  height: 48px;
+  line-height: 48px;
+  border-top: 1px solid #eee;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  z-index: 1;
+  &__origin {
+    display: inline-flex;
+    margin: 0 210px;
+  }
+  &__2nd {
+    display: inline-flex;
+  }
+  &__3rd {
+    display: inline-flex;
+    font-weight: 600;
+  }
+  &__branch {
+    color: #888888;
+    margin: 0 7px 0 10px;
+  }
+}
