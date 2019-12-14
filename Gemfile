@@ -76,4 +76,5 @@ gem "mini_magick"
 gem "font-awesome-sass"
 gem "haml-rails"
 gem "devise"
+gem "gretel"
 gem 'active_hash'
