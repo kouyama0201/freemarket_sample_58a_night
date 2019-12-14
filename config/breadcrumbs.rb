@@ -16,10 +16,10 @@ crumb :card do
   parent :mypage
 end
 
-# crumb :personal do
-#   link "本人情報の確認", root_path
-#   parent :mypage
-# end
+crumb :personal do
+  link "本人情報の確認", identification_products_path
+  parent :mypage
+end
 
 crumb :logout do
   link "ログアウト", logout_products_path
