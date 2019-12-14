@@ -3,6 +3,12 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @product = Product.new
+  end
+
+  def create
+    Product.create(product_params)
+    redirect_to root_path
   end
 
   def detail
@@ -21,5 +27,10 @@ class ProductsController < ApplicationController
   end
 
   def mypage
+  end
+
+  private
+  def product_params
+    params.require(:product).permit(:name, :price).merge(user_id: current_user.id)
   end
 end
