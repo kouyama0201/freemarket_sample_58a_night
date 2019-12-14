@@ -15,29 +15,29 @@
           = link_to "https://www.mercari.com/jp/help_center/article/495/", class: "identification-box__form__header--link--tag" do
             本人確認書類のアップロードについて
           %i.fas.fa-chevron-right.identification-box__form__header--link--icon
-      %div.identification-box__form__group
+      .identification-box__form__group
         %label.identification-box__form__group--label
           お名前
         %p.identification-box__form__group--text
           メルカリ 太郎
-      %div.identification-box__form__group
+      .identification-box__form__group
         %label.identification-box__form__group--label
           お名前カナ
         %p.identification-box__form__group--text
           メルカリ タロウ
-      %div.identification-box__form__group
+      .identification-box__form__group
         %label.identification-box__form__group--label
           生年月日
         %p.identification-box__form__group--text
           1990/01/01
-      %div.identification-box__form__group-pulldown
+      .identification-box__form__group-pulldown
         %label
           郵便番号
         %span.identification-box__form--form-arbitrary
           任意
         %br
         %input.identification-box__form__input-form{placeholder: "例）1234567", type: "text", value: ""}/
-      %div.identification-box__form__group-pulldown
+      .identification-box__form__group-pulldown
         %label
           都道府県
         %span.identification-box__form--form-arbitrary
@@ -46,21 +46,21 @@
           .identification-box__form__group-pulldown__select-wrap
             %i.fas.fa-chevron-down.fa-lg.identification-box__form__group-pulldown__select-wrap__icon
             = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: 'containt__main__container__inner__sell-form__select-wrap__list'
-        %div.identification-box__form__group-pulldown
+        .identification-box__form__group-pulldown
           %label
             市区町村
           %span.identification-box__form--form-arbitrary
             任意
           %br
           %input.identification-box__form__input-form{placeholder: "例）横浜市緑区", type: "text", value: ""}/
-        %div.identification-box__form__group-pulldown
+        .identification-box__form__group-pulldown
           %label
             番地
           %span.identification-box__form--form-arbitrary
             任意
           %br
           %input.identification-box__form__input-form{placeholder: "例）青山1-1-1", type: "text", value: ""}/
-        %div.identification-box__form__group-pulldown
+        .identification-box__form__group-pulldown
           %label
             建物名
           %span.identification-box__form--form-arbitrary
@@ -69,7 +69,7 @@
           %input.identification-box__form__input-form{placeholder: "例）柳ビル103", type: "text", value: ""}/
           %button.identification-box__form__btn-red{type: "submit"}
             登録する
-          %div.identification-box__form__bottom
+          .identification-box__form__bottom
             = link_to "https://www.mercari.com/jp/help_center/article/423/", class: "identification-box__form__header--link--tag" do
               本人情報の登録について
             %i.fas.fa-chevron-right.identification-box__form__header--link--icon
