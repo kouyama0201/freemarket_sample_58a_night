@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get 'card_registration'
       get 'mypage'
       get 'identification'
+      get 'profile'
     end
   end
 end

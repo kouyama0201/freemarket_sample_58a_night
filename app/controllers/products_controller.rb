@@ -25,4 +25,7 @@ class ProductsController < ApplicationController
 
   def identification
   end
+
+  def profile
+  end
 end
