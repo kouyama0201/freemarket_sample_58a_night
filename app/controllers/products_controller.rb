@@ -30,6 +30,9 @@ class ProductsController < ApplicationController
   def mypage
   end
 
+  def identification
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :price, images_attributes: [:id, :image]).merge(user_id: current_user.id)
