@@ -37,6 +37,9 @@ class ProductsController < ApplicationController
   def identification
   end
 
+  def profile
+  end
+  
   private
   def product_params
     params.require(:product).permit(:name, :price, images_attributes: [:id, :image]).merge(user_id: current_user.id)
