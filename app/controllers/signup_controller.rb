@@ -49,18 +49,15 @@ class SignupController < ApplicationController
     birth_day: session[:birth_day]
     )
     @user.build_address(session[:address])
-    if @user.save && verify_recaptcha(model: @user)
+    if @user.save
       session[:id] = @user.id
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       if params['payjp-token'].blank?
         redirect_to action: "new"
       else
         customer = Payjp::Customer.create(
-        # description: '登録テスト', #なくてもOK
-        # email: current_user.email, #なくてもOK
         card: params['payjp-token'],
-        # metadata: {user_id: current_user.id}
-        ) #念の為metadataにuser_idを入れましたがなくてもOK
+        ) 
         @card = Card.new(user_id: session[:id], customer_id: customer.id, card_id: customer.default_card)
         if @card.save
             redirect_to complete_signup_index_path

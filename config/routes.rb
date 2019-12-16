@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  get 'card/new'
-
-  get 'card/show'
-
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
-    :passwords => 'users/passwords'
+    :passwords => 'users/passwords',
+    :omniauth_callbacks =>  "users/omniauth_callbacks"
   }
 
   root to: 'products#index'
@@ -31,6 +28,9 @@ Rails.application.routes.draw do
       get 'identification'
     end
   end
+
+  get 'card/new'
+  get 'card/show'
 
   resources :card, only: [:new, :show] do
     collection do
