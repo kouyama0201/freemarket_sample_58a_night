@@ -32,6 +32,24 @@ ActiveRecord::Schema.define(version: 20191214223848) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "image",      null: false
+    t.integer  "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_images_on_product_id", using: :btree
+  end
+
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.integer  "price",      null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name", using: :btree
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
+  end
+
   create_table "sns_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "provider"
     t.string   "uid"
@@ -66,5 +84,7 @@ ActiveRecord::Schema.define(version: 20191214223848) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "images", "products"
+  add_foreign_key "products", "users"
   add_foreign_key "sns_credentials", "users"
 end
