@@ -12,8 +12,8 @@
     %span ブランドから探す
   .header-lower-right
     .header-lower-right__signup
-      = link_to new_user_session_path do
+      = link_to new_user_registration_path do
         %span{class: "signup-btn"} 新規登録
     .header-lower-right__login
-      = link_to mypage_products_path do
+      = link_to new_user_session_path do
         %span{class: "login-btn"} ログイン

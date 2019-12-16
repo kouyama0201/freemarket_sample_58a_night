@@ -94,8 +94,6 @@
               .clearfix
               %p.registration__main__form__content__notice  ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         %div.registration__main__form__content
-          .registration__main__form__content__recaptha
-            = recaptcha_tags
           .registration__main__form__content__btn-text
             %p.registration__main__form__content__btn-text「次へ進む」のボタンを押すことにより、
             = link_to "利用規約", "", class: "registration__main__form__content__btn-text__link"
@@ -108,4 +106,11 @@
             %p
               = link_to  "本人情報の登録について", "", class: "registration__main__form__content__text-right__text"
               %i.fas.fa-chevron-right.registration__main__form__content__text-right__icon
+          .registration__main__form__content__recaptcha_term
+            %p.registration__main__form__content__recaptcha_term__text
+              This site is protected by reCAPTCHA and the Google
+              = link_to "Privacy Policy", "", class: "registration__main__form__content__recaptcha_term__link"
+              and
+              = link_to "Terms of Service", "", class: "registration__main__form__content__recaptcha_term__link"
+              apply.
   = render 'layouts/second_footer'
