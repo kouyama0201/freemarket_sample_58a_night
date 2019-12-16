@@ -80,4 +80,7 @@ gem "payjp"
 gem 'dotenv-rails'
 gem "gretel"
 gem 'active_hash'
-gem "recaptcha"
+# gem 'omniauth-rails_csrf_protection'
+# gem 'omniauth-google-oauth2'
+# gem 'omniauth-facebook'
+gem 'recaptcha'
