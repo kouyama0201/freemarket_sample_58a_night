@@ -243,17 +243,17 @@
                   width: 200px;
                   &--yen{
                     height: 48px;
-                    width:40px;
+                    width: 40px;
                     float: left;
                     text-align: center;
                     line-height: 350%;
                     font-size: 14px;
                   }
                   &__input{
-                    height:26px;
+                    height: 26px;
                     width: 124px;
                     padding: 10px 16px 8px;
-                    float: right;
+                    text-align: right;
                   }
                 }
               }
