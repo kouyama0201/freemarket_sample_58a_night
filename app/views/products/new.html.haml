@@ -27,12 +27,12 @@
                   商品名
                   %span.containt__main__container__inner__sell-form__form-require 必須
                 %div.containt__main__container__inner__sell-form__information__name__input-form
-                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名(必須 40文字まで)"
+                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名（必須 40文字まで）"
               .containt__main__container__inner__sell-form__information__description
                 %label.containt__main__container__inner__sell-form__information__description__title
                   商品の説明
                   %span.containt__main__container__inner__sell-form__form-require 必須
-                %textarea.containt__main__container__inner__sell-form__information__description__textarea{placeholder: "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。\r\nあわせやすいのでおすすめです", rows: "5"}
+                = f.text_area :description, class: "containt__main__container__inner__sell-form__information__description__textarea", placeholder: "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
             .containt__main__container__inner__sell-form__detail
               %h3.containt__main__container__inner__sell-form__detail__head 商品の詳細
               .containt__main__container__inner__sell-form__detail__box
@@ -65,7 +65,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :condition, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "1"} 新品
                       %option{value: "2"} 未使用に近い
@@ -83,7 +83,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "2"} 送料込(出品者負担)
                       %option{value: "1"} 着払い(購入者負担)
@@ -92,10 +92,9 @@
                   %label
                     発送元の地域
                     %span.containt__main__container__inner__sell-form__form-require 必須
-                  = form_for '' do |f|
-                    .containt__main__container__inner__sell-form__select-wrap
-                      %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                      = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: 'containt__main__container__inner__sell-form__select-wrap__list'
+                  .containt__main__container__inner__sell-form__select-wrap
+                    %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    = f.collection_select :delivery_origin, Prefecture.all, :id, :name, prompt: "---", class: 'containt__main__container__inner__sell-form__select-wrap__list'
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -103,7 +102,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "1"} 1~2日で発送
                       %option{value: "2"} 2~3日で発送
@@ -119,7 +118,7 @@
                   .containt__main__container__inner__sell-form__price__box__top__right
                     %p.containt__main__container__inner__sell-form__price__box__top__right--yen
                       ¥
-                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", placeholder: "例)300"
+                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", placeholder: "例) 300"
                 .containt__main__container__inner__sell-form__price__box__center
                   .containt__main__container__inner__sell-form__price__box__center__left
                     販売手数料(10%)
