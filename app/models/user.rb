@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
   # devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
-
+  
+  has_many :products
   has_one :address, inverse_of: :user
   accepts_nested_attributes_for :address
 
@@ -68,5 +69,6 @@ class User < ApplicationRecord
   #   end
   #   return user
   # end
+
 end
 
