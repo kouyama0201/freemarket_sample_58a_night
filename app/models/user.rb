@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
+  # devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   has_one :address, inverse_of: :user
   accepts_nested_attributes_for :address
@@ -17,16 +18,6 @@ class User < ApplicationRecord
     return year_4digit
   end
 
-    def set_2digit_year
-    year_2digit = []
-    year = 19
-    while (year < 30 ) do
-      year_2digit << year
-      year += 1
-    end
-    return year_2digit
-  end
-
   def set_birth_month
     birth_month = []
     month = 1
@@ -35,11 +26,6 @@ class User < ApplicationRecord
       month += 1
     end
     return birth_month
-  end
-
-  def set_2digit_month
-    year_2digit = ["01","02","03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-    return year_2digit
   end
 
   def set_birth_day
@@ -51,5 +37,36 @@ class User < ApplicationRecord
     end
     return birth_day
   end
+
+  # def self.find_oauth(auth)
+  #   uid = auth.uid
+  #   provider = auth.provider
+  #   snscredential = SnsCredential.where(uid: uid, provider: provider).first
+  #   if snscredential.present?
+  #     user = User.where(id: snscredential.user_id).first
+  #   else
+  #     user = User.where(email: auth.info.email).first
+  #     if user.present?
+  #       SnsCredential.create(
+  #         uid: uid,
+  #         provider: provider,
+  #         user_id: user.id
+  #         )
+  #     else
+  #       user = User.create(
+  #         name: auth.info.name,
+  #         email:    auth.info.email,
+  #         password: Devise.friendly_token[0, 20],
+  #         phone: "08000000000"
+  #         )
+  #       SnsCredential.create(
+  #         uid: uid,
+  #         provider: provider,
+  #         user_id: user.id
+  #         )
+  #     end
+  #   end
+  #   return user
+  # end
 end
 
