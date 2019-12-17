@@ -14,6 +14,12 @@
             %i.fab.fa-facebook-square.fa-2x.signin__main__container__inner__btn__facebook__icon
             Facebookでログイン
           = link_to "Googleでログイン", new_user_session_path, id: "google-login", class: "signin__main__container__inner__btn__google"
+        - if Rails.env.production?
+          .signin__main__container__inner__btn__facebook
+            %i.fab.fa-facebook-square.fa-2x.signin__main__container__inner__btn__facebook__icon
+            Facebookで登録する
+          .signin__main__container__inner__btn__google
+            Googleで登録する
       %form.signin__main__container__form
       = form_for(@user, url: user_session_path, method: :post, html: {class: "signin__main__container__form"}) do |f|
         .signin__main__container__form__content
