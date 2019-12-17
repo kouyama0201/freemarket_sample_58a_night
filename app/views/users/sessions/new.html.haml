@@ -21,8 +21,8 @@
           %div.signin__main__container__form__content__group
             = f.password_field :password, class:"signin__main__container__form__content__group__input", placeholder:"パスワード"
           .signin__main__container__form__content__recaptha
-          = flash[:recaptcha_error]
-          = recaptcha_tags
+            = flash[:recaptcha_error]
+            = recaptcha_tags
           = f.submit "ログイン", class: "signin__main__container__form__content__btn"
           .signin__main__container__form__content__text-left
             パスワードをお忘れの方
