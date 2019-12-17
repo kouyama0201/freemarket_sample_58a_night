@@ -27,7 +27,7 @@
                   商品名
                   %span.containt__main__container__inner__sell-form__form-require 必須
                 %div.containt__main__container__inner__sell-form__information__name__input-form
-                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名（必須 40文字まで）"
+                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名（必須 40文字まで）", autocomplete: "off"
               .containt__main__container__inner__sell-form__information__description
                 %label.containt__main__container__inner__sell-form__information__description__title
                   商品の説明
@@ -118,17 +118,17 @@
                   .containt__main__container__inner__sell-form__price__box__top__right
                     %p.containt__main__container__inner__sell-form__price__box__top__right--yen
                       ¥
-                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", placeholder: "例) 300"
+                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", id: "price", placeholder: "例) 300", autocomplete: "off"
                 .containt__main__container__inner__sell-form__price__box__center
                   .containt__main__container__inner__sell-form__price__box__center__left
                     販売手数料(10%)
                   .containt__main__container__inner__sell-form__price__box__center__right
-                    －
+                    \-
                 .containt__main__container__inner__sell-form__price__box__bottom
                   .containt__main__container__inner__sell-form__price__box__bottom__left
                     販売利益
                   .containt__main__container__inner__sell-form__price__box__bottom__right
-                    ➖
+                    \-
             .containt__main__container__inner__sell-form__btn-box
               %p.containt__main__container__inner__sell-form__btn-box__text1
                 %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 禁止されている出品
