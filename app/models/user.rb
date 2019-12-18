@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :products
   has_one :address, inverse_of: :user
+  has_one :card
   accepts_nested_attributes_for :address
 
   def set_4digit_year
