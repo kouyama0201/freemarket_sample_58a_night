@@ -18,21 +18,20 @@
                     .containt__main__container__inner__sell-form__upload-box__head__drop-box
                       = i.file_field :image, class: "containt__main__container__inner__sell-form__upload-box__head__drop-box__file"
                       %pre.containt__main__container__inner__sell-form__upload-box__head__drop-box__file__visible-pc 
-                      ドラッグアンドドロップ
-                      %br
-                      またはクリックしてファイルをアップロード
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
             .containt__main__container__inner__sell-form__information
               .containt__main__container__inner__sell-form__information__name
                 %label
                   商品名
                   %span.containt__main__container__inner__sell-form__form-require 必須
                 %div.containt__main__container__inner__sell-form__information__name__input-form
-                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名(必須 40文字まで)"
+                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名（必須 40文字まで）", autocomplete: "off"
               .containt__main__container__inner__sell-form__information__description
                 %label.containt__main__container__inner__sell-form__information__description__title
                   商品の説明
                   %span.containt__main__container__inner__sell-form__form-require 必須
-                %textarea.containt__main__container__inner__sell-form__information__description__textarea{placeholder: "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。\r\nあわせやすいのでおすすめです", rows: "5"}
+                = f.text_area :description, class: "containt__main__container__inner__sell-form__information__description__textarea", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
             .containt__main__container__inner__sell-form__detail
               %h3.containt__main__container__inner__sell-form__detail__head 商品の詳細
               .containt__main__container__inner__sell-form__detail__box
@@ -65,7 +64,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :condition, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "1"} 新品
                       %option{value: "2"} 未使用に近い
@@ -74,8 +73,8 @@
                       %option{value: "5"} 傷や汚れあり
                       %option{value: "6"} 全体的に状態が悪い
             .containt__main__container__inner__sell-form__delivery
-              %a.containt__main__container__inner__sell-form__delivery__sub-head 配送について
-              %a.containt__main__container__inner__sell-form__question{href: "/jp/help_center/article/68/", target: "_blank"} ?
+              .containt__main__container__inner__sell-form__delivery__sub-head 配送について
+              .containt__main__container__inner__sell-form__question ?
               .containt__main__container__inner__sell-form__delivery__box
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -83,7 +82,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "2"} 送料込(出品者負担)
                       %option{value: "1"} 着払い(購入者負担)
@@ -92,10 +91,9 @@
                   %label
                     発送元の地域
                     %span.containt__main__container__inner__sell-form__form-require 必須
-                  = form_for '' do |f|
-                    .containt__main__container__inner__sell-form__select-wrap
-                      %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                      = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--", class: 'containt__main__container__inner__sell-form__select-wrap__list'
+                  .containt__main__container__inner__sell-form__select-wrap
+                    %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    = f.collection_select :delivery_origin, Prefecture.all, :id, :name, prompt: "---", class: 'containt__main__container__inner__sell-form__select-wrap__list'
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -103,14 +101,14 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    %select.containt__main__container__inner__sell-form__select-wrap__list
+                    = f.select :preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list" do
                       %option{value: ""} ---
                       %option{value: "1"} 1~2日で発送
                       %option{value: "2"} 2~3日で発送
                       %option{value: "3"} 4~7日で発送
             .containt__main__container__inner__sell-form__price
-              %a.containt__main__container__inner__sell-form__delivery__sub-head 販売価格(300〜9,999,999)
-              %a.containt__main__container__inner__sell-form__question{href: "/jp/help_center/article/64/", target: "_blank"} ?
+              .containt__main__container__inner__sell-form__delivery__sub-head 販売価格(300〜9,999,999)
+              .containt__main__container__inner__sell-form__question ?
               .containt__main__container__inner__sell-form__price__box
                 .containt__main__container__inner__sell-form__price__box__top
                   %label.containt__main__container__inner__sell-form__price__box__top__left
@@ -119,30 +117,30 @@
                   .containt__main__container__inner__sell-form__price__box__top__right
                     %p.containt__main__container__inner__sell-form__price__box__top__right--yen
                       ¥
-                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", placeholder: "例)300"
+                    = f.text_field :price, class: "containt__main__container__inner__sell-form__price__box__top__right__input", id: "price", placeholder: "例) 300", autocomplete: "off"
                 .containt__main__container__inner__sell-form__price__box__center
                   .containt__main__container__inner__sell-form__price__box__center__left
                     販売手数料(10%)
                   .containt__main__container__inner__sell-form__price__box__center__right
-                    －
+                    \-
                 .containt__main__container__inner__sell-form__price__box__bottom
                   .containt__main__container__inner__sell-form__price__box__bottom__left
                     販売利益
                   .containt__main__container__inner__sell-form__price__box__bottom__right
-                    ➖
+                    \-
             .containt__main__container__inner__sell-form__btn-box
               %p.containt__main__container__inner__sell-form__btn-box__text1
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/prohibited_items/", target: "_blank"} 禁止されている出品
+                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 禁止されている出品
                 、
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank"} 行為
+                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 行為
                 を必ずご確認ください。
               %p.containt__main__container__inner__sell-form__btn-box__text2
                 またブランド品でシリアルナンバー等がある場合はご記載ください。
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank"} 偽ブランドの販売
+                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 偽ブランドの販売
                 は犯罪であり処罰される可能性があります。
               %p.containt__main__container__inner__sell-form__btn-box__text3
                 また、出品を持ちまして
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: "/jp/seller_terms/"} 加盟店規約
+                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 加盟店規約
                 に同意したことになります。
               = f.submit "出品する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
               = link_to root_path do 
