@@ -30,9 +30,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'card/new'
-  get 'card/show'
-
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'
