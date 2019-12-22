@@ -59,6 +59,15 @@
             font-size: 12px;
             vertical-align: top;
           }
+          &__form-optional {
+            background: #888888;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 12px;
+            vertical-align: top;
+          }
           &__select-wrap{
             margin: 8px 0 0;
             position: relative;
@@ -171,7 +180,8 @@
             }
           }
           &__detail{
-            height: 180px;
+            // (メモ)プルダウンリストのjs実装時にはheight: 180px;に修正
+            height: 300px;
             width: 620px;
             padding: 40px;
             border-top: 1px solid #eee;
