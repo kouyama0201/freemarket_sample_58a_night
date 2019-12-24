@@ -1,4 +1,5 @@
 = render 'layouts/mypage_header'
+- breadcrumb :personal
 = render 'layouts/breadcrumbs'
 = render 'layouts/sidebar'
 .identification-box
@@ -10,7 +11,7 @@
         %p.identification-box__form__header--text
           お客様の本人情報をご登録下さい。
           %br
-          登録したお名前・生年月日を入力する場合、本人確認書類の提出が必要になります。
+          登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
         %p.identification-box__form__header--link
           = link_to "https://www.mercari.com/jp/help_center/article/495/", class: "identification-box__form__header--link--tag" do
             本人確認書類のアップロードについて

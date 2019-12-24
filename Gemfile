@@ -76,5 +76,12 @@ gem "mini_magick"
 gem "font-awesome-sass"
 gem "haml-rails"
 gem "devise"
+gem "payjp"
+gem 'dotenv-rails'
 gem "gretel"
 gem 'active_hash'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'recaptcha'
+gem 'ancestry'

@@ -9,19 +9,28 @@
         %p.signin__main__container__head__text  アカウントをお持ちでない方はこちら 
         = link_to "新規会員登録", new_user_registration_path, class: "signin__main__container__head__btn"
       .signin__main__container__inner
-        = link_to new_user_session_path, id: "facebook-login", class: "signin__main__container__inner__btn__facebook" do
-          %i.fab.fa-facebook-square.fa-2x.signin__main__container__inner__btn__facebook__icon
-          Facebookでログイン
-        = link_to "Googleでログイン", new_user_session_path, id: "google-login", class: "signin__main__container__inner__btn__google"
+        - if Rails.env.development? || Rails.env.test?
+          = link_to new_user_session_path, id: "facebook-login", class: "signin__main__container__inner__btn__facebook" do
+            %i.fab.fa-facebook-square.fa-2x.signin__main__container__inner__btn__facebook__icon
+            Facebookでログイン
+          = link_to "Googleでログイン", new_user_session_path, id: "google-login", class: "signin__main__container__inner__btn__google"
+        - if Rails.env.production?
+          .signin__main__container__inner__btn__facebook
+            %i.fab.fa-facebook-square.fa-2x.signin__main__container__inner__btn__facebook__icon
+            Facebookで登録する
+          .signin__main__container__inner__btn__google
+            Googleで登録する
       %form.signin__main__container__form
+      = form_for(@user, url: user_session_path, method: :post, html: {class: "signin__main__container__form"}) do |f|
         .signin__main__container__form__content
           %div.signin__main__container__form__content__group
-            %input.signin__main__container__form__content__group__input{"type":"email", "placeholder":"メールアドレス"}
+            = f.email_field :email, class:"signin__main__container__form__content__group__input", placeholder:"メールアドレス"
           %div.signin__main__container__form__content__group
-            %input.signin__main__container__form__content__group__input{"type":"password", "placeholder":"パスワード"}
+            = f.password_field :password, class:"signin__main__container__form__content__group__input", placeholder:"パスワード"
           .signin__main__container__form__content__recaptha
-            = image_tag "reCAPTHA.jpg", size: "309x83"
-          = link_to "ログイン", new_user_session_path, class: "signin__main__container__form__content__btn"
+            = flash[:recaptcha_error]
+            = recaptcha_tags
+          = f.submit "ログイン", class: "signin__main__container__form__content__btn"
           .signin__main__container__form__content__text-left
             パスワードをお忘れの方
   = render 'layouts/second_footer'
