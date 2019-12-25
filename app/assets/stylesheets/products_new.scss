@@ -1,20 +1,13 @@
 .containt{
-  background-color: #F5F5F5;
+  background: #F5F5F5;
+  color: #333333;
   padding: 0 0 220px;
-  color: rgb(51, 51, 51);
   &__header{
     background: #f5f5f5;
-    font: 14px;
-    color: #333333;
-    height:88px;
+    height: 88px;
+    font-size: 14px;
     text-align: center;
-    padding: 40px 0 0 ;
-    border-style: solid;
-    border-width: 0;
-    font-size: inherit;
-    line-height: inherit;
-    box-sizing: inherit;
-    display: block;
+    padding: 40px 0 0;
     &__logo{
       width: 185px;
       height: 49px;
@@ -31,33 +24,27 @@
       width: 700px;
       margin: 0 auto;
       background: #ffffff;
-      padding: 0;
-      border-style: solid;
-      border-width: 0;
       &__inner{
         &__head{
         padding: 32px 16px;
         font-size: 22px;
         text-align: center;
-        display: block;
         font-weight: bold;
         line-height: 1.5;
-        border-style: solid;
-        border-width: 0;
         }
         &__sell-form{
           border-top: 1px solid #eee;
-          background-repeat: no-repeat;
-          margin: 0;
-          padding: 0;
           &__form-require{
-            background-color: #ea352d;
+            background: #ea352d;
             margin: 0 0 0 8px;
             padding: 2px 4px;
             border-radius: 2px;
             color: #fff;
             font-size: 12px;
             vertical-align: top;
+          }
+          &__remarks{
+            font-size: 14px;
           }
           &__form-optional {
             background: #888888;
@@ -72,7 +59,6 @@
             margin: 8px 0 0;
             position: relative;
             background: #fff;
-            box-sizing: inherit;
             &__icon{
               position: absolute;
               right: 16px;
@@ -85,7 +71,7 @@
               width: 100%;
               height: 46px;
               position: relative;
-              z-index: 2;                    
+              z-index: 2;
               padding: 0 16px;
               border-radius: 4px;
               border: solid 1px #ccc;
@@ -112,48 +98,23 @@
           }
           &__upload-box{
             width: 620px;
-            height: 224px;
+            min-height: 224px;
             padding: 40px;
-            &__head{
-              &__drop-box{
-                position: relative;
-                border: 1px dashed #ccc;
-                text-align: center;
-                cursor: pointer;
-                width: 540px;
-                height: 82px;
-                padding: 40px;
-                background: #f5f5f5;
-                margin-top: 16px;
-                &__file{
-                  display: none;
-                  &__visible-pc{
-                    position: absolute;
-                    top: 60px;
-                    left: 16px;
-                    right: 16px;
-                    font-size: 14px;
-                    font-weight: 600;
-                  }
-                }
-              }
-            }
           }
           &__information{
             height: 274px;
             width: 620px;
             padding: 40px;
             border-top: 1px solid #eee;
-            background-repeat: no-repeat;
             margin: 0px;
             &__name{
               height: 70px;
               width: 620px;
               &__input-form{
                 &__input-name{
-                  margin: 8px 0 0;
                   height: 26px;
                   width: 587px;
+                  margin: 8px 0 0;
                   padding: 10px 16px 8px;
                   border: 1px solid #ccc;
                   border-radius: 4px;
@@ -185,7 +146,6 @@
             width: 620px;
             padding: 40px;
             border-top: 1px solid #eee;
-            background-repeat: no-repeat;
             margin: 0px;
             &__head{
               float: left;
@@ -348,6 +308,111 @@
           }
         }
       }
+    }
+  }
+}
+
+#image-wrapper{
+  display: -webkit-box;
+  width: 620px;
+  margin-left: 3px;
+}
+
+#image-box{
+  display: inline-block;
+  position: relative;
+  background: #f5f5f5;
+  height: 60px;
+  padding: 60px 40px 40px 40px;
+  margin-top: 10px;
+  border: 1px dashed #ccc;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: inherit;
+    cursor: pointer;
+    .label-text{
+      white-space: pre-wrap;
+    }
+  } 
+}
+
+.image-num-0{
+  width: 535px;
+}
+.image-num-1{
+  width: 411px;
+}
+.image-num-2{
+  width: 287px;
+}
+.image-num-3{
+  width: 162px;
+}
+.image-num-4{
+  width: 38px;
+}
+.image-num-5{
+  width: 532px;
+}
+.image-num-6{
+  width: 408px;
+}
+.image-num-7{
+  width: 284px;
+}
+.image-num-8{
+  width: 160px;
+}
+.image-num-9{
+  width: 36px;
+}
+
+.image-option{
+  display: none;
+}
+
+.product-image{
+  display: inline-block;
+  background-color: #f5f5f5;
+  height: 115px;
+  width: 116px;
+  border: 1px solid #eee;
+  margin: 10px 6px 0 0;
+  padding-top: 45px;
+  position: relative;
+  &__content{
+    margin-left: 10px;
+    &--icon{
+      position: absolute;
+      top: 0;
+    }
+  }
+  &__operetion{
+    color: #0099e8;
+    font-size: 14px;
+    height: 44px;
+    line-height: 46px;
+    width: 94px;
+    top: 115px;
+    position: absolute;
+    &--edit{
+      height: 44px;
+      width: 43px;
+      border-right: 1px solid #eee;
+      margin: 2px 0 0 16px;
+    }
+    &--delete{
+      top: 2px;
+      right: -7px;
+      position: absolute;
+      cursor: pointer;
     }
   }
 }

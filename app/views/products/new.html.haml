@@ -12,12 +12,13 @@
               %h3.containt__main__container__inner__sell-form__upload-box__head
                 出品画像
                 %span.containt__main__container__inner__sell-form__form-require 必須
-                %p 最大10枚までアップロードできます
-                = f.fields_for :images do |i|
-                  = i.label :image do
-                    .containt__main__container__inner__sell-form__upload-box__head__drop-box
-                      = i.file_field :image, class: "containt__main__container__inner__sell-form__upload-box__head__drop-box__file"
-                      %pre.containt__main__container__inner__sell-form__upload-box__head__drop-box__file__visible-pc 
+                %p.containt__main__container__inner__sell-form__remarks 最大10枚までアップロードできます
+              #image-wrapper
+                .image-num-0#image-box
+                  = f.fields_for :images do |i|
+                    = i.file_field :image, type: 'file', class: "image-option", name: "product[images_attributes][][image]", value:"", id:"img-file"
+                    %label{for: "img-file"}
+                      %pre.label-text
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
             .containt__main__container__inner__sell-form__information
