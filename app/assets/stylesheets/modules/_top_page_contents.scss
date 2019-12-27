@@ -64,8 +64,6 @@
     float: left;
     margin: 6px;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-
-    // display: inline-block;
     &--image {
       width: 100%;
     }
@@ -84,6 +82,7 @@
     &--name {
       color: #333333;
       width: 188px;
+      overflow: hidden;
       font-size: 14px;
       letter-spacing: .02em;
       padding: 5px 10px;
