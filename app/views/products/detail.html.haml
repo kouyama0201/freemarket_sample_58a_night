@@ -1,3 +1,6 @@
-= render 'layouts/header'
+- if user_signed_in?
+  = render 'layouts/mypage_header'
+- else
+  = render 'layouts/header'
 = render 'detail'
 = render 'layouts/footer'
