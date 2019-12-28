@@ -141,12 +141,11 @@
             }
           }
           &__detail{
-            // (メモ)プルダウンリストのjs実装時にはheight: 180px;に修正
-            height: 300px;
+            display: inline-block;
+            min-height: 180px;
             width: 620px;
             padding: 40px;
             border-top: 1px solid #eee;
-            margin: 0px;
             &__head{
               float: left;
               color: #888;
@@ -156,13 +155,14 @@
             &__box{
               float: right;
               width: 400px;
-              height: 180px;
-              margin: 0;
               &__form-group{
-                height: 70px;
                 width: 400px;
                 &__category{
-                  height: 48px;
+                  min-height: 48px;
+                  width: 400px;
+                }
+                &__added{
+                  min-height: 48px;
                   width: 400px;
                 }
               }
