@@ -42,18 +42,18 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__detail__box__form-group__category
                     .containt__main__container__inner__sell-form__select-wrap
+                      = f.select :category_id, @category_parent_array, {}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category"}
                       %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                      = f.select :category_id, options_for_select(@category_options.map{|c|[c[:name], c[:id]]}), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list"}
                 .containt__main__container__inner__sell-form__form-interval
-                .containt__main__container__inner__sell-form__detail__box__form-group
-                  %label
-                    ブランド
-                    %span.containt__main__container__inner__sell-form__form-optional 任意
-                  .containt__main__container__inner__sell-form__detail__box__form-group__category
-                    .containt__main__container__inner__sell-form__select-wrap
-                      %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                      = f.select :brand_id, options_for_select(@brand_options.map{|c|[c[:name], c[:id]]}), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list"}
-                .containt__main__container__inner__sell-form__form-interval
+                -# .containt__main__container__inner__sell-form__detail__box__form-group
+                -#   %label
+                -#     ブランド
+                -#     %span.containt__main__container__inner__sell-form__form-optional 任意
+                -#   .containt__main__container__inner__sell-form__detail__box__form-group__category
+                -#     .containt__main__container__inner__sell-form__select-wrap
+                -#       %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                -#       = f.select :brand_id, options_for_select(@brand_options.map{|c|[c[:name], c[:id]]}), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list"}
+                -# .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__detail__box__form-group
                   %label
                     商品の状態
