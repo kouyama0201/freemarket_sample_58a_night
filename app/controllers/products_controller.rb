@@ -26,6 +26,9 @@ class ProductsController < ApplicationController
     @category_grandchild = Category.find("#{params[:child_id]}").children
   end
 
+  def delivery_way
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
