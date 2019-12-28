@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       get 'mypage'
       get 'identification'
       get 'profile'
+      get 'category_child', defaults: { format: 'json' }
+      get 'category_grandchild', defaults: { format: 'json' }
     end
   end
 
