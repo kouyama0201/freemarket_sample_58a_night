@@ -1,6 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products_ladies = Product.where(category_id: 1)
+    @products_mens = Product.where(category_id: 206)
+    @products_home_electronics = Product.where(category_id: 1204)
+    @products_toys = Product.where(category_id: 686)
+    @products_chanel = Product.where(brand_id: 4354)
+    @products_louis_vuitton = Product.where(brand_id: 11025)
+    @products_supreme = Product.where(brand_id: 4387)
+    @products_nike = Product.where(brand_id: 6725)
   end
 
   def new

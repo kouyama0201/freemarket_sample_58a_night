@@ -16,7 +16,7 @@
     レディース新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
-  - @products.each do |product|
+  - @products_ladies.each do |product|
     .main-new-arrival__product
       = link_to detail_products_path do
         - product.images.each do |image|
@@ -28,38 +28,50 @@
           = product.name
 
 .main-new-arrival
-  .main-new-arrival__category
+  %h3.main-new-arrival__category
     メンズ新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_mens.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1521330784804-5f69f8a17b1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥4,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        メンズ服
+        =product.name
 .main-new-arrival
   .main-new-arrival__category
     家電・スマホ・カメラ新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_home_electronics.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥63,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        家電・スマホ・カメラ最新製品
+        =product.name
 .main-new-arrival
   .main-new-arrival__category
     おもちゃ・ホビー・グッズ新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_toys.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥5,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        おもちゃ
+        =product.name
 .main-popular
   .main-popular__title
     人気のブランド
@@ -74,44 +86,60 @@
 .main-new-arrival
   .main-new-arrival__category
     シャネル新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_chanel.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥5,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        シャネル
+        =product.name
 .main-new-arrival
   .main-new-arrival__category
     ルイヴィトン新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_louis_vuitton.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1529025530948-67e8a5c69b58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥235,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        ルイヴィトン
+        =product.name
 .main-new-arrival
   .main-new-arrival__category
     シュプリーム新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_supreme.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1531329466522-1075f0e4f23a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥115,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        シュプリーム
+        =product.name
 .main-new-arrival
   .main-new-arrival__category
     ナイキ新着アイテム
-    .main-new-arrival__more
+    .main-new-arrival__category__more
       もっと見る ＞
+  - @products_nike.each do |product|
     .main-new-arrival__product
-      = image_tag "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
+      = link_to detail_products_path do
+        - product.images.each do |image|
+          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
       .main-new-arrival__product--price
-        ¥50,800
+        ¥
+        =product.price
       .main-new-arrival__product--name
-        ナイキ
+        =product.name
