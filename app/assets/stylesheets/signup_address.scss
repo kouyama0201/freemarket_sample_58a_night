@@ -184,7 +184,13 @@
             line-height: 1.5;
             font-size: 16px;
           }
-          
+          &__input.invalid {
+            border: #ea352d 1px solid;
+          }
+
+          &__input.valid {
+            border: seagreen 1px solid;
+          }
           &__phone-description {
             margin: 8px 0 0;
             line-height: 1.5;
@@ -256,3 +262,15 @@
     }
   }
 }
+
+#postal_code-error,
+#city-error,
+#street-error,
+#phone_optional-error,
+#user_address_attributes_prefecture_id-error {
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 8px;
+}
+

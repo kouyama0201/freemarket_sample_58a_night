@@ -62,3 +62,12 @@ select:focus {
   outline: none;
   border-color: #0098E8;
 }
+
+select.invalid {
+  border: #ea352d 1px solid;
+}
+
+select.valid {
+  border: seagreen 1px solid;
+}
+
