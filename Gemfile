@@ -78,9 +78,11 @@ gem "haml-rails"
 gem "devise"
 gem "payjp"
 gem 'dotenv-rails'
+gem 'gon'
 gem "gretel"
 gem 'active_hash'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'recaptcha'
+gem 'rails-i18n'
