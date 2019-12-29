@@ -17,7 +17,7 @@ crumb :card do
 end
 
 crumb :personal do
-  link "本人情報の確認", identification_products_path
+  link "本人情報の登録", identification_products_path
   parent :mypage
 end
 

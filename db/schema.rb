@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191228093621) do
+ActiveRecord::Schema.define(version: 20191221120925) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "prefecture_id"
@@ -25,12 +25,26 @@ ActiveRecord::Schema.define(version: 20191228093621) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
+  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
     t.string   "customer_id", null: false
     t.string   "card_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
   end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,6 +66,10 @@ ActiveRecord::Schema.define(version: 20191228093621) do
     t.string   "delivery_cost",                  null: false
     t.string   "delivery_origin",                null: false
     t.string   "preparatory_days",               null: false
+    t.integer  "category_id"
+    t.integer  "brand_id"
+    t.index ["brand_id"], name: "index_products_on_brand_id", using: :btree
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
@@ -82,5 +100,7 @@ ActiveRecord::Schema.define(version: 20191228093621) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "images", "products"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end
