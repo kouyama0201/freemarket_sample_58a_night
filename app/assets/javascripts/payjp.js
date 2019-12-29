@@ -1,7 +1,9 @@
+const PAYJP_KEY = gon.payjp_key;
+
 document.addEventListener(
   "DOMContentLoaded", e => {
     if (document.getElementById("token_submit") != null) { 
-      Payjp.setPublicKey("pk_test_4552be6b88766798811602f5"); 
+      Payjp.setPublicKey(PAYJP_KEY);
       let btn = document.getElementById("token_submit"); 
       btn.addEventListener("click", e => { 
         e.preventDefault(); 
@@ -18,7 +20,7 @@ document.addEventListener(
             $("#exp_month").removeAttr("name");
             $("#exp_year").removeAttr("name");
             $("#card_token").append(
-              $('<input type="hidden" name="payjp-token">').val(response.id)
+            $('<input type="hidden" name="payjp-token">').val(response.id)
             ); 
             document.inputForm.submit()
           } else {
