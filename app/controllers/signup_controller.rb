@@ -1,6 +1,6 @@
 class SignupController < ApplicationController
   include RedirectToTop
-  before_action :redirect_to_top, only: :complete
+  before_action :redirect_to_top, except: :complete
   before_action :validates_registration, only: :phone
   before_action :validates_phone, only: :address  
   before_action :validates_address, only: :pay_way
@@ -122,7 +122,7 @@ class SignupController < ApplicationController
       birth_month: session[:birth_month],
       birth_day: session[:birth_day],
       address_attributes: {
-        postal_code:  "1234567",
+        postal_code:  "123-4567",
         prefecture_id:   "1",
         city:           "AAA",
         street:         "BBB",
@@ -148,11 +148,11 @@ class SignupController < ApplicationController
       birth_month: session[:birth_month],
       birth_day: session[:birth_day],
       address_attributes: {
-        postal_code:  "1234567",
+        postal_code:  "123-4567",
         prefecture_id:   "1",
         city:           "AAA",
         street:         "BBB",
-        phone_optional:  "0123456789"
+        phone_optional:  "0987654321"
       } 
     )
     render 'signup/phone' unless @user.valid?
