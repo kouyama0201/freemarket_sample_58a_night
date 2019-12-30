@@ -17,11 +17,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :purchase,  only: [:show] do
+    member do
+      patch 'pay'
+    end
+    collection do
+      get 'complete'
+    end
+  end
+
   resources :products do
     collection do
-      get 'detail'
       get 'logout'
-      get 'purchase_confirmation'
       get 'card'
       get 'card_registration'
       get 'mypage'
