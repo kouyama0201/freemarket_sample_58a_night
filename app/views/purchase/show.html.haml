@@ -7,11 +7,13 @@
     .purchase-confirmation-main__box--title
       購入内容の確認
     .purchase-confirmation-main__box--product
-      = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "57x80"
+      - @product.images.each do |image|
+        = image_tag image.image, size: "80x80"
       .purchase-confirmation-main__box--product--name
-        ノーカラージャケット ツイードジャケット
+        = @product.name
         .purchase-confirmation-main__box--product--price
-          ¥4,000
+          ¥
+          = @product.price.to_s(:delimited, delimiter: ",")
           .purchase-confirmation-main__box--product--price--shipping-fee
             （税込）送料込み
     .purchase-confirmation-main__box--buy-form
@@ -19,7 +21,8 @@
         .purchase-confirmation-main__box--buy-form--info--payment
           支払い金額
           .purchase-confirmation-main__box--buy-form--info--payment--amount
-            ¥4,000
+            ¥
+            = @product.price.to_s(:delimited, delimiter: ",")
             .purchase-confirmation-main__box--buy-form--info--payment--point
               %i.fas.fa-square
               .purchase-confirmation-main__box--buy-form--info--payment--point--text
@@ -34,7 +37,8 @@
           .purchase-confirmation-main__box--buy-form--info--destination--change
             変更する
             .purchase-confirmation-main__box--buy-form--info--destination--detail
-              〒000-0000
+              〒
+              = @product.user.address.postal_code
               .purchase-confirmation-main__box--buy-form--info--destination-place
                 愛知県 名古屋市中区 栄３丁目１３−２０
                 .purchase-confirmation-main__box--buy-form--info--destination-name

@@ -1,11 +1,21 @@
 .detail
   .detail__main
     .detail__main__name
-      ノーカラージャケット ツイードジャケット
+      = @product.name
     .detail__main__remarks
-      『ノーカラージャケット ツイードジャケット』は、8回の取引実績を持つ58a_nightさんから出品されました。トラッツォ ドンナ（ノーカラージャケット/レディース）の商品で、愛知県から1~2日で発送されます。
     .detail__main__image
-      = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "225x300"
+      - @product.images.each do |image|
+        = image_tag image.image, size: "300x300"
+      .detail__main__image--sub1
+        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
+      .detail__main__image--sub2
+        = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
+      .detail__main__image--sub3
+        = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
+      .detail__main__image--sub4
+        = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
+      .detail__main__image--sub5
+        = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
       .detail__main__image--sub1
         = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
       .detail__main__image--sub2
@@ -21,24 +31,24 @@
         .detail__main__status__large-box--title
           出品者
         .detail__main__status__large-box--seller
-          58a_night
+          = @product.user.name
           .detail__main__status__large-box--seller--good-icon
             %i.fas.fa-laugh
             .detail__main__status__large-box--seller--good-icon--count
-              0
+              125
             .detail__main__status__large-box--seller--normal-icon
               %i.fas.fa-meh
               .detail__main__status__large-box--seller--normal-icon--count
-                0
+                50
             .detail__main__status__large-box--seller--bad-icon
               %i.fas.fa-frown
               .detail__main__status__large-box--seller--bad-icon--count
-                0
+                3
       .detail__main__status__large-box
         .detail__main__status__large-box--title
           カテゴリー
         .detail__main__status__large-box--category
-          レディース
+          = @product.category.name
           .detail__main__status__large-box--category--child
             > ジャケット/アウター
           .detail__main__status__large-box--category--grandchild
@@ -47,7 +57,7 @@
         .detail__main__status--box--title
           ブランド
         .detail__main__status--box--right-blue
-          トラッツォ ドンナ
+          = @product.brand.name
       .detail__main__status--box
         .detail__main__status--box--title
           商品のサイズ
@@ -57,12 +67,12 @@
         .detail__main__status--box--title
           商品の状態
         .detail__main__status--box--right-black
-          新品、未使用
+          = @product.condition
       .detail__main__status--box
         .detail__main__status--box--title
           配送料の負担
         .detail__main__status--box--right-black
-          送料込み(出品者負担)
+          = @product.delivery_cost
       .detail__main__status--box
         .detail__main__status--box--title
           配送の方法
@@ -72,27 +82,28 @@
         .detail__main__status--box--title
           配送元地域
         .detail__main__status--box--right-blue
-          愛知県
+          = @product.delivery_origin
       .detail__main__status--box
         .detail__main__status--box--title
           発送日の目安
         .detail__main__status--box--right-black
-          1~2日で発送
+          = @product.preparatory_days
     .detail__main__price
-      ¥4,000
+      ¥
+      = @product.price.to_s(:delimited, delimiter: ",")
       %span.detail__main__price--tax
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-    = link_to purchase_confirmation_products_path do
+    = link_to purchase_path(@product) do
       .detail__main__purchase-btn
         購入画面に進む
     .detail__main__description
-      2018年の福袋にて購入しましたが着る機会がないため出品します。
+      = @product.description
     .detail__main__btn-box
       .detail__main__btn-box--likes
         %i.far.fa-heart
-        いいね! 0
+        いいね! 100
       .detail__main__btn-box--report
         %i.far.fa-flag
         不適切な商品の報告
@@ -113,7 +124,8 @@
       %i.fab.fa-pinterest
   .detail__other
     .detail__other--exhibit
-      58a_nightさんのその他の出品
+      = @product.user.name
+      さんのその他の出品
       .detail__other--exhibit--product
         = image_tag "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "220x220"
         .detail__other--exhibit--product--name

@@ -16,13 +16,15 @@
     レディース新着アイテム
     .main-new-arrival__more
       もっと見る ＞
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "188x188"
-        .main-new-arrival__product--price
-          ¥3,800
-        .main-new-arrival__product--name
-          レディース服
+    - @products.each do |product|
+      .main-new-arrival__product
+        = link_to product_path(product) do
+          - product.images.each do |image|
+            = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
+          .main-new-arrival__product--price
+            = product.price
+          .main-new-arrival__product--name
+            = product.name
 .main-new-arrival
   .main-new-arrival__category
     メンズ新着アイテム
