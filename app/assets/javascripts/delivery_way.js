@@ -1,7 +1,7 @@
 $(function(){
-  var array1 = [ '未定','らくらくメルカリ便','ゆうメール','レターパック','普通郵便（定型、定型外）',
-  'クロネコヤマト','ゆうパック','クリックポスト','ゆうパケット' ]
-  var array2 = ['ゆうメール','クロネコヤマト','ゆうパック']
+  var array1 = ['未定','らくらくメルカリ便','ゆうメール','レターパック','普通郵便（定型、定型外）',
+                'クロネコヤマト','ゆうパック','クリックポスト','ゆうパケット']
+  var array2 = ['未定','クロネコヤマト','ゆうパック','ゆうメール']
 
   function appendOption(method){
     var html = `<option value="${method}">${method}</option>`;
@@ -11,14 +11,14 @@ $(function(){
   $("#delivery_cost").on('change',function(){
     var delivery_parentCategory = ""
     delivery_parentCategory = document.getElementById('delivery_cost').value;
-    if (delivery_parentCategory  != "---"){
-    $.ajax({
+    if (delivery_parentCategory != "---"){
+      $.ajax({
         url: 'delivery_way',
         type: 'GET',
         data: { parent_name: delivery_parentCategory },
         dataType: 'json'
       })
-      .done(function(method) {
+      .done(function() {
         $('#delivery_method-parent').remove();
         var methodBoxHtml = '';
         var insertHTML = '';
@@ -26,7 +26,7 @@ $(function(){
           array1.forEach(function(method){
           insertHTML += appendOption(method);
           });
-        }else (delivery_parentCategory == "着払い（購入者負担）");{
+        } else {
             array2.forEach(function(method){
             insertHTML += appendOption(method);
             });
