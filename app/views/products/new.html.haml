@@ -72,16 +72,13 @@
               .containt__main__container__inner__sell-form__delivery__sub-head 配送について
               .containt__main__container__inner__sell-form__question ?
               .containt__main__container__inner__sell-form__delivery__box
-                .containt__main__container__inner__sell-form__delivery__box__form-group
+                .containt__main__container__inner__sell-form__delivery__box__form-group__cost
                   %label
                     配送料の負担
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
+                    = f.select :delivery_cost, Product.delivery_costs.keys, {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_cost"
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list" do
-                      %option{value: ""} ---
-                      %option{value: "2"} 送料込(出品者負担)
-                      %option{value: "1"} 着払い(購入者負担)
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
