@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191221120925) do
+ActiveRecord::Schema.define(version: 20191229071136) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "prefecture_id"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20191221120925) do
     t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
   end
 
+  create_table "category_sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "category_id"
+    t.integer  "size_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_category_sizes_on_category_id", using: :btree
+    t.index ["size_id"], name: "index_category_sizes_on_size_id", using: :btree
+  end
+
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image",      null: false
     t.integer  "product_id", null: false
@@ -73,6 +82,14 @@ ActiveRecord::Schema.define(version: 20191221120925) do
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
+  create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_sizes_on_ancestry", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                default: "", null: false
     t.string   "encrypted_password",                   default: "", null: false
@@ -98,6 +115,8 @@ ActiveRecord::Schema.define(version: 20191221120925) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "category_sizes", "categories"
+  add_foreign_key "category_sizes", "sizes"
   add_foreign_key "images", "products"
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
