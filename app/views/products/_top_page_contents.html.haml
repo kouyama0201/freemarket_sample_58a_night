@@ -17,61 +17,28 @@
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_ladies.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-        .main-new-arrival__product--price
-          ¥
-          = product.price
-        .main-new-arrival__product--name
-          = product.name
-
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   %h3.main-new-arrival__category
     メンズ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_mens.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   .main-new-arrival__category
     家電・スマホ・カメラ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_home_electronics.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   .main-new-arrival__category
     おもちゃ・ホビー・グッズ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_toys.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-popular
   .main-popular__title
     人気のブランド
@@ -89,57 +56,25 @@
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_chanel.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   .main-new-arrival__category
     ルイヴィトン新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_louis_vuitton.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   .main-new-arrival__category
     シュプリーム新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_supreme.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
   .main-new-arrival__category
     ナイキ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_nike.each do |product|
-    .main-new-arrival__product
-      = link_to detail_products_path do
-        - product.images.each do |image|
-          = image_tag image.image, class: "main-new-arrival__product--image", size: "188x188"
-      .main-new-arrival__product--price
-        ¥
-        =product.price
-      .main-new-arrival__product--name
-        =product.name
+    = render partial: 'product_listing', locals: {product: product}
