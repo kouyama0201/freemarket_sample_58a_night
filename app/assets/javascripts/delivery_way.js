@@ -19,7 +19,7 @@ $(function(){
         dataType: 'json'
       })
       .done(function() {
-        $('#delivery_method-parent').remove();
+        $('#delivery_way-parent').remove();
         var methodBoxHtml = '';
         var insertHTML = '';
         if (delivery_parentCategory == "送料込み（出品者負担）"){
@@ -31,11 +31,11 @@ $(function(){
             insertHTML += appendOption(method);
             });
           }
-        methodBoxHtml = `<div class="containt__main__container__inner__sell-form__delivery__box__form-group__added" id="delivery_method-parent"> 
+        methodBoxHtml = `<div class="containt__main__container__inner__sell-form__delivery__box__form-group__added" id="delivery_way-parent"> 
                           <label>配送の方法</label> 
                             <span class='containt__main__container__inner__sell-form__form-require'>必須</span> 
                           <div class='containt__main__container__inner__sell-form__delivery__box__select-wrap'></div>
-                            <select class="containt__main__container__inner__sell-form__delivery__box__select-wrap__list" id="delivery_cost">
+                            <select class="containt__main__container__inner__sell-form__delivery__box__select-wrap__list" id="delivery_way", name="product[delivery_way]">
                               <option value="---">---</option>
                               ${insertHTML}
                             </select>
@@ -45,6 +45,6 @@ $(function(){
       $('.containt__main__container__inner__sell-form__delivery__box__form-group__cost').append(methodBoxHtml);
       })
     }
-    else {$('#delivery_method-parent').remove();}
+    else {$('#delivery_way-parent').remove();}
   });
 });
