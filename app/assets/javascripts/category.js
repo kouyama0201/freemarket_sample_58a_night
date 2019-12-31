@@ -1,12 +1,12 @@
 $(function(){
   // カテゴリーセレクトボックスのオプションを作成
   function appendOption(category){
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
   // サイズセレクトボックスのオプションを作成
   function appendSizeOption(size){
-    var html = `<option value="${size.size}">${size.size}</option>`;
+    var html = `<option value="${size.id}">${size.size}</option>`;
     return html;
   }
   // 子カテゴリーの表示作成
@@ -14,7 +14,7 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'child_wrapper'>
                         <div class='containt__main__container__inner__sell-form__select-wrap'>
-                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="category_id">
+                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category">
                             <option value="---" data-category="---">---</option>
                             ${insertHTML}
                           </select>
@@ -28,7 +28,7 @@ $(function(){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'grandchild_wrapper'>
                               <div class='containt__main__container__inner__sell-form__select-wrap'>
-                                <select class="containt__main__container__inner__sell-form__select-wrap__list" id="grandchild_category" name="category_id">
+                                <select class="containt__main__container__inner__sell-form__select-wrap__list" id="grandchild_category" name="product[category_id]">
                                   <option value="---" data-category="---">---</option>
                                   ${insertHTML}
                                 </select>
@@ -44,7 +44,7 @@ $(function(){
                         <label>サイズ</label>
                         <span class='containt__main__container__inner__sell-form__form-require'>必須</span>
                           <div class='containt__main__container__inner__sell-form__select-wrap'>
-                            <select class="containt__main__container__inner__sell-form__select-wrap__list" id="size" name="size_id">
+                            <select class="containt__main__container__inner__sell-form__select-wrap__list" id="size" name="product[size_id]">
                               <option value="---">---</option>
                               ${insertHTML}
                             </select>
@@ -54,7 +54,7 @@ $(function(){
                       <div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="brand">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]">
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(sizeSelectHtml);
   }
@@ -63,7 +63,7 @@ $(function(){
     brandInputHtml = `<div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="brand">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]">
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(brandInputHtml);
   }
@@ -87,6 +87,7 @@ $(function(){
           insertHTML += appendOption(child);
         });
         appendChildBox(insertHTML);
+        $("#parent_category").removeAttr("name");
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
@@ -118,8 +119,6 @@ $(function(){
             insertHTML += appendOption(grandchild);
           });
           appendGrandchildBox(insertHTML);
-        } else {
-          appendBrandBox(); // 紐付くサイズがない場合には、ブランド入力欄のみ生成する
         }
       })
       .fail(function(){
