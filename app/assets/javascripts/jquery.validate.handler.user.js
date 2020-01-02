@@ -1,23 +1,26 @@
 $(function () {
   // メソッドの定義
   var methods = {
-    email: function (value, element) {      
+    email: function (value, element) { // メールアドレスの正規表現 
       return this.optional(element) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(value);
     },
-    password: function (value, element) {
+    password: function (value, element) { // パスワードの正規表現 
       return this.optional(element) || /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i.test(value);
     },
-    valueNotEquals: function (value, element, arg) {
+    valueNotEquals: function (value, element, arg) { // プルダウンリストが選択されているかの確認
       return arg !== value;
     },
-    phone: function (value, element) {
+    phone: function (value, element) { // 電話番号の正規表現
       return this.optional(element) || /^0\d{9,10}$/.test(value);
     },
-    cardNumber: function (value, element) {
+    cardNumber: function (value, element) { // クレジットカード番号の正規表現
       return this.optional(element) || /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47]{13}|(?:2131|1800|35[0-9]{3})[0-9]{11})$/.test(value);
     },
-    cvc: function (value, element) {
+    cvc: function (value, element) { // セキュリティコードの正規表現
       return this.optional(element) || /^\d{3,4}$/.test(value);
+    },
+    postalCode: function (value, element) { // 郵便番号の正規表現
+      return this.optional(element) || /^\d{3}[-]\d{4}$/.test(value);
     },
   }
   // メソッドの追加
@@ -70,7 +73,8 @@ $(function () {
         phone: true
       },
       "user[address_attributes][postal_code]": {
-        required: true
+        required: true,
+        postalCode: true
       },
       "user[address_attributes][prefecture_id]": {
         valueNotEquals: ""
@@ -143,7 +147,8 @@ $(function () {
         phone: "フォーマットが不適切です"
       },
       "user[address_attributes][postal_code]": {
-        required: "郵便番号を入力してください"
+        required: "郵便番号を入力してください",
+        postalCode: "フォーマットが不適切です"
       },
       "user[address_attributes][prefecture_id]": {
         valueNotEquals: "都道府県を選択してください"
@@ -172,7 +177,7 @@ $(function () {
         cvc: "4桁もしくは3桁の番号を入力してください"
       }
     },
-    groups: {
+    groups: { //グループ化
       exp_date: "exp_month exp_year"
     },
     errorClass: "invalid",
@@ -204,7 +209,7 @@ $(function () {
       }
     }
   });
-  // 入力欄or選択欄をフォーカスアウトしたときにバリデーションを実行
+  // 入力欄or選択欄をフォーカスアウトしたときにバリデーションを実行(ウィザードページ毎)
   $("#name, #email, #password, #password_confirmation, #lastname, #firstname, #lastname_kana, #firstname_kana, #birth_year, #birth_month, #birth_day").blur(function () {
     $(this).valid();
   });
