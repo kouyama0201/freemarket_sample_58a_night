@@ -11,5 +11,6 @@ ja:
         firstname: 名
         lastname_kana: 姓カナ
         firstname_kana: 名カナ
-        
-
+        phone: 電話番号
+      address:
+        phone_optional: 電話番号

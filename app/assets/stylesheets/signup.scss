@@ -35,7 +35,12 @@
         &__content {
           max-width: 343px;
           margin: 0 auto;
-
+          &__error {
+            color: #ea352d;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-top: 8px;
+          }
           &__btn {
             &__mail {
               display: block;

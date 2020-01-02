@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :products
   has_one :address, inverse_of: :user
   has_one :card
+  has_many :sns_credentials
   accepts_nested_attributes_for :address
 
   # 正規表現用の定数
@@ -18,8 +19,8 @@ class User < ApplicationRecord
   # バリデーション設定
   validates :name,                    presence: true
   validates :email,                   presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password,                confirmation: true, length: {minimum: 7, maximum: 128}
-  validates :password_confirmation,   length: {minimum: 7, maximum: 128}
+  validates :password,                confirmation: true, length: {minimum: 7, maximum: 128}, on: :create
+  validates :password_confirmation,   length: {minimum: 7, maximum: 128}, on: :create
   validates :lastname,                presence: true
   validates :firstname,               presence: true
   validates :lastname_kana,           presence: true
@@ -60,38 +61,6 @@ class User < ApplicationRecord
       day += 1
     end
     return birth_day
-  end
-
-  def self.find_oauth(auth)
-    # 認証情報を保存
-    uid = auth.uid
-    provider = auth.provider
-    snscredential = SnsCredential.where(uid: uid, provider: provider).first
-    if snscredential.present? # snscredentialテーブルに認証情報はあるか？
-      user = User.where(id: snscredential.user_id).first # trueの場合：対応する認証情報を取得
-    else
-      user = User.where(email: auth.info.email).first # falseの場合：emailからSNS認証情報を取得
-      if user.present? # SNS認証しているユーザーがあるか？
-        SnsCredential.create( # trueの場合、認証情報のみ作成
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
-      else
-        user = User.create(
-          name: auth.info.name,
-          email:    auth.info.email,
-          password: Devise.friendly_token[0, 20],
-          phone: "08000000000"
-          )
-        SnsCredential.create(
-          uid: uid,
-          provider: provider,
-          user_id: user.id
-          )
-      end
-    end
-    return user
   end
 
 end

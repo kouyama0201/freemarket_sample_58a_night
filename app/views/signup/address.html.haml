@@ -25,6 +25,7 @@
       %h2.address__main__container__head  住所入力
       = form_for(@user, url: pay_way_signup_index_path, method: :get, html: {class: "address__main__form", id: "signup-form"}) do |f|
         %div.address__main__form__content
+          = render partial: 'layouts/error-messages', locals: { user: @user, column: "address.phone_optional"}
           %div.address__main__form__content__group
             = f.label :name, "お名前", class: "address__main__form__content__group__label" 
             %span.address__main__form__content__group__require 必須
