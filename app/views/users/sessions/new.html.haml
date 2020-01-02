@@ -23,7 +23,6 @@
             Facebookでログインする
           .signin__main__container__inner__btn__google
             Googleでログインする
-      -# %form.signin__main__container__form
       = form_for(@user, url: user_session_path, method: :post, html: {class: "signin__main__container__form"}) do |f|
         .signin__main__container__form__content
           %div.signin__main__container__form__content__group
