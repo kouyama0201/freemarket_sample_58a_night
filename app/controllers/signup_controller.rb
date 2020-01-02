@@ -5,28 +5,28 @@ class SignupController < ApplicationController
   before_action :validates_phone, only: :address  
   before_action :validates_address, only: :pay_way
 
-  def registration
+  def registration # 会員情報入力
     @user = User.new
   end
 
-  def phone
+  def phone # 電話番号入力
     @user = User.new
   end
 
-  def address
+  def address # 住所入力
     @user = User.new
   end
 
-  def pay_way
+  def pay_way # 支払い方法入力
     @user = User.new
     gon.payjp_key = ENV["PAYJP_KEY"]
   end
   
-  def complete
+  def complete # 登録完了
     sign_in User.find(session[:id]) unless user_signed_in?
   end
 
-  def create
+  def create # ユーザーの会員情報登録→SNS登録→カード情報登録
     @user = User.new(
     name: session[:name],
     email: session[:email],
@@ -42,10 +42,10 @@ class SignupController < ApplicationController
     birth_day: session[:birth_day]
     )
     @user.build_address(session[:address])
+    @user.sns_credentials.build(provider: session[:provider], uid: session[:uid]) if session[:provider] && session[:uid]
     if @user.save
       session[:id] = @user.id
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      binding.pry
       if params['payjp-token'].blank?
         redirect_to pay_way_signup_index_path
       else
@@ -54,15 +54,14 @@ class SignupController < ApplicationController
         ) 
         @card = Card.new(user_id: session[:id], customer_id: customer.id, card_id: customer.default_card)
         if @card.save
-            redirect_to complete_signup_index_path
+          redirect_to complete_signup_index_path
         else
-          render '/signup/registration'
+          render '/signup/payway'
         end
       end
     else
       render '/signup/registration'
     end
-
   end
 
 
@@ -96,7 +95,7 @@ class SignupController < ApplicationController
     )
   end
   
-  def validates_registration
+  def validates_registration # 会員情報のバリデーションチェック
     session[:name] = user_params[:name]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
@@ -132,7 +131,7 @@ class SignupController < ApplicationController
     render 'signup/registration' unless @user.valid?
   end
 
-  def validates_phone
+  def validates_phone # 電話番号のバリデーションチェック
     session[:phone] = user_params[:phone]
     @user = User.new(
       name: session[:name],
@@ -158,7 +157,7 @@ class SignupController < ApplicationController
     render 'signup/phone' unless @user.valid?
   end
 
-  def validates_address
+  def validates_address # 住所のバリデーションチェック
     session[:lastname] = user_params[:lastname]
     session[:firstname] = user_params[:firstname]
     session[:lastname_kana] = user_params[:lastname_kana]
