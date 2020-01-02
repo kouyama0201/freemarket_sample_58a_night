@@ -85,6 +85,7 @@ $(function () {
       "user[address_attributes][street]": {
         required: true
       },
+      "user[address_attributes][building_name]": {},
       "user[address_attributes][phone_optional]": {
         phone: true
       },
@@ -159,6 +160,7 @@ $(function () {
       "user[address_attributes][street]": {
         required: "番地を入力してください"
       },
+      "user[address_attributes][building_name]": {},
       "user[address_attributes][phone_optional]": {
         phone: "フォーマットが不適切です"
       },
@@ -216,7 +218,7 @@ $(function () {
   $("#phone").blur(function () {
     $(this).valid();
   });
-  $("#postal_code, #user_address_attributes_prefecture_id, #city, #street, #phone_optional").blur(function () {
+  $("#postal_code, #user_address_attributes_prefecture_id, #city, #street, #building_name, #phone_optional").blur(function () {
     $(this).valid();
   });
   $("#card_number, #exp_month, #exp_year, #cvc").blur(function () {

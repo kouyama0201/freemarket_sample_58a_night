@@ -61,7 +61,7 @@
               %div.address__main__form__content__group
                 = f.label :building_name, "建物名", class: "address__main__form__content__group__label" 
                 %span.address__main__form__content__group__optional  任意
-                = address_form.text_field :building_name, class: "address__main__form__content__group__input", placeholder:"例）柳ビル103"
+                = address_form.text_field :building_name, class: "address__main__form__content__group__input", placeholder:"例）柳ビル103", id: "building_name"
               %div.address__main__form__content__group
                 = f.label :phone, "電話", class: "address__main__form__content__group__label" 
                 %span.address__main__form__content__group__optional   任意
