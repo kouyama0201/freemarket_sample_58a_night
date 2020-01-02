@@ -1,5 +1,4 @@
 FactoryBot.define do
-  
   factory :user do
     name                  {"Taro"}
     email                 {"kkk@gmail.com"}
@@ -13,12 +12,5 @@ FactoryBot.define do
     birth_month           {"10"}
     birth_day             {"14"}
     phone                 {"0123456789"}
-    # factory :address do
-    #     postal_code             {"1234567"}
-    #     prefecture_id           {"1"}
-    #     city                    {"名古屋市"}
-    #     street                  {"港区1-2-3"}
-    #     phone_optional          {"0123456789"}
-    # end
   end
 end
