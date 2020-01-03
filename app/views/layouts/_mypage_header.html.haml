@@ -28,4 +28,4 @@
         やることリスト
     .header-lower-right-mypage__user
       = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: "header-lower-right-mypage__user--image", size: '32x32'
-      = link_to "マイページ", mypage_products_path, class: "header-lower-right-mypage__user--title"
+      = link_to "マイページ", mypage_path(current_user), class: "header-lower-right-mypage__user--title"

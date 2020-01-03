@@ -14,13 +14,14 @@ ActiveRecord::Schema.define(version: 20191231031759) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "prefecture_id"
-    t.string   "city",          default: "", null: false
-    t.integer  "postal_code",                null: false
-    t.string   "street",        default: "", null: false
+    t.string   "city",           default: "", null: false
+    t.string   "postal_code",                 null: false
+    t.string   "street",         default: "", null: false
     t.string   "building_name"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "phone_optional"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
@@ -123,4 +124,5 @@ ActiveRecord::Schema.define(version: 20191231031759) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sizes"
   add_foreign_key "products", "users"
+  add_foreign_key "sns_credentials", "users"
 end
