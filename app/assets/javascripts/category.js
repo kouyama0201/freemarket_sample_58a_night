@@ -14,8 +14,8 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'child_wrapper'>
                         <div class='containt__main__container__inner__sell-form__select-wrap'>
-                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category">
-                            <option value="---" data-category="---">---</option>
+                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="product[category_id]">
+                            <option value="" data-category="---">---</option>
                             ${insertHTML}
                           </select>
                           <i class='fas fa-chevron-down fa-lg containt__main__container__inner__sell-form__select-wrap__icon'></i>
@@ -29,7 +29,7 @@ $(function(){
     grandchildSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'grandchild_wrapper'>
                               <div class='containt__main__container__inner__sell-form__select-wrap'>
                                 <select class="containt__main__container__inner__sell-form__select-wrap__list" id="grandchild_category" name="product[category_id]">
-                                  <option value="---" data-category="---">---</option>
+                                  <option value="" data-category="---">---</option>
                                   ${insertHTML}
                                 </select>
                                 <i class='fas fa-chevron-down fa-lg containt__main__container__inner__sell-form__select-wrap__icon'></i>
@@ -45,7 +45,7 @@ $(function(){
                         <span class='containt__main__container__inner__sell-form__form-require'>必須</span>
                           <div class='containt__main__container__inner__sell-form__select-wrap'>
                             <select class="containt__main__container__inner__sell-form__select-wrap__list" id="size" name="product[size_id]">
-                              <option value="---">---</option>
+                              <option value="">---</option>
                               ${insertHTML}
                             </select>
                             <i class='fas fa-chevron-down fa-lg containt__main__container__inner__sell-form__select-wrap__icon'></i>
@@ -119,6 +119,9 @@ $(function(){
             insertHTML += appendOption(grandchild);
           });
           appendGrandchildBox(insertHTML);
+          $("#child_category").removeAttr("name");
+        } else {
+          appendBrandBox(); // 紐付く孫カテゴリーがない場合には、ブランド入力欄のみ生成する
         }
       })
       .fail(function(){
