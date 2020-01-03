@@ -23,28 +23,43 @@
   %main.registration__main
     %section.registration__main__container
       %h2.registration__main__container__head  会員情報入力
-      = form_for(@user, url: phone_signup_index_path, method: :get, html: {class: "registration__main__form"}) do |f|
+      = form_for(@user, url: phone_signup_index_path, method: :get, html: {class: "registration__main__form", id: "signup-form"}) do |f|
         %div.registration__main__form__content
+          = render partial: 'layouts/error-messages', locals: { user: @user, column: "email"}
           %div.registration__main__form__content__group
             = f.label :name, "ニックネーム", class: "registration__main__form__content__group__label" 
             %span.registration__main__form__content__group__require 必須
-            = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）メルカリ太郎"
+            - if session[:name] && session[:sns_existed_flag] == "yes"
+              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）メルカリ太郎", id: "name", value: "#{session[:name]}"
+            - else
+              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）メルカリ太郎", id: "name"
           %div.registration__main__form__content__group
             = f.label :email, "メールアドレス", class: "registration__main__form__content__group__label"
             %span.registration__main__form__content__group__require   必須
-            = f.email_field :email, class:"registration__main__form__content__group__input", placeholder:"PC・携帯どちらでも可"
-          %div.registration__main__form__content__group
-            = f.label :password, "パスワード", class: "registration__main__form__content__group__label"
-            %span.registration__main__form__content__group__require  必須
-            = f.password_field :password, class:"registration__main__form__content__group__input", placeholder:"7文字以上の半角英数字"
-            %p.registration__main__form__content__group__input__info  ※ 英字と数字の両方を含めて設定してください。
-          %div.registration__main__password-revelation
-            .registration__main__password-revelation__checkbox
-              %input.registration__main__password-revelation__checkbox__square{"type":"checkbox"}
-              %i.fas.fa-check.registration__main__password-revelation__checkbox__check
-              %label.registration__main__password-revelation__checkbox__text  パスワードを表示する
-            .registration__main__password-revelation__revealed-password-container
-              %span.registration__main__password-revelation__revealed-password
+            - if session[:email] && session[:sns_existed_flag] == "yes"
+              = f.email_field :email, class:"registration__main__form__content__group__input", placeholder:"PC・携帯どちらでも可", id: "email", value: "#{session[:email]}"
+            - else
+              = f.email_field :email, class:"registration__main__form__content__group__input", placeholder:"PC・携帯どちらでも可", id: "email"
+          - if session[:sns_existed_flag] == "yes"
+            %div.registration__main__form__content__group{style: "display: none;"}
+              = f.label :password, "パスワード", class: "registration__main__form__content__group__label"
+              %span.registration__main__form__content__group__require  必須
+              = f.password_field :password, class:"registration__main__form__content__group__input", placeholder:"7文字以上の半角英数字", id: "password", value: "#{session[:password]}"
+              %p.registration__main__form__content__group__input__info  ※ 英字と数字の両方を含めて設定してください。
+            %div.registration__main__form__content__group{style: "display: none;"}
+              = f.label :password_confirmation, "パスワード(確認)", class: "registration__main__form__content__group__label"
+              %span.registration__main__form__content__group__require  必須
+              = f.password_field :password_confirmation, class:"registration__main__form__content__group__input", placeholder:"7文字以上の半角英数字", id: "password_confirmation", value: "#{session[:password]}"
+          - else
+            %div.registration__main__form__content__group
+              = f.label :password, "パスワード", class: "registration__main__form__content__group__label"
+              %span.registration__main__form__content__group__require  必須
+              = f.password_field :password, class:"registration__main__form__content__group__input", placeholder:"7文字以上の半角英数字", id: "password"
+              %p.registration__main__form__content__group__input__info  ※ 英字と数字の両方を含めて設定してください。
+            %div.registration__main__form__content__group
+              = f.label :password_confirmation, "パスワード(確認)", class: "registration__main__form__content__group__label"
+              %span.registration__main__form__content__group__require  必須
+              = f.password_field :password_confirmation, class:"registration__main__form__content__group__input", placeholder:"7文字以上の半角英数字", id: "password_confirmation"
           %div.registration__main__form__content__group
             %h3.registration__main__form__content__group__identification__head  本人確認
             %p.registration__main__form__content__group__identification__description
@@ -53,30 +68,33 @@
             %div
               = f.label :fullname, "お名前(全角)", class: "registration__main__form__content__group__label"
               %span.registration__main__form__content__group__require  必須
-            = f.text_field :lastname, class: "registration__main__form__content__group__input__harf", placeholder:"例）山田"
-            = f.text_field :firstname, class: "registration__main__form__content__group__input__harf", placeholder:"例）彩"
+            = f.text_field :lastname, class: "registration__main__form__content__group__input__harf", placeholder:"例）山田", id: "lastname"
+            = f.text_field :firstname, class: "registration__main__form__content__group__input__harf", placeholder:"例）彩", id: "firstname"
+            #name_error
           %div.registration__main__form__content__group
             %div
               = f.label :fullname, "お名前(カナ)", class: "registration__main__form__content__group__label"
               %span.registration__main__form__content__group__require  必須
-            = f.text_field :lastname_kana, class: "registration__main__form__content__group__input__harf", placeholder:"例）ヤマダ"
-            = f.text_field :firstname_kana, class: "registration__main__form__content__group__input__harf", placeholder:"例）アヤ"
+            = f.text_field :lastname_kana, class: "registration__main__form__content__group__input__harf", placeholder:"例）ヤマダ", id: "lastname_kana"
+            = f.text_field :firstname_kana, class: "registration__main__form__content__group__input__harf", placeholder:"例）アヤ", id: "firstname_kana"
+            #name_kana_error
           %div.registration__main__form__content__group
             = f.label :birthday, "生年月日", class: "registration__main__form__content__group__label"
             %span.registration__main__form__content__group__require  必須
             .registration__main__form__content__group__birthday
               .registration__main__form__content__group__birthday__select
                 %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
-                = f.select :birth_year, @user.set_4digit_year, {}, {class: "registration__main__form__content__group__birthday__select__pulldown"}
+                = f.select :birth_year, @user.set_4digit_year, {}, {class: "registration__main__form__content__group__birthday__select__pulldown", id: "birth_year"}
               %span.registration__main__form__content__group__birthday__select__text  年
               .registration__main__form__content__group__birthday__select
                 %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
-                = f.select :birth_month, @user.set_birth_month, {}, {class: "registration__main__form__content__group__birthday__select__pulldown"}
+                = f.select :birth_month, @user.set_birth_month, {}, {class: "registration__main__form__content__group__birthday__select__pulldown", id: "birth_month"}
               %span.registration__main__form__content__group__birthday__select__text  月
               .registration__main__form__content__group__birthday__select
                 %i.fas.fa-chevron-down.fa-lg.registration__main__form__content__group__birthday__select__icon
-                = f.select :birth_day, @user.set_birth_day, {}, {class: "registration__main__form__content__group__birthday__select__pulldown"}
+                = f.select :birth_day, @user.set_birth_day, {}, {class: "registration__main__form__content__group__birthday__select__pulldown", id: "birth_day"}
               %span.registration__main__form__content__group__birthday__select__text  日
+              #birth_date_error
               .clearfix
               %p.registration__main__form__content__notice  ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         %div.registration__main__form__content

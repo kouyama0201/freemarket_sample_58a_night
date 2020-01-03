@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191221120925) do
+ActiveRecord::Schema.define(version: 20200101140658) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "prefecture_id"
-    t.string   "city",          default: "", null: false
-    t.integer  "postal_code",                null: false
-    t.string   "street",        default: "", null: false
+    t.string   "city",           default: "", null: false
+    t.string   "postal_code",                 null: false
+    t.string   "street",         default: "", null: false
     t.string   "building_name"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "phone_optional"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
@@ -73,6 +74,16 @@ ActiveRecord::Schema.define(version: 20191221120925) do
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
+  create_table "sns_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "uid"
+    t.string   "string"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                default: "", null: false
     t.string   "encrypted_password",                   default: "", null: false
@@ -102,4 +113,5 @@ ActiveRecord::Schema.define(version: 20191221120925) do
   add_foreign_key "products", "brands"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
+  add_foreign_key "sns_credentials", "users"
 end

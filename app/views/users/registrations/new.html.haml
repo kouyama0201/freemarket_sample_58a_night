@@ -13,10 +13,13 @@
             %i.far.fa-envelope.fa-lg.signup__main__container__inner__content__btn__mail__icon
             メールアドレスで登録する
           - if Rails.env.development? || Rails.env.test?
-            = link_to user_facebook_omniauth_authorize_path, method: :post,id: "facebook-login", class: "signup__main__container__inner__content__btn__facebook" do
+            = link_to user_facebook_omniauth_authorize_path, method: :post, id: "facebook-login", class: "signup__main__container__inner__content__btn__facebook" do
               %i.fab.fa-facebook-square.fa-2x.signup__main__container__inner__content__btn__facebook__icon
               Facebookで登録する
             = link_to "Googleで登録する", user_google_oauth2_omniauth_authorize_path, method: :post, id: "google-login", class: "signup__main__container__inner__content__btn__google"
+            - if session[:error].present?
+              %p.signup__main__container__inner__content__error
+                = session[:error]
           - if Rails.env.production?
             .signup__main__container__inner__content__btn__facebook
               %i.fab.fa-facebook-square.fa-2x.signup__main__container__inner__content__btn__facebook__icon

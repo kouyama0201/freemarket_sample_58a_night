@@ -20,17 +20,17 @@
         %label.identification-box__form__group--label
           お名前
         %p.identification-box__form__group--text
-          メルカリ 太郎
+          = current_user.lastname + " " + current_user.firstname
       .identification-box__form__group
         %label.identification-box__form__group--label
           お名前カナ
         %p.identification-box__form__group--text
-          メルカリ タロウ
+          = current_user.lastname_kana + " " + current_user.firstname_kana
       .identification-box__form__group
         %label.identification-box__form__group--label
           生年月日
         %p.identification-box__form__group--text
-          1990/01/01
+          = current_user.birth_year.to_s + "/" + current_user.birth_month.to_s + "/" + current_user.birth_day.to_s
       .identification-box__form__group-pulldown
         %label
           郵便番号
