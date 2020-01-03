@@ -13,10 +13,8 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.build
-    @category_parent_array = ["---"]
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+    @category_parent_array.unshift("---")
   end
 
   def category_child
