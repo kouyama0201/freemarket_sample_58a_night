@@ -67,10 +67,14 @@ input[type=submit]:focus {
   outline: none;
 }
 
-select.invalid {
+select.invalid,
+input.invalid,
+textarea.invalid {
   border: #ea352d 1px solid;
 }
 
-select.valid {
+select.valid,
+input.valid,
+textarea.valid {
   border: seagreen 1px solid;
 }

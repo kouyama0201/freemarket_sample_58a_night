@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     collection do
       get 'detail'
       get 'purchase_confirmation'
+      get 'category_child', defaults: { format: 'json' }
+      get 'category_grandchild', defaults: { format: 'json' }
+      get 'size', defaults: { format: 'json' }
+      get 'delivery_way'
     end
   end
 
