@@ -1,20 +1,19 @@
 class ProductsController < ApplicationController
   def index
-    @products_ladies = Product.where(category_id: 1)
-    @products_mens = Product.where(category_id: 206)
-    @products_home_electronics = Product.where(category_id: 1204)
-    @products_toys = Product.where(category_id: 686)
-    @products_chanel = Product.where(brand_id: 4354)
-    @products_louis_vuitton = Product.where(brand_id: 11025)
-    @products_supreme = Product.where(brand_id: 4387)
-    @products_nike = Product.where(brand_id: 6725)
+    @products_ladies = Product.where(category_id: 1..205).limit(10)
+    @products_mens = Product.where(category_id: 206..350).limit(10)
+    @products_home_electronics = Product.where(category_id: 899..984).limit(10)
+    @products_toys = Product.where(category_id: 686..798).limit(10)
+    @products_chanel = Product.where(brand: "シャネル").limit(10)
+    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").limit(10)
+    @products_supreme = Product.where(brand: "シュプリーム").limit(10)
+    @products_nike = Product.where(brand: "ナイキ").limit(10)
   end
 
   def new
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-    @category_parent_array.unshift("---")
   end
 
   def category_child
@@ -42,35 +41,19 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save
+    if @product.valid?
+      @product.save
       redirect_to root_path
     else
-      render new_product_path
+      @product.images.build
+      render new_product_path(@product)
     end
   end
 
   def detail
   end
 
-  def logout
-  end
-
   def purchase_confirmation
-  end
-
-  def card
-  end
-
-  def card_registration
-  end
-
-  def mypage
-  end
-
-  def identification
-  end
-
-  def profile
   end
 
   private
