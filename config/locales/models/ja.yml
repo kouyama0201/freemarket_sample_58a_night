@@ -14,3 +14,5 @@ ja:
         phone: 電話番号
       address:
         phone_optional: 電話番号
+      product:
+        images: 画像
