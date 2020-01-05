@@ -62,7 +62,7 @@
             &__icon{
               position: absolute;
               right: 16px;
-              top: 40%;
+              top: 18px;
               z-index: 2;
               color: #888;
               font-size: 8px;
@@ -109,13 +109,13 @@
             padding: 40px;
           }
           &__information{
-            height: 274px;
+            min-height: 300px;
             width: 620px;
             padding: 40px;
             border-top: 1px solid #eee;
             margin: 0px;
             &__name{
-              height: 70px;
+              min-height: 70px;
               width: 620px;
               &__input-form{
                 &__input-name{
@@ -129,7 +129,7 @@
               }
             }
             &__description{
-              height: 164px;
+              min-height: 164px;
               width: 620px;
               margin: 40px 0 0;
               &__title{
@@ -227,8 +227,9 @@
             }
           }
           &__price{
+            display: inline-block;
             width: 620px;
-            height: 219px;
+            min-height: 219px;
             padding: 40px;
             border-top: 1px solid #eee;
             &__box{
@@ -236,7 +237,7 @@
               height: 218px;
               float: right;
               &__top{
-                height: 48px;
+                min-height: 48px;
                 width: 400px;
                 padding: 0 0 24px;
                 &__left{
@@ -246,6 +247,7 @@
                 }
                 &__right{
                   float: right;
+                  display: contents;
                   height: 48px;
                   width: 200px;
                   &--yen{
@@ -455,3 +457,14 @@
     }
   }
 }
+
+.error-text, #product_name-error, #description-error,
+#parent_category-error, #child_category-error, #grandchild_category-error, #size-error,
+#product_condition-error, #product_delivery_cost-error, #delivery_way-error,
+#product_delivery_origin-error, #product_preparatory_days-error, #price-error 
+{
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 8px;
+} 

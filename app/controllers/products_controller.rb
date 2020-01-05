@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-    @category_parent_array.unshift("---")
   end
 
   def category_child
@@ -47,6 +46,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       @product.images.build
+      @category_parent_array = Category.where(ancestry: nil).pluck(:name)
       render new_product_path(@product)
     end
   end

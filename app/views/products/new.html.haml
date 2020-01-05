@@ -6,7 +6,7 @@
     %section.containt__main__container
       .containt__main__container__inner
         %h2.containt__main__container__inner__head 商品の情報を入力
-        = form_for @product do |f| 
+        = form_for @product, html: {id: "product-form"} do |f| 
           .containt__main__container__inner__sell-form
             .containt__main__container__inner__sell-form__upload-box
               %h3.containt__main__container__inner__sell-form__upload-box__head
@@ -16,23 +16,24 @@
               #image-wrapper
                 .image-num-0#image-box
                   = f.fields_for :images do |i|
-                    = i.file_field :image, type: 'file', class: "image-option", name: "product[images_attributes][][image]", value:"", id:"img-file"
-                    %label{for: "img-file"}
+                    = i.file_field :image, class: "image-option", id:"images"
+                    %label{for: "images"}
                       %pre.label-text
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
+              = render partial: 'error-messages', locals: {product: @product, column: "images"}
             .containt__main__container__inner__sell-form__information
               .containt__main__container__inner__sell-form__information__name
                 %label
                   商品名
                   %span.containt__main__container__inner__sell-form__form-require 必須
                 %div.containt__main__container__inner__sell-form__information__name__input-form
-                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", placeholder: "商品名（必須 40文字まで）", autocomplete: "off"
+                  = f.text_field :name, class: "containt__main__container__inner__sell-form__information__name__input-form__input-name", id: "product_name", placeholder: "商品名（必須 40文字まで）"
               .containt__main__container__inner__sell-form__information__description
                 %label.containt__main__container__inner__sell-form__information__description__title
                   商品の説明
                   %span.containt__main__container__inner__sell-form__form-require 必須
-                = f.text_area :description, class: "containt__main__container__inner__sell-form__information__description__textarea", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+                = f.text_area :description, class: "containt__main__container__inner__sell-form__information__description__textarea", id: "description", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）\r\n2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
             .containt__main__container__inner__sell-form__detail
               %h3.containt__main__container__inner__sell-form__detail__head 商品の詳細
               .containt__main__container__inner__sell-form__detail__box
@@ -42,7 +43,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__detail__box__form-group__category
                     .containt__main__container__inner__sell-form__select-wrap
-                      = f.select :category_id, @category_parent_array, {}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category"}
+                      = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category"}
                       %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__detail__box__form-group
@@ -51,14 +52,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :condition, class: "containt__main__container__inner__sell-form__select-wrap__list" do
-                      %option ---
-                      %option 新品
-                      %option 未使用に近い
-                      %option 目立った傷や汚れなし
-                      %option やや傷や汚れあり
-                      %option 傷や汚れあり
-                      %option 全体的に状態が悪い
+                    = f.select :condition, [["---", ""],["新品", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], selected: @product.condition, class: "containt__main__container__inner__sell-form__select-wrap__list"
             .containt__main__container__inner__sell-form__delivery
               .containt__main__container__inner__sell-form__delivery__sub-head 配送について
               .containt__main__container__inner__sell-form__question ?
@@ -68,8 +62,8 @@
                     配送料の負担
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
-                    = f.select :delivery_cost, Product.delivery_costs.keys, {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_cost"
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    = f.select :delivery_cost, [["---", ""],["送料込(出品者負担)", 1],["着払い(購入者負担)", 2]], selected: @product.delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list"
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -85,11 +79,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list" do
-                      %option ---
-                      %option 1~2日で発送
-                      %option 2~3日で発送
-                      %option 4~7日で発送
+                    = f.select :preparatory_days, [["---", ""],["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], selected: @product.preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list"
             .containt__main__container__inner__sell-form__price
               .containt__main__container__inner__sell-form__delivery__sub-head 販売価格(300〜9,999,999)
               .containt__main__container__inner__sell-form__question ?
