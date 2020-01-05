@@ -1,0 +1,16 @@
+= render 'layouts/mypage_header'
+- breadcrumb :profile
+= render 'layouts/breadcrumbs'
+= render 'layouts/sidebar'
+= form_for(@user, url: user_path(current_user), method: :put, html: {class: "profile-box"}) do |f|
+  %h2.profile-box__head
+    プロフィール
+  = image_tag "bg_mypage.jpg", class: "profile-box__top"
+  .profile-box__top__icon
+    = image_tag "user_noimage.png", class: "profile-box__top__icon--image", size: "60x60"
+    = f.text_field :name, class: "profile-box__top__icon--input", placeholder: "例)AYA☆セール中", id: "name"
+  .profile-box__containt
+    = f.text_area :introduction, class: "profile-box__containt__textarea", placeholder:"例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", id: "introduction"
+    = f.submit "変更する", class: "profile-box__containt__register"
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'

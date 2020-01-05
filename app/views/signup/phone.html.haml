@@ -23,12 +23,13 @@
   %main.phone__main
     %section.phone__main__container
       %h2.phone__main__container__head  電話番号の確認
-      = form_for(@user, url: address_signup_index_path, method: :get, html: {class: "phone__main__form"}) do |f|
+      = form_for(@user, url: address_signup_index_path, method: :get, html: {class: "phone__main__form", id: "signup-form"}) do |f|
         %div.phone__main__form__content
+          = render partial: 'layouts/error-messages', locals: { user: @user, column: "phone"}
           %div.phone__main__form__content__group
-            %label.phone__main__form__content__group__label 携帯電話の番号
-            = f.label :phone, "携帯電話の番号", class: "phone__main__form__content__group__label" 
-            = f.text_field :name, class: "phone__main__form__content__group__input", placeholder:"携帯電話の番号を入力"
+            = f.label :phone, "携帯電話の番号", class: "phone__main__form__content__group__label"
+            = f.text_field :phone, class: "phone__main__form__content__group__input", placeholder:"携帯電話の番号を入力", id: "phone"
+          #phone_error
           %p.phone__main__form__content__group__phone-description
             本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
           = f.submit "SMSを送信する", class: "phone__main__form__content__btn"

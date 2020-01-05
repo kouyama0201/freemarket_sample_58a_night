@@ -3,6 +3,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :add_flag, only: [:new]
+
+  private
+    def add_flag # フラグ追加
+      session[:devise_flag] = "signup" # ユーザー登録からのリクエストフラグ
+      if session[:sns_error_flag] == "yes" || session[:sns_existed_flag] == "yes"
+        session[:sns_error_flag] = nil
+        session[:sns_existed_flag] = nil
+      else
+        session[:error] = nil
+      end
+    end
 
   # GET /resource/sign_up
   # def new

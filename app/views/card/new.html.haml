@@ -1,2 +1,80 @@
-%h1 Card#new
-%p Find me in app/views/card/new.html.haml
+= render 'layouts/mypage_header'
+- breadcrumb :card
+= render 'layouts/breadcrumbs'
+= render 'layouts/sidebar'
+.card-registration-box
+  %section.card-registration-box__container
+    %h2.card-registration-box__container__head
+      クレジットカード情報入力
+    = form_tag(card_index_path, method: :post, id:"charge-form", name: "inputForm", class: "card-registration-box__form") do
+      %div.card-registration-box__form__content
+        %div.card-registration-box__form__content__group
+          %label.card-registration-box__form__content__group__label  カード番号
+          %span.card-registration-box__form__content__group__require   必須
+          = text_field_tag "number", "", class: "number card-registration-box__form__content__group__input", placeholder:"半角数字のみ", id: "card_number", name: "card_number"
+          %ul.card-registration-box__form__content__group__card-list
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "visa.svg", class: "card-registration-box__form__content__group__card-list__img__visa"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "master-card.svg", class: "card-registration-box__form__content__group__card-list__img__master"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "saison-card.svg", class: "card-registration-box__form__content__group__card-list__img__saison"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "jcb.svg", class: "card-registration-box__form__content__group__card-list__img__jcb"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "american_express.svg", class: "card-registration-box__form__content__group__card-list__img__amex"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "dinersclub.svg", class: "card-registration-box__form__content__group__card-list__img__dinersclub"
+            %li.card-registration-box__form__content__group__card-list__img
+              = image_tag "discover.svg", class: "card-registration-box__form__content__group__card-list__img__discover"
+          #card_number_error
+        %div.card-registration-box__form__content__group
+          %label.card-registration-box__form__content__group__label  有効期限
+          %span.card-registration-box__form__content__group__require   必須
+          .card-registration-box__form__content__group__expire
+            .card-registration-box__form__content__group__expire__select
+              %i.fas.fa-chevron-down.fa-lg.card-registration-box__form__content__group__expire__select__icon
+              %select#exp_month{name: "exp_month", type: "text", class: "card-registration-box__form__content__group__expire__select__pulldown", name: "exp_month" }
+                %option{value: ""} --
+                %option{value: "1"}01
+                %option{value: "2"}02
+                %option{value: "3"}03
+                %option{value: "4"}04
+                %option{value: "5"}05
+                %option{value: "6"}06
+                %option{value: "7"}07
+                %option{value: "8"}08
+                %option{value: "9"}09
+                %option{value: "10"}10
+                %option{value: "11"}11
+                %option{value: "12"}12
+            %span.card-registration-box__form__content__group__expire__select__text  月
+            .card-registration-box__form__content__group__expire__select
+              %i.fas.fa-chevron-down.fa-lg.card-registration-box__form__content__group__expire__select__icon
+              %select#exp_year{name: "exp_year", type: "text", class:"card-registration-box__form__content__group__expire__select__pulldown", name: "exp_year" }
+                %option{value: ""} --
+                %option{value: "2019"}19
+                %option{value: "2020"}20
+                %option{value: "2021"}21
+                %option{value: "2022"}22
+                %option{value: "2023"}23
+                %option{value: "2024"}24
+                %option{value: "2025"}25
+                %option{value: "2026"}26
+                %option{value: "2027"}27
+                %option{value: "2028"}28
+                %option{value: "2029"}29
+            %span.card-registration-box__form__content__group__expire__select__text  年
+          #exp_date_error
+        %div.card-registration-box__form__content__group
+          %label.card-registration-box__form__content__group__label  セキュリティコード
+          %span.card-registration-box__form__content__group__require   必須
+          = text_field_tag "cvc", "", id: "cvc", class: "card-registration-box__form__content__group__input", placeholder:"カード背面4桁もしくは3桁の番号", name: "cvc"
+        .card-registration-box__form__content__text-right
+          .card-registration-box__form__content__text-right__text 
+            %span.card-registration-box__form__content__text-right__icon ?
+            カード裏面の番号とは？
+          #card_token
+          = submit_tag "追加する", class: "card-registration-box__form__content__btn", id: "token_submit"
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'

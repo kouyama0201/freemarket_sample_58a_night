@@ -17,5 +17,11 @@ module FreemarketSample58aNight
       g.helper false
       g.test_framework false
     end
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    # バリデーションエラー発生時のdiv要素自動生成の無効化
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      %Q(#{html_tag}).html_safe
+    end
   end
 end
