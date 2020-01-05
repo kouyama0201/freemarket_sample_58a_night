@@ -22,6 +22,9 @@ $(function () {
     postalCode: function (value, element) { // 郵便番号の正規表現
       return this.optional(element) || /^\d{3}[-]\d{4}$/.test(value);
     },
+    kana: function (value, element) { // カタカナの正規表現
+      return this.optional(element) || /^[ァ-ヴ]+$/.test(value);
+    },
   }
   // メソッドの追加
   $.each(methods, function (key) {
@@ -54,10 +57,12 @@ $(function () {
         required: true
       },
       "user[lastname_kana]": {
-        required: true
+        required: true,
+        kana: true
       },
       "user[firstname_kana]": {
-        required: true
+        required: true,
+        kana: true
       },
       "user[birth_year]": {
         valueNotEquals: "--"
@@ -129,10 +134,12 @@ $(function () {
         required: "名を入力してください"
       },
       "user[lastname_kana]": {
-        required: "姓カナを入力してください"
+        required: "姓カナを入力してください",
+        kana: "姓カナをカタカナに変更してください"
       },
       "user[firstname_kana]": {
-        required: "名カナを入力してください"
+        required: "名カナを入力してください",
+        kana: "名カナをカタカナに変更してください"
       },
       "user[birth_year]": {
         valueNotEquals: "生年月日を入力してください"
