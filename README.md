@@ -1,17 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
 # freemarket_sample_58a_night DB設計
 ## usersテーブル
 |Column|Type|Options|
@@ -139,13 +125,3 @@ Things you may want to cover:
 
 ## ER図
 ![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/70844017-3610ba80-1e7e-11ea-9415-7483168c51c1.jpeg)
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
