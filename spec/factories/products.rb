@@ -8,10 +8,10 @@ FactoryBot.define do
     delivery_origin  {"1"}
     preparatory_days {"1"}
     price            {"30000"}
-    association :user, factory: :user
+    user
     association :category, factory: :category
     after(:build) do |product|
-      product.images<< build(:image, product: product)
+      product.images << build(:image, product: product)
     end
   end
 end
