@@ -14,10 +14,12 @@ $(function () {
     // ルール設定
     rules: {
       "product[name]": {
-        required: true
+        required: true,
+        rangelength: [1, 40]
       },
       "product[description]": {
-        required: true
+        required: true,
+        rangelength: [1, 1000]
       },
       "product[category_id]": {
         required: true,
@@ -49,10 +51,12 @@ $(function () {
     // エラーメッセージの定義
     messages: {
       "product[name]": {
-        required: "入力してください"
+        required: "入力してください",
+        rangelength: "40文字以内で入力してください"
       },
       "product[description]": {
-        required: "入力してください"
+        required: "入力してください",
+        rangelength: "1000文字以内で入力してください"
       },
       "product[category_id]": {
         required: "選択してください",
