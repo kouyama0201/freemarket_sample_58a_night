@@ -52,7 +52,14 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :condition, [["---", ""],["新品", 1],["未使用に近い", 2],["目立った傷や汚れなし", 3],["やや傷や汚れあり", 4],["傷や汚れあり", 5],["全体的に状態が悪い", 6]], selected: @product.condition, class: "containt__main__container__inner__sell-form__select-wrap__list"
+                    = f.select :condition, class: "containt__main__container__inner__sell-form__select-wrap__list" do
+                      %option{value: ""} ---
+                      %option{value: "新品"} 新品
+                      %option{value: "未使用に近い"} 未使用に近い
+                      %option{value: "目立った傷や汚れなし"} 目立った傷や汚れなし
+                      %option{value: "やや傷や汚れあり"} やや傷や汚れあり
+                      %option{value: "傷や汚れあり"} 傷や汚れあり
+                      %option{value: "全体的に状態が悪い"} 全体的に状態が悪い
             .containt__main__container__inner__sell-form__delivery
               .containt__main__container__inner__sell-form__delivery__sub-head 配送について
               .containt__main__container__inner__sell-form__question ?
@@ -63,7 +70,10 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :delivery_cost, [["---", ""],["送料込(出品者負担)", 1],["着払い(購入者負担)", 2]], selected: @product.delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list"
+                    = f.select :delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list" do
+                      %option{value: ""} ---
+                      %option{value: "送料込(出品者負担)"} 送料込(出品者負担)
+                      %option{value: "着払い(購入者負担)"} 着払い(購入者負担)
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -79,7 +89,11 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :preparatory_days, [["---", ""],["1~2日で発送", 1],["2~3日で発送", 2],["4~7日で発送", 3]], selected: @product.preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list"
+                    = f.select :preparatory_days, class: "containt__main__container__inner__sell-form__select-wrap__list" do
+                      %option{value: ""} ---
+                      %option{value: "1~2日で発送"} 1~2日で発送
+                      %option{value: "2~3日で発送"} 2~3日で発送
+                      %option{value: "4~7日で発送"} 4~7日で発送
             .containt__main__container__inner__sell-form__price
               .containt__main__container__inner__sell-form__delivery__sub-head 販売価格(300〜9,999,999)
               .containt__main__container__inner__sell-form__question ?
