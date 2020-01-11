@@ -16,7 +16,7 @@
               #image-wrapper
                 .image-num-0#image-box
                   = f.fields_for :images do |i|
-                    = i.file_field :image, class: "image-option", id:"images"
+                    = i.file_field :image, class: "image-option", id:"images", name: "product[images_attributes][][image]"
                     %label{for: "images"}
                       %pre.label-text
                         ドラッグアンドドロップ
