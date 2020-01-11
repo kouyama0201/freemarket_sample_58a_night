@@ -10,8 +10,7 @@ FactoryBot.define do
     price            {"30000"}
     user
     association :category, factory: :category
-    association :image, factory: :image
-    after(:create) do |product|
+    after(:build) do |product|
       product.images << build(:image, product: product)
     end
   end
