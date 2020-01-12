@@ -26,17 +26,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :products do
-  #   collection do
-  #     get 'logout'
-  #     get 'card'
-  #     get 'card_registration'
-  #     get 'mypage'
-  #     get 'identification'
-  #     get 'profile'
-  #   end
-  # end
-
   resources :mypage do
     member do
       get 'profile'
@@ -50,7 +39,6 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      get 'detail'
       get 'purchase_confirmation'
       get 'category_child', defaults: { format: 'json' }
       get 'category_grandchild', defaults: { format: 'json' }
