@@ -230,23 +230,10 @@
                     ¥
                     %span<>
                     = @fee.to_s(:delimited, delimiter: ',')
-            .containt__main__container__inner__sell-form__btn-box
-              %p.containt__main__container__inner__sell-form__btn-box__text1
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 禁止されている出品
-                、
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 行為
-                を必ずご確認ください。
-              %p.containt__main__container__inner__sell-form__btn-box__text2
-                またブランド品でシリアルナンバー等がある場合はご記載ください。
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 偽ブランドの販売
-                は犯罪であり処罰される可能性があります。
-              %p.containt__main__container__inner__sell-form__btn-box__text3
-                また、出品を持ちまして
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 加盟店規約
-                に同意したことになります。
-              = f.submit "出品する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
+            .containt__main__container__inner__sell-form__btn-box__edit
+              = f.submit "変更する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
               = link_to root_path do 
                 .containt__main__container__inner__sell-form__btn-box__btn-gray
-                  もどる
+                  キャンセル
 
   = render 'layouts/second_footer'
