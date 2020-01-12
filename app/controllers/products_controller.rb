@@ -51,7 +51,24 @@ class ProductsController < ApplicationController
     end
   end
 
-  def detail
+  def edit
+    @product = Product.find(params[:id])
+    @product.images.build
+    @image = (@product.images.length - 1)
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+    @profit = (@product.price * 0.1).round
+    @fee = @product.price - @profit
+    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解除用
+  end
+
+  def update
+    product = Product.find(params[:id])
+    if @product.valid?
+      product.update(product_params) if product.user_id == current_user.id
+      redirect_to root_path
+    else
+      render edit_product_path(@product)
+    end
   end
 
   def purchase_confirmation
