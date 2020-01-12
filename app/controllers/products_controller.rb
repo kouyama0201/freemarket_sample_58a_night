@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
   end
 
   def category_child
