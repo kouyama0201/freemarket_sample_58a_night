@@ -1,19 +1,22 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
-    @products_ladies = Product.where(category_id: 1..205).order(created_at: "DESC").limit(10)
-    @products_mens = Product.where(category_id: 206..350).order(created_at: "DESC").limit(10)
-    @products_home_electronics = Product.where(category_id: 899..984).order(created_at: "DESC").limit(10)
-    @products_toys = Product.where(category_id: 686..798).order(created_at: "DESC").limit(10)
-    @products_chanel = Product.where(brand: "シャネル").order(created_at: "DESC").limit(10)
-    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order(created_at: "DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュープリーム").order(created_at: "DESC").limit(10)
-    @products_nike = Product.where(brand: "ナイキ").order(created_at: "DESC").limit(10)
+    @products_ladies = Product.where(category_id: 1..205).order("created_at DESC").limit(10)
+    @products_mens = Product.where(category_id: 206..350).order("created_at DESC").limit(10)
+    @products_home_electronics = Product.where(category_id: 899..984).order("created_at DESC").limit(10)
+    @products_toys = Product.where(category_id: 686..798).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(brand: "シャネル").order("created_at DESC").limit(10)
+    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュプリーム").order("created_at DESC").limit(10)
+    @products_nike = Product.where(brand: "ナイキ").order("created_at DESC").limit(10)
   end
 
   def new
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
   end
 
   def category_child

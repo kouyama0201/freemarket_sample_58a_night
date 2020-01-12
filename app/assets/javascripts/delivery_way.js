@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
   var array1 = ['未定','らくらくメルカリ便','ゆうメール','レターパック','普通郵便（定型、定型外）',
                 'クロネコヤマト','ゆうパック','クリックポスト','ゆうパケット']
   var array2 = ['未定','クロネコヤマト','ゆうパック','ゆうメール']
@@ -26,7 +26,7 @@ $(function(){
           $('#delivery_way-parent').remove();
           var methodBoxHtml = '';
           var insertHTML = '';
-          if (delivery_parentCategory == "1"){
+          if (delivery_parentCategory == "送料込(出品者負担)"){
             array1.forEach(function(method){
             insertHTML += appendOption(method);
             });
@@ -71,7 +71,7 @@ $(function(){
             $('#delivery_way-parent').remove();
             var methodBoxHtml = '';
             var insertHTML = '';
-            if (delivery_parentCategory == "1"){
+            if (delivery_parentCategory == "送料込(出品者負担)"){
               array1.forEach(function(method){
               insertHTML += appendOption(method);
               });
