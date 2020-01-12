@@ -2,92 +2,98 @@
   .detail__main
     .detail__main__name
       = @product.name
-    .detail__main__remarks
-    .detail__main__image
-      - @product.images.each do |image|
-        = image_tag image.image, size: "300x300"
-      .detail__main__image--sub1
-        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub2
-        = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub3
-        = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub4
-        = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub5
-        = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub1
-        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub2
-        = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub3
-        = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub4
-        = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub5
-        = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-    .detail__main__status
-      .detail__main__status__large-box
-        .detail__main__status__large-box--title
-          出品者
-        .detail__main__status__large-box--seller
-          = @product.user.name
-          .detail__main__status__large-box--seller--good-icon
-            %i.fas.fa-laugh
-            .detail__main__status__large-box--seller--good-icon--count
-              125
-            .detail__main__status__large-box--seller--normal-icon
-              %i.fas.fa-meh
-              .detail__main__status__large-box--seller--normal-icon--count
-                50
-            .detail__main__status__large-box--seller--bad-icon
-              %i.fas.fa-frown
-              .detail__main__status__large-box--seller--bad-icon--count
-                3
-      .detail__main__status__large-box
-        .detail__main__status__large-box--title
-          カテゴリー
-        .detail__main__status__large-box--category
-          = @product.category.name
-          .detail__main__status__large-box--category--child
-            > ジャケット/アウター
-          .detail__main__status__large-box--category--grandchild
-            > ノーカラージャケット
-      .detail__main__status--box
-        .detail__main__status--box--title
-          ブランド
-        .detail__main__status--box--right-blue
-          = @product.brand.name
-      .detail__main__status--box
-        .detail__main__status--box--title
-          商品のサイズ
-        .detail__main__status--box--right-black
-          M
-      .detail__main__status--box
-        .detail__main__status--box--title
-          商品の状態
-        .detail__main__status--box--right-black
-          = @product.condition
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送料の負担
-        .detail__main__status--box--right-black
-          = @product.delivery_cost
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送の方法
-        .detail__main__status--box--right-black
-          らくらくメルカリ便
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送元地域
-        .detail__main__status--box--right-blue
-          = @product.delivery_origin
-      .detail__main__status--box
-        .detail__main__status--box--title
-          発送日の目安
-        .detail__main__status--box--right-black
-          = @product.preparatory_days
+    .detail__main__content
+      .detail__main__content__image
+        .detail__main__content__image__main
+          = image_tag @main_photo.image, size: "300x300", class: "detail__main__content__image__main__photo"
+        .detail__main__content__image__sub
+          - @product.images.each do |image|
+            .detail__main__content__image__sub__thumb
+              = image_tag image.image, size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+          -# .detail__main__content__image__sub__thumb
+          -#   = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
+      %table.detail__main__content__status
+        %tbody
+          %tr
+            %th.detail__main__content__status--title
+              出品者
+            %td.detail__main__content__status__user
+              %div.detail__main__content__status__user__name
+                = @product.user.name
+              %div
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-laugh.detail__main__content__status__user__ratings--good
+                  %span.detail__main__content__status__user__ratings--good--count
+                    125
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-meh.detail__main__content__status__user__ratings--normal
+                  %span.detail__main__content__status__user__ratings--normal--count
+                    50
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-frown.detail__main__content__status__user__ratings--bad
+                  %span.detail__main__content__status__user__ratings--bad--count
+                    3
+          %tr
+            %th.detail__main__content__status--title
+              カテゴリー
+            %td.detail__main__content__status--category
+              = @product.category.name
+              .detail__main__content__status--category--child
+                ＞ ジャケット/アウター
+              .detail__main__content__status--category--grandchild
+                ＞ ノーカラージャケット
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              ブランド
+            %td.detail__main__content__status--box--right-blue
+              = @product.brand
+          - if @product.size.present?
+            %tr.detail__main__content__status--box
+              %th.detail__main__content__status--box--title
+                商品のサイズ
+              %td.detail__main__content__status--box--right-black
+                = @product.size.size
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              商品の状態
+            %td.detail__main__content__status--box--right-black
+              = @product.condition
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送料の負担
+            %td.detail__main__content__status--box--right-black
+              = @product.delivery_cost
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送の方法
+            %td.detail__main__content__status--box--right-black
+              = @product.delivery_way
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送元地域
+            %td.detail__main__content__status--box--right-blue
+              = @product.delivery_origin
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              発送日の目安
+            %td.detail__main__content__status--box--right-black
+              = @product.preparatory_days
     .detail__main__price
       ¥
       = @product.price.to_s(:delimited, delimiter: ",")
@@ -96,8 +102,19 @@
       %span.detail__main__price--shipping-fee
         送料込み
     = link_to purchase_path(@product) do
-      .detail__main__purchase-btn
+      .detail__main__btn--red
         購入画面に進む
+    = link_to "" do
+      .detail__main__btn--red
+        商品を編集する
+    %div.detail__main__text-between-btn
+      or
+    = link_to "" do
+      .detail__main__btn--gray
+        商品を一時停止する
+    = link_to "" do
+      .detail__main__btn--gray
+        この商品を削除する
     .detail__main__description
       = @product.description
     .detail__main__btn-box
