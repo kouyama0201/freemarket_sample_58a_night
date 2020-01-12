@@ -1,6 +1,6 @@
 
 
-$(function () { // 販売利益の計算
+$(function() { // 販売利益の計算
   alert("profit ok");
   $('.containt__main__container__inner__sell-form__price__box__top__right__input').on('input', function () {
     var data = $('.containt__main__container__inner__sell-form__price__box__top__right__input').val();
