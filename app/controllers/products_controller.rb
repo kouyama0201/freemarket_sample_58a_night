@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @products_ladies = Product.where(category_id: 1..205).order("created_at DESC").limit(10)
     @products_mens = Product.where(category_id: 206..350).order("created_at DESC").limit(10)
