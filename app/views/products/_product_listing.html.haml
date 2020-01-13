@@ -1,0 +1,10 @@
+.main-new-arrival__product
+  = link_to detail_products_path do
+    .main-new-arrival__product--image
+      - product.images.each do |image|
+        = image_tag image.image, class: "main-new-arrival__product--image--first", size: "188x188"
+    .main-new-arrival__product--price
+      ¥
+      = product.price.to_s(:delimited, delimiter: ',')
+    .main-new-arrival__product--name
+      = product.name

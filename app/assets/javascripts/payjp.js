@@ -1,9 +1,10 @@
-const PAYJP_KEY = gon.payjp_key;
+const PAYJP_KEY = gon.payjp_key; // 環境変数の定義
 
-document.addEventListener(
+// pay_wayのページで入力したカード情報を使用してPAY.JPからトークン取得
+document.addEventListener( 
   "DOMContentLoaded", e => {
-    if (document.getElementById("token_submit") != null) { 
-      Payjp.setPublicKey(PAYJP_KEY); 
+    if (document.getElementById("token_submit") != null) {
+      Payjp.setPublicKey(PAYJP_KEY);
       let btn = document.getElementById("token_submit"); 
       btn.addEventListener("click", e => { 
         e.preventDefault(); 
@@ -21,7 +22,7 @@ document.addEventListener(
             $("#exp_year").removeAttr("name");
             $("#card_token").append(
               $('<input type="hidden" name="payjp-token">').val(response.id)
-            ); 
+            );
             document.inputForm.submit()
           } else {
             alert("カード情報が正しくありません。");

@@ -17,24 +17,31 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products do
-    collection do
-      get 'detail'
-      get 'logout'
-      get 'purchase_confirmation'
-      get 'card'
-      get 'card_registration'
-      get 'mypage'
-      get 'identification'
+  resources :mypage do
+    member do
       get 'profile'
+      get 'card'
+      get 'identification'
+      get 'logout'
     end
   end
 
-  resources :card, only: [:new, :show] do
+  resources :users, only: [:update]
+
+  resources :products do
     collection do
-      post 'show', to: 'card#show'
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
+      get 'detail'
+      get 'purchase_confirmation'
+      get 'category_child', defaults: { format: 'json' }
+      get 'category_grandchild', defaults: { format: 'json' }
+      get 'size', defaults: { format: 'json' }
+      get 'delivery_way'
+    end
+  end
+
+  resources :card, only: [:new, :show, :create] do
+    collection do
+      get 'delete'
     end
   end
 

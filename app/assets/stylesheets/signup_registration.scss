@@ -194,6 +194,12 @@
               line-height: 1.5;
               font-size: 16px;
             }
+            &__harf.invalid {
+              border: #ea352d 1px solid;
+            }
+            &__harf.valid {
+              border: seagreen 1px solid;
+            }
             &__harf:first-of-type {
               margin-right: 8px;
             }
@@ -204,7 +210,12 @@
               font-size: 14px;
             }
           }
-
+          &__input.invalid {
+            border: #ea352d 1px solid;
+          }
+          &__input.valid {
+            border: seagreen 1px solid;
+          }
           &__identification {
             &__head {
               font-size: 16px;
@@ -247,6 +258,12 @@
                 font-size: 16px;
                 line-height: 1.5;
                 cursor: pointer;
+              }
+              &__pulldown.invalid {
+                border: #ea352d 1px solid;
+              }
+              &__pulldown.valid {
+                border: seagreen 1px solid;
               }
               &__text {
                 margin: 0 2px;
@@ -319,4 +336,13 @@
       }
     }
   }
+}
+
+.validation_error, #name-error, #email-error, #password-error, #password_confirmation-error,
+#firstname-error, #lastname-error, #firstname_kana-error, #lastname_kana-error, 
+#birth_year-error, #birth_month-error, #birth_day-error {
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-top: 8px;
 }

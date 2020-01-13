@@ -28,7 +28,7 @@
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  カード番号
             %span.pay_way__main__form__content__group__require   必須
-            = text_field_tag "number", "", class: "number pay_way__main__form__content__group__input", placeholder:"半角数字のみ", id: "card_number"
+            = text_field_tag "number", "", class: "number pay_way__main__form__content__group__input", placeholder:"半角数字のみ", id: "card_number", name: "card_number"
             %ul.pay_way__main__form__content__group__card-list
               %li.pay_way__main__form__content__group__card-list__img
                 = image_tag "visa.svg", class: "pay_way__main__form__content__group__card-list__img__visa"
@@ -44,13 +44,14 @@
                 = image_tag "dinersclub.svg", class: "pay_way__main__form__content__group__card-list__img__dinersclub"
               %li.pay_way__main__form__content__group__card-list__img
                 = image_tag "discover.svg", class: "pay_way__main__form__content__group__card-list__img__discover"
+            #card_number_error
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  有効期限
             %span.pay_way__main__form__content__group__require   必須
             .pay_way__main__form__content__group__expire
               .pay_way__main__form__content__group__expire__select
                 %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
-                %select#exp_month{name: "exp_month", type: "text", class: "pay_way__main__form__content__group__expire__select__pulldown"}
+                %select#exp_month{name: "exp_month", type: "text", class: "pay_way__main__form__content__group__expire__select__pulldown", name: "exp_month" }
                   %option{value: ""} --
                   %option{value: "1"}01
                   %option{value: "2"}02
@@ -68,7 +69,7 @@
             .pay_way__main__form__content__group__expire
               .pay_way__main__form__content__group__expire__select
                 %i.fas.fa-chevron-down.fa-lg.pay_way__main__form__content__group__expire__select__icon
-                %select#exp_year{name: "exp_year", type: "text", class:"pay_way__main__form__content__group__expire__select__pulldown"}
+                %select#exp_year{name: "exp_year", type: "text", class:"pay_way__main__form__content__group__expire__select__pulldown", name: "exp_year" }
                   %option{value: ""} --
                   %option{value: "2019"}19
                   %option{value: "2020"}20
@@ -82,10 +83,11 @@
                   %option{value: "2028"}28
                   %option{value: "2029"}29
               %span.pay_way__main__form__content__group__expire__select__text  年
+            #exp_date_error
           %div.pay_way__main__form__content__group
             %label.pay_way__main__form__content__group__label  セキュリティコード
             %span.pay_way__main__form__content__group__require   必須
-            = text_field_tag "cvc", "", id: "cvc", class: "pay_way__main__form__content__group__input", placeholder:"カード背面4桁もしくは3桁の番号"
+            = text_field_tag "cvc", "", id: "cvc", class: "pay_way__main__form__content__group__input", placeholder:"カード背面4桁もしくは3桁の番号", name: "cvc"
           .pay_way__main__form__content__text-right
             .pay_way__main__form__content__text-right__text 
               %span.pay_way__main__form__content__text-right__icon ?
