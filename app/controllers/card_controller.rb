@@ -1,10 +1,7 @@
 class CardController < ApplicationController
+  include SetCard
   before_action :set_card, only: [:new, :delete, :show]
-
-  def set_card
-    @card = Card.find_by(user_id: current_user.id)
-  end
-
+  
   def new
     redirect_to action: "show" if @card.exists?
   end

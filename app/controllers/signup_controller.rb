@@ -27,6 +27,7 @@ class SignupController < ApplicationController
     session[:address] = user_params[:address_attributes]
     session[:phone] = user_params[:phone]
     @user = User.new
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
   
   def complete

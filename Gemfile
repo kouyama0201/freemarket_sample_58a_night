@@ -78,6 +78,7 @@ gem "haml-rails"
 gem "devise"
 gem "payjp"
 gem 'dotenv-rails'
+gem 'gon'
 gem "gretel"
 gem 'active_hash'
 gem 'omniauth-rails_csrf_protection'

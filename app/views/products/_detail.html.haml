@@ -1,7 +1,7 @@
 .detail
   .detail__main
     .detail__main__name
-      ノーカラージャケット ツイードジャケット
+      = @product.name
     .detail__main__remarks
       『ノーカラージャケット ツイードジャケット』は、8回の取引実績を持つ58a_nightさんから出品されました。トラッツォ ドンナ（ノーカラージャケット/レディース）の商品で、愛知県から1~2日で発送されます。
     .detail__main__image
@@ -21,7 +21,7 @@
         .detail__main__status__large-box--title
           出品者
         .detail__main__status__large-box--seller
-          58a_night
+          = @product.user.name
           .detail__main__status__large-box--seller--good-icon
             %i.fas.fa-laugh
             .detail__main__status__large-box--seller--good-icon--count
@@ -79,12 +79,13 @@
         .detail__main__status--box--right-black
           1~2日で発送
     .detail__main__price
-      ¥4,000
+      ¥
+      = @product.price.to_s(:delimited, delimiter: ',')
       %span.detail__main__price--tax
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-    = link_to purchase_confirmation_products_path do
+    = link_to purchase_path do
       .detail__main__purchase-btn
         購入画面に進む
     .detail__main__description

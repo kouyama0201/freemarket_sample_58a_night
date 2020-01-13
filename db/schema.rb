@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191221120925) do
+ActiveRecord::Schema.define(version: 20191231041739) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "prefecture_id"
@@ -55,18 +55,20 @@ ActiveRecord::Schema.define(version: 20191221120925) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                           null: false
-    t.integer  "price",                          null: false
-    t.integer  "user_id",                        null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.text     "description",      limit: 65535, null: false
-    t.string   "condition",                      null: false
-    t.string   "delivery_cost",                  null: false
-    t.string   "delivery_origin",                null: false
-    t.string   "preparatory_days",               null: false
+    t.string   "name",                                         null: false
+    t.integer  "price",                                        null: false
+    t.integer  "user_id",                                      null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.text     "description",        limit: 65535,             null: false
+    t.string   "condition",                                    null: false
+    t.string   "delivery_cost",                                null: false
+    t.string   "delivery_origin",                              null: false
+    t.string   "preparatory_days",                             null: false
     t.integer  "category_id"
     t.integer  "brand_id"
+    t.integer  "transaction_status",               default: 0
+    t.integer  "buyer_id"
     t.index ["brand_id"], name: "index_products_on_brand_id", using: :btree
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree

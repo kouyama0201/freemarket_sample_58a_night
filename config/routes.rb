@@ -38,4 +38,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :purchase do
+    collection do
+      get 'purchase_confirmation'
+    end
+    member do
+      get 'pay'
+    end
+  end
+
 end

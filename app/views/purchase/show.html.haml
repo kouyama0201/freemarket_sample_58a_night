@@ -1,0 +1,65 @@
+%script{src: "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"}
+
+.products-header
+  .products-header__icon
+    = link_to root_path do
+      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?917505326", size: "182x89"
+.purchase-confirmation-main
+  .purchase-confirmation-main__box
+    .purchase-confirmation-main__box--title
+      購入内容の確認
+    .purchase-confirmation-main__box--product
+      = image_tag @image.image, class: "purchase-confirmation-main__box--product-image", size: "80x80"
+      -# = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "57x80"
+      .purchase-confirmation-main__box--product--name
+        = @product.name
+        .purchase-confirmation-main__box--product--price
+          = @product.price.to_s(:delimited, delimiter: ',')
+          .purchase-confirmation-main__box--product--price--shipping-fee
+            （税込）送料込み
+    .purchase-confirmation-main__box--buy-form
+      .purchase-confirmation-main__box--buy-form--info
+        .purchase-confirmation-main__box--buy-form--info--payment
+          支払い金額
+          .purchase-confirmation-main__box--buy-form--info--payment--amount
+            ¥
+            = @product.price
+            .purchase-confirmation-main__box--buy-form--info--payment--point
+              %i.fas.fa-square
+              .purchase-confirmation-main__box--buy-form--info--payment--point--text
+                ポイントを使用 (所持ポイント: P0)
+        .purchase-confirmation-main__box--buy-form--info--method-of-payment
+          支払い方法
+          .purchase-confirmation-main__box--buy-form--info--method-of-payment--change
+            変更する
+            .purchase-confirmation-main__box--buy-form--info--method-of-payment--credit-card
+              クレジットカード
+              .purchase-confirmation-main__box--buy-form--info--method-of-payment--card-number
+                = "**** **** ****" + @default_card_information.last4
+                .purchase-confirmation-main__box--buy-form--info--method-of-payment--card-limit
+                  - exp_month = @default_card_information.exp_month.to_s
+                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                  = "有効期限" + exp_month + " / " + exp_year
+                  .purchase-confirmation-main__box--buy-form--info--method-of-payment--card-logo
+                    = image_tag "visa.svg", class: "card-registration-box__form__content__group__card-list__img__visa"
+            -#   %i.fas.fa-plus-circle
+            -#   登録してください
+        .purchase-confirmation-main__box--buy-form--info--destination
+          配送先
+          .purchase-confirmation-main__box--buy-form--info--destination--change
+            変更する
+            .purchase-confirmation-main__box--buy-form--info--destination--detail
+              = "〒" + @address.postal_code.to_s.first(3) + "-" +  @address.postal_code.to_s.last(4)
+              %br
+              = @address.prefecture.name + @address.city + @address.street + @address.building_name
+              %br
+              = current_user.name
+              -# .purchase-confirmation-main__box--buy-form--info--destination-place
+              -#   愛知県 名古屋市中区 栄３丁目１３−２０
+                .purchase-confirmation-main__box--buy-form--info--destination-name
+                  山田 太郎
+        = link_to  pay_purchase_path(@product) do
+          .purchase-confirmation-main__box--buy-form--info--purchase-btn
+            購入する
+
+= render 'layouts/second_footer'
