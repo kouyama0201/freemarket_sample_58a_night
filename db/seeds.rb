@@ -358,7 +358,7 @@ CSV.foreach('db/products.csv', headers: true) do |row|
     delivery_way: row['delivery_way'],
     brand: row['brand'],
     images_attributes: [
-      image: open("#{Rails.root}/db/sample_images/sample#{num}.jpg"),
+      image: File.open("#{Rails.root}/db/sample_images/sample#{num}.jpg"),
       product_id: num
     ]
   })
