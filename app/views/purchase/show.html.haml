@@ -1,5 +1,3 @@
-%script{src: "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"}
-
 .products-header
   .products-header__icon
     = link_to root_path do
@@ -10,7 +8,6 @@
       購入内容の確認
     .purchase-confirmation-main__box--product
       = image_tag @image.image, class: "purchase-confirmation-main__box--product-image", size: "80x80"
-      -# = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "57x80"
       .purchase-confirmation-main__box--product--name
         = @product.name
         .purchase-confirmation-main__box--product--price
@@ -23,7 +20,7 @@
           支払い金額
           .purchase-confirmation-main__box--buy-form--info--payment--amount
             ¥
-            = @product.price
+            = @product.price.to_s(:delimited, delimiter: ',')
             .purchase-confirmation-main__box--buy-form--info--payment--point
               %i.fas.fa-square
               .purchase-confirmation-main__box--buy-form--info--payment--point--text
@@ -42,8 +39,6 @@
                   = "有効期限" + exp_month + " / " + exp_year
                   .purchase-confirmation-main__box--buy-form--info--method-of-payment--card-logo
                     = image_tag "visa.svg", class: "card-registration-box__form__content__group__card-list__img__visa"
-            -#   %i.fas.fa-plus-circle
-            -#   登録してください
         .purchase-confirmation-main__box--buy-form--info--destination
           配送先
           .purchase-confirmation-main__box--buy-form--info--destination--change
@@ -54,10 +49,6 @@
               = @address.prefecture.name + @address.city + @address.street + @address.building_name
               %br
               = current_user.name
-              -# .purchase-confirmation-main__box--buy-form--info--destination-place
-              -#   愛知県 名古屋市中区 栄３丁目１３−２０
-                .purchase-confirmation-main__box--buy-form--info--destination-name
-                  山田 太郎
         = link_to  pay_purchase_path(@product) do
           .purchase-confirmation-main__box--buy-form--info--purchase-btn
             購入する

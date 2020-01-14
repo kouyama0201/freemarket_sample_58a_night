@@ -11,7 +11,6 @@ class PurchaseController < ApplicationController
     customer = Payjp::Customer.retrieve(@card.customer_id)
     @default_card_information = customer.cards.retrieve(@card.card_id)
     @address = Address.find_by(user_id: current_user)
-    # @user = User.find(id: current_user.id)
   end
 
   def pay
@@ -19,9 +18,9 @@ class PurchaseController < ApplicationController
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']#保管した顧客IDでpayjpから情報取得
     Payjp::Charge.create(
-    :amount => @product.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
+    amount: @product.price, #支払金額
+    customer: card.customer_id, #顧客ID
+    currency: 'jpy', #日本円
     )
     @product.buyer_id = current_user.id 
     @product.transaction_status = 1

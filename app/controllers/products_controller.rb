@@ -60,9 +60,6 @@ class ProductsController < ApplicationController
   def purchase_confirmation
   end
 
-  def profile
-  end
-
   def show
     @product = Product.find(params[:id])
   end
