@@ -39,7 +39,6 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      get 'purchase_confirmation'
       get 'category_child', defaults: { format: 'json' }
       get 'category_grandchild', defaults: { format: 'json' }
       get 'size', defaults: { format: 'json' }
