@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     @products_toys = Product.where(category_id: 686..798).order("created_at DESC").limit(10)
     @products_chanel = Product.where(brand: "シャネル").order("created_at DESC").limit(10)
     @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュプリーム").order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュープリーム").order("created_at DESC").limit(10)
     @products_nike = Product.where(brand: "ナイキ").order("created_at DESC").limit(10)
   end
 
@@ -26,6 +26,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @main_photo = @product.images[0]
+    @prefecture = Prefecture.find(@product.delivery_origin.to_i)
+    @category_grandchildren = @product.category
   end
 
   def category_grandchild
@@ -59,9 +61,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
-  def purchase_confirmation
-  end
 
   private
   def product_params

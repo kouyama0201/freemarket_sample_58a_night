@@ -10,24 +10,6 @@
           - @product.images.each do |image|
             .detail__main__content__image__sub__thumb
               = image_tag image.image, size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
-          -# .detail__main__content__image__sub__thumb
-          -#   = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
       %table.detail__main__content__status
         %tbody
           %tr
@@ -53,16 +35,19 @@
             %th.detail__main__content__status--title
               カテゴリー
             %td.detail__main__content__status--category
-              = @product.category.name
+              = @category_grandchildren.parent.parent.name
               .detail__main__content__status--category--child
-                ＞ ジャケット/アウター
+              %i.fas.fa-chevron-right
+              = @category_grandchildren.parent.name
               .detail__main__content__status--category--grandchild
-                ＞ ノーカラージャケット
-          %tr.detail__main__content__status--box
-            %th.detail__main__content__status--box--title
-              ブランド
-            %td.detail__main__content__status--box--right-blue
-              = @product.brand
+              %i.fas.fa-chevron-right
+              = @category_grandchildren.name
+          - if @product.brand.present?
+            %tr.detail__main__content__status--box
+              %th.detail__main__content__status--box--title
+                ブランド
+              %td.detail__main__content__status--box--right-blue
+                = @product.brand
           - if @product.size.present?
             %tr.detail__main__content__status--box
               %th.detail__main__content__status--box--title
@@ -88,7 +73,7 @@
             %th.detail__main__content__status--box--title
               配送元地域
             %td.detail__main__content__status--box--right-blue
-              = @product.delivery_origin
+              = @prefecture.name
           %tr.detail__main__content__status--box
             %th.detail__main__content__status--box--title
               発送日の目安
@@ -101,20 +86,22 @@
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-    = link_to purchase_path(@product) do
-      .detail__main__btn--red
-        購入画面に進む
-    = link_to "" do
-      .detail__main__btn--red
-        商品を編集する
-    %div.detail__main__text-between-btn
-      or
-    = link_to "" do
-      .detail__main__btn--gray
-        商品を一時停止する
-    = link_to "" do
-      .detail__main__btn--gray
-        この商品を削除する
+      - if @product.user_id == current_user.id
+        = link_to "" do
+          .detail__main__btn--red
+            商品を編集する
+        %div.detail__main__text-between-btn
+          or
+        = link_to "" do
+          .detail__main__btn--gray
+            商品を一時停止する
+        = link_to "" do
+          .detail__main__btn--gray
+            この商品を削除する
+      - else
+        = link_to purchase_path(@product) do
+          .detail__main__btn--red
+            購入画面に進む
     .detail__main__description
       = @product.description
     .detail__main__btn-box
@@ -129,9 +116,11 @@
         あんしん・あんぜんへの取り組み
   .detail__links
     .detail__links--left
-      ＜ チェシャ猫ティッシュケース
+      %i.fas.fa-chevron-left
+      チェシャ猫ティッシュケース
     .detail__links--right
-      PLL回路の設計と応用 ＞
+      PLL回路の設計と応用
+      %i.fas.fa-chevron-right
   .detail__sns
     .detail__sns--facebook
       %i.fab.fa-facebook-square
@@ -152,7 +141,14 @@
           .detail__other--exhibit--product--lower--right
             %i.far.fa-heart 0
     .detail__other--exhibit
-      トラッツォ ドンナのノーカラージャケット その他の出品
+      - if @product.brand.present?
+        = @product.brand
+        の
+        = @category_grandchildren.name
+        その他の出品
+      - else
+        = @category_grandchildren.name
+        その他の出品
       .detail__other--exhibit--product
         = image_tag "https://images.unsplash.com/photo-1484399172022-72a90b12e3c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "220x220"
         .detail__other--exhibit--product--name
@@ -161,7 +157,6 @@
           ¥4,500
           .detail__other--exhibit--product--lower--right
             %i.far.fa-heart 0
-.footer-bread-crumbs
-  メルカリ >
-  .footer-bread-crumbs__second
-    ノーカラージャケット ツイードジャケット
+.detail__breadcrumbs
+  - breadcrumb :product, @product
+  = render 'layouts/breadcrumbs_product'
