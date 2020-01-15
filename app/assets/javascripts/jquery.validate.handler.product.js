@@ -86,7 +86,7 @@ $(function () {
     validClass: "valid",
   });
   // 入力欄or選択欄をフォーカスアウトしたときにバリデーションを実行
-  $("#product_name, #description, #parent_category, #product_condition, #product_delivery_cost, #delivery_way, #product_delivery_origin, #product_preparatory_days, #price").blur(function () {
+  $("#product_name, #description, #parent_category, #child_category, #grandchild_category, #size, #product_condition, #product_delivery_cost, #delivery_way, #product_delivery_origin, #product_preparatory_days, #price").blur(function () {
     $(this).valid();
   });
 });
