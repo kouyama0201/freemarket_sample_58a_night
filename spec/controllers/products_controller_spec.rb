@@ -68,4 +68,51 @@ describe ProductsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+
+    context 'ログイン時' do
+      before do
+        login user
+      end
+
+      it "正常なレスポンスか" do
+        get :index
+        expect(response).to be_success
+      end
+
+      it "200レスポンスが返ってきているか" do
+          get :index
+          expect(response).to have_http_status "200"
+      end
+
+      it "showアクションのページに遷移するか" do
+        product = create(:product)
+        get :show, params: { id: product }
+        expect(response).to render_template :show
+      end
+
+      it "@productは正しくアサインされるか" do
+        product = create(:product)
+        get :show, params: { id: product }
+        expect(assigns(:product)).to eq product
+      end
+    end
+
+    it "未ログイン時に正常なレスポンスか" do
+      get :index
+      expect(response).to be_success
+    end
+
+    it "未ログイン時に200レスポンスが返ってきているか" do
+        get :index
+        expect(response).to have_http_status "200"
+    end
+
+    it "未ログイン時にshowアクションのページに遷移するか" do
+      product = create(:product)
+      get :show, params: { id: product }
+      expect(response).to render_template :show
+    end
+  end
+
 end
