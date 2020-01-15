@@ -2,6 +2,11 @@ crumb :root do
   link "メルカリ", root_path
 end
 
+crumb :product do |product|
+  link product.name, product_path(product)
+  parent :root
+end
+
 crumb :mypage do
   link "マイページ", mypage_path(current_user)
 end

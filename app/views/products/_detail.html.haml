@@ -1,98 +1,113 @@
 .detail
   .detail__main
     .detail__main__name
-      ノーカラージャケット ツイードジャケット
-    .detail__main__remarks
-      『ノーカラージャケット ツイードジャケット』は、8回の取引実績を持つ58a_nightさんから出品されました。トラッツォ ドンナ（ノーカラージャケット/レディース）の商品で、愛知県から1~2日で発送されます。
-    .detail__main__image
-      = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "225x300"
-      .detail__main__image--sub1
-        = image_tag "https://images.unsplash.com/photo-1567873000290-bdad3f03a7b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub2
-        = image_tag "https://images.unsplash.com/photo-1514315494135-f97d08469750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub3
-        = image_tag "https://images.unsplash.com/photo-1551726453-0e5da13edb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub4
-        = image_tag "https://images.unsplash.com/photo-1536665239959-9b873def9138?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-      .detail__main__image--sub5
-        = image_tag "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "60x60"
-    .detail__main__status
-      .detail__main__status__large-box
-        .detail__main__status__large-box--title
-          出品者
-        .detail__main__status__large-box--seller
-          58a_night
-          .detail__main__status__large-box--seller--good-icon
-            %i.fas.fa-laugh
-            .detail__main__status__large-box--seller--good-icon--count
-              0
-            .detail__main__status__large-box--seller--normal-icon
-              %i.fas.fa-meh
-              .detail__main__status__large-box--seller--normal-icon--count
-                0
-            .detail__main__status__large-box--seller--bad-icon
-              %i.fas.fa-frown
-              .detail__main__status__large-box--seller--bad-icon--count
-                0
-      .detail__main__status__large-box
-        .detail__main__status__large-box--title
-          カテゴリー
-        .detail__main__status__large-box--category
-          レディース
-          .detail__main__status__large-box--category--child
-            > ジャケット/アウター
-          .detail__main__status__large-box--category--grandchild
-            > ノーカラージャケット
-      .detail__main__status--box
-        .detail__main__status--box--title
-          ブランド
-        .detail__main__status--box--right-blue
-          トラッツォ ドンナ
-      .detail__main__status--box
-        .detail__main__status--box--title
-          商品のサイズ
-        .detail__main__status--box--right-black
-          M
-      .detail__main__status--box
-        .detail__main__status--box--title
-          商品の状態
-        .detail__main__status--box--right-black
-          新品、未使用
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送料の負担
-        .detail__main__status--box--right-black
-          送料込み(出品者負担)
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送の方法
-        .detail__main__status--box--right-black
-          らくらくメルカリ便
-      .detail__main__status--box
-        .detail__main__status--box--title
-          配送元地域
-        .detail__main__status--box--right-blue
-          愛知県
-      .detail__main__status--box
-        .detail__main__status--box--title
-          発送日の目安
-        .detail__main__status--box--right-black
-          1~2日で発送
+      = @product.name
+    .detail__main__content
+      .detail__main__content__image
+        .detail__main__content__image__main
+          = image_tag @main_photo.image, size: "300x300", class: "detail__main__content__image__main__photo"
+        .detail__main__content__image__sub
+          - @product.images.each do |image|
+            .detail__main__content__image__sub__thumb
+              = image_tag image.image, size: "60x60", class: "detail__main__content__image__sub__thumb__photo"
+      %table.detail__main__content__status
+        %tbody
+          %tr
+            %th.detail__main__content__status--title
+              出品者
+            %td.detail__main__content__status__user
+              %div.detail__main__content__status__user__name
+                = @product.user.name
+              %div
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-laugh.detail__main__content__status__user__ratings--good
+                  %span.detail__main__content__status__user__ratings--good--count
+                    125
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-meh.detail__main__content__status__user__ratings--normal
+                  %span.detail__main__content__status__user__ratings--normal--count
+                    50
+                .detail__main__content__status__user__ratings
+                  %i.fas.fa-frown.detail__main__content__status__user__ratings--bad
+                  %span.detail__main__content__status__user__ratings--bad--count
+                    3
+          %tr
+            %th.detail__main__content__status--title
+              カテゴリー
+            %td.detail__main__content__status--category
+              = @category_grandchildren.parent.parent.name
+              .detail__main__content__status--category--child
+              %i.fas.fa-chevron-right
+              = @category_grandchildren.parent.name
+              .detail__main__content__status--category--grandchild
+              %i.fas.fa-chevron-right
+              = @category_grandchildren.name
+          - if @product.brand.present?
+            %tr.detail__main__content__status--box
+              %th.detail__main__content__status--box--title
+                ブランド
+              %td.detail__main__content__status--box--right-blue
+                = @product.brand
+          - if @product.size.present?
+            %tr.detail__main__content__status--box
+              %th.detail__main__content__status--box--title
+                商品のサイズ
+              %td.detail__main__content__status--box--right-black
+                = @product.size.size
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              商品の状態
+            %td.detail__main__content__status--box--right-black
+              = @product.condition
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送料の負担
+            %td.detail__main__content__status--box--right-black
+              = @product.delivery_cost
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送の方法
+            %td.detail__main__content__status--box--right-black
+              = @product.delivery_way
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              配送元地域
+            %td.detail__main__content__status--box--right-blue
+              = @prefecture.name
+          %tr.detail__main__content__status--box
+            %th.detail__main__content__status--box--title
+              発送日の目安
+            %td.detail__main__content__status--box--right-black
+              = @product.preparatory_days
     .detail__main__price
-      ¥4,000
+      ¥
+      = @product.price.to_s(:delimited, delimiter: ",")
       %span.detail__main__price--tax
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-    = link_to purchase_confirmation_products_path do
-      .detail__main__purchase-btn
-        購入画面に進む
+      - if @product.user_id == current_user.id
+        = link_to "" do
+          .detail__main__btn--red
+            商品を編集する
+        %div.detail__main__text-between-btn
+          or
+        = link_to "" do
+          .detail__main__btn--gray
+            商品を一時停止する
+        = link_to "" do
+          .detail__main__btn--gray
+            この商品を削除する
+      - else
+        = link_to purchase_path(@product) do
+          .detail__main__btn--red
+            購入画面に進む
     .detail__main__description
-      2018年の福袋にて購入しましたが着る機会がないため出品します。
+      = @product.description
     .detail__main__btn-box
       .detail__main__btn-box--likes
         %i.far.fa-heart
-        いいね! 0
+        いいね! 100
       .detail__main__btn-box--report
         %i.far.fa-flag
         不適切な商品の報告
@@ -101,9 +116,11 @@
         あんしん・あんぜんへの取り組み
   .detail__links
     .detail__links--left
-      ＜ チェシャ猫ティッシュケース
+      %i.fas.fa-chevron-left
+      チェシャ猫ティッシュケース
     .detail__links--right
-      PLL回路の設計と応用 ＞
+      PLL回路の設計と応用
+      %i.fas.fa-chevron-right
   .detail__sns
     .detail__sns--facebook
       %i.fab.fa-facebook-square
@@ -113,7 +130,8 @@
       %i.fab.fa-pinterest
   .detail__other
     .detail__other--exhibit
-      58a_nightさんのその他の出品
+      = @product.user.name
+      さんのその他の出品
       .detail__other--exhibit--product
         = image_tag "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "220x220"
         .detail__other--exhibit--product--name
@@ -123,7 +141,14 @@
           .detail__other--exhibit--product--lower--right
             %i.far.fa-heart 0
     .detail__other--exhibit
-      トラッツォ ドンナのノーカラージャケット その他の出品
+      - if @product.brand.present?
+        = @product.brand
+        の
+        = @category_grandchildren.name
+        その他の出品
+      - else
+        = @category_grandchildren.name
+        その他の出品
       .detail__other--exhibit--product
         = image_tag "https://images.unsplash.com/photo-1484399172022-72a90b12e3c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", size: "220x220"
         .detail__other--exhibit--product--name
@@ -132,7 +157,6 @@
           ¥4,500
           .detail__other--exhibit--product--lower--right
             %i.far.fa-heart 0
-.footer-bread-crumbs
-  メルカリ >
-  .footer-bread-crumbs__second
-    ノーカラージャケット ツイードジャケット
+.detail__breadcrumbs
+  - breadcrumb :product, @product
+  = render 'layouts/breadcrumbs_product'
