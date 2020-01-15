@@ -52,22 +52,57 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @product = Product.find(params[:id])
     @product.images.build
     @image = (@product.images.length - 1)
-    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-    @profit = (@product.price * 0.1).round
+    @profit = (@product.price * 0.1).floor
     @fee = @product.price - @profit
-    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解除用
+    # 以下孫カテゴリーから親カテゴリーを辿る際の記述
+    # 選択された孫カテゴリ
+    @selected_grandchild = @product.category
+    # idとnameをハッシュの配列化
+    @category_grandchild_array = [{id: "", name: "---"}]
+    #siblingsにて同じ階層の要素をすべて取得
+    Category.find("#{@selected_grandchild.id}").siblings.each do |grandchild|
+      grandchild_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
+      @category_grandchild_array << grandchild_hash
+    end
+    # 子カテゴリで上記と同様の記述
+    @selected_child = @selected_grandchild.parent
+    @category_child_array = [{id: "", name: "---"}]
+    Category.find("#{@selected_child.id}").siblings.each do |child|
+      child_hash = {id: "#{child.id}", name: "#{child.name}"}
+      @category_child_array << child_hash
+    end
+    # 親カテゴリで上記と同様の記述
+    @selected_parent = @selected_child.parent
+    @category_parent_array = []
+    Category.find("#{@selected_parent.id}").siblings.each do |parent|
+      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+      @category_parent_array << parent_hash
+    end
+    # サイズが登録されている場合
+    if @selected_size = @product.size
+      # 登録されているサイズに関連する、サイズ選択肢用の配列作成
+      @size_array = [{id: "", size: "---"}]
+      Size.find("#{@selected_size.id}").siblings.each do |size|
+        size_hash = {id: "#{size.id}", size: "#{size.size}"}
+        @size_array << size_hash
+      end
+    else # サイズが登録されていない場合
+      @selected_size = nil
+    end
   end
 
   def update
     product = Product.find(params[:id])
-    if @product.valid?
+    if product.valid?
       product.update(product_params) if product.user_id == current_user.id
       redirect_to root_path
     else
-      render edit_product_path(@product)
+      @product.images.build
+      render edit_product_path(product)
     end
   end
 
