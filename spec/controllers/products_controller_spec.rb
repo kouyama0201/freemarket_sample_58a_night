@@ -68,4 +68,42 @@ describe ProductsController, type: :controller do
     end
   end
 
+  describe 'GET #index' do
+    context 'ログイン時' do
+      before do
+        login user
+      end
+
+      it "正常なレスポンスか" do
+        get :index
+        expect(response).to be_success
+      end
+
+      it "200レスポンスが返ってきているか" do
+          get :index
+          expect(response).to have_http_status "200"
+      end
+
+      it "indexアクションのページに遷移するか" do
+        get :index
+        expect(response).to render_template :index
+      end
+    end
+
+    it "未ログイン時に正常なレスポンスか" do
+      get :index
+      expect(response).to be_success
+    end
+
+    it "未ログイン時に200レスポンスが返ってきているか" do
+        get :index
+        expect(response).to have_http_status "200"
+    end
+
+    it "未ログイン時にindexアクションのページに遷移するか" do
+      get :index
+      expect(response).to render_template :index
+    end
+
+  end
 end
