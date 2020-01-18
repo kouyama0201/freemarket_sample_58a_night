@@ -1,12 +1,11 @@
 class PurchaseController < ApplicationController
   include SetCard
-  before_action :set_card, only: [:show]
+  before_action :set_card, only: [:show, :pay]
+  before_action :set_product
   
   def show
     gon.payjp_key = ENV["PAYJP_KEY"] # JSエラー回避用の記述
-    @product = Product.find(params[:id])
     @image = @product.images.first
-    @card = Card.where(user_id: current_user).first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
     @default_card_information = customer.cards.retrieve(@card.card_id)
@@ -14,12 +13,10 @@ class PurchaseController < ApplicationController
   end
 
   def pay
-    @product = Product.find(params[:id])
-    card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']#保管した顧客IDでpayjpから情報取得
     Payjp::Charge.create(
     amount: @product.price, #支払金額
-    customer: card.customer_id, #顧客ID
+    customer: @card.customer_id, #顧客ID
     currency: 'jpy', #日本円
     )
     @product.buyer_id = current_user.id 
@@ -34,5 +31,9 @@ class PurchaseController < ApplicationController
   private
   def product_params
     params.permit(:buyer_id, :transaction_status)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
