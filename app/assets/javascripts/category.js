@@ -14,7 +14,7 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'child_wrapper'>
                         <div class='containt__main__container__inner__sell-form__select-wrap'>
-                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="product[category_id]">
+                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="child">
                             <option value="" data-category="---">---</option>
                             ${insertHTML}
                           </select>
@@ -93,7 +93,6 @@ $(function(){
             insertHTML += appendOption(child);
           });
           appendChildBox(insertHTML);
-          $("#parent_category").removeAttr("name");
           $("#child_category").blur(function () {
             $(this).valid();
           });
@@ -128,14 +127,12 @@ $(function(){
               insertHTML += appendOption(grandchild);
             });
             appendGrandchildBox(insertHTML);
-            $("#child_category").removeAttr("name");
             $("#grandchild_category").blur(function () {
               $(this).valid();
             });
           }
         })
         .fail(function(){
-          console.log("child");
           alert('カテゴリー取得に失敗しました');
         })
       } else {
@@ -199,7 +196,6 @@ $(function(){
               insertHTML += appendOption(child);
             });
             appendChildBox(insertHTML);
-            $("#parent_category").removeAttr("name");
             $("#child_category").blur(function () {
               $(this).valid();
             });
@@ -234,7 +230,6 @@ $(function(){
                 insertHTML += appendOption(grandchild);
               });
               appendGrandchildBox(insertHTML);
-              $("#child_category").removeAttr("name");
               $("#grandchild_category").blur(function () {
                 $(this).valid();
               });
