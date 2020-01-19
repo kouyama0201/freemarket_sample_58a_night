@@ -24,6 +24,12 @@ $(function () {
       "product[category_id]": {
         required: true,
       },
+      "parent": {
+        required: true,
+      },
+      "child": {
+        required: true,
+      },
       "product[size_id]": {
         required: true
       },
@@ -59,6 +65,12 @@ $(function () {
         rangelength: "1000文字以内で入力してください"
       },
       "product[category_id]": {
+        required: "選択してください",
+      },
+      "parent": {
+        required: "選択してください",
+      },
+      "child": {
         required: "選択してください",
       },
       "product[size_id]": {

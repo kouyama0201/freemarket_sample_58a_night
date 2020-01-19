@@ -44,7 +44,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
 end
