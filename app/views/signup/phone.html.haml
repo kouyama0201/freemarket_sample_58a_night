@@ -27,6 +27,7 @@
         %div.phone__main__form__content
           = render partial: 'layouts/error-messages', locals: { user: @user, column: "phone"}
           %div.phone__main__form__content__group
+            %label.phone__main__form__content__group__label 携帯電話の番号
             = f.label :phone, "携帯電話の番号", class: "phone__main__form__content__group__label"
             = f.text_field :phone, class: "phone__main__form__content__group__input", placeholder:"携帯電話の番号を入力", id: "phone"
           #phone_error

@@ -62,8 +62,7 @@ class ProductsController < ApplicationController
       gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     end
   end
-
-
+  
   private
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
