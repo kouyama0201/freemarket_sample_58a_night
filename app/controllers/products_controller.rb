@@ -62,11 +62,6 @@ class ProductsController < ApplicationController
       gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     end
   end
-
-
-  def show
-    @product = Product.find(params[:id])
-  end
   
   private
   def product_params
