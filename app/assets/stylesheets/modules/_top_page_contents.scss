@@ -67,6 +67,30 @@
     &--image {
       height: 188px;
       overflow: hidden;
+      &__ribbon-sm > div {
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        left: 0;
+        top: 18px;
+        z-index: 2;
+        transform: rotate(-45deg);
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+      &__ribbon-sm::after {
+        border-width: 80px 80px 0 0;
+        border-color: #ea352d transparent transparent transparent;
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
     }
     &--price {
       background: rgba(0,0,0,.4);

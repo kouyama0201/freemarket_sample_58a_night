@@ -21,7 +21,32 @@
         min-width: 300px;
         max-width: 300px;
         min-height: 375px;
+        position: relative;
         background-color: #fafafa;
+        &__ribbon-lg > div {
+          font-size: 28px;
+          color: white;
+          position: absolute;
+          left: 0;
+          top: 25px;
+          z-index: 2;
+          transform: rotate(-45deg);
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+        &__ribbon-lg::after {
+          border-width: 120px 120px 0 0;
+          border-color: #ea352d transparent transparent transparent;
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+        }
         &__main {
           &__photo {
             width: 100%;
