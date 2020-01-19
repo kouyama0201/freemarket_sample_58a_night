@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
@@ -54,8 +55,6 @@ class ProductsController < ApplicationController
   def edit
     gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @product = Product.find(params[:id])
-    @product.images.build
-    @image = (@product.images.length - 1)
     @profit = (@product.price * 0.1).floor
     @fee = @product.price - @profit
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
@@ -97,12 +96,10 @@ class ProductsController < ApplicationController
 
   def update
     product = Product.find(params[:id])
-    if product.valid?
-      product.update(product_params) if product.user_id == current_user.id
+    if product.update(product_update_params) && product.user_id == current_user.id
       redirect_to root_path
     else
-      @product.images.build
-      render edit_product_path(product)
+      redirect_to edit_product_path(product)
     end
   end
 
@@ -113,5 +110,10 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
                                     :category_id, :brand, :size_id, images_attributes: [:id, :image] ).merge(user_id: current_user.id)
+  end
+
+  def product_update_params
+    params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
+                                    :category_id, :brand, :size_id, images_attributes: [:id, :image, :_destroy] ).merge(user_id: current_user.id)
   end
 end
