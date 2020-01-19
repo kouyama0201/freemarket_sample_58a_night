@@ -1,4 +1,4 @@
-$(function(){
+$(function() { // 販売利益の計算
   $('.containt__main__container__inner__sell-form__price__box__top__right__input').on('input', function () {
     var data = $('.containt__main__container__inner__sell-form__price__box__top__right__input').val();
     var profit = Math.floor(data * 0.9)
@@ -13,5 +13,5 @@ $(function(){
       $('.containt__main__container__inner__sell-form__price__box__center__right').html('-');
       $('.containt__main__container__inner__sell-form__price__box__bottom__right').html('-');
     }
-  })
-})
+  });
+});

@@ -53,7 +53,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__detail__box__form-group__category
                     .containt__main__container__inner__sell-form__select-wrap
-                      = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category"}
+                      = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category", name: "parent"}
                       %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__detail__box__form-group

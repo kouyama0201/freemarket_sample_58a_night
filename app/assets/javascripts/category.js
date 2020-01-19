@@ -14,8 +14,8 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml = `<div class='containt__main__container__inner__sell-form__detail__box__form-group__added' id= 'child_wrapper'>
                         <div class='containt__main__container__inner__sell-form__select-wrap'>
-                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="product[category_id]">
-                            <option value="" data-category="">---</option>
+                          <select class="containt__main__container__inner__sell-form__select-wrap__list" id="child_category" name="child">
+                            <option value="" data-category="---">---</option>
                             ${insertHTML}
                           </select>
                           <i class='fas fa-chevron-down fa-lg containt__main__container__inner__sell-form__select-wrap__icon'></i>
