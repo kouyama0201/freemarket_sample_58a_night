@@ -17,7 +17,7 @@ $(function(){
   }
 
   // 投稿編集時
-  //items/:i/editページへリンクした際のアクション=======================================
+  //products/:i/editページへリンクした際のアクション=======================================
   if (window.location.href.match(/\/products\/\d+\/edit/)){
     //プレビューにidを追加
     $('.product-image').each(function(index, box){
@@ -32,10 +32,10 @@ $(function(){
 
   // プレビューの追加
   $(document).on('change', '.image-field', function() {
-    //hidden-fieldのidの数値のみ取得
+    //image-fieldのidの数値のみ取得
     var id = $(this).attr('id').replace(/[^0-9]/g, '');
     var count = $('.product-image').length
-    //labelボックスのidとforを更新
+    //labelのidとforを更新
     $('.image-box').attr({id: `image-box--${count}`,for: `product_images_attributes_${id}_image`});
     //選択したfileのオブジェクトを取得
     var file = this.files[0];
@@ -48,7 +48,7 @@ $(function(){
       //プレビューが元々なかった場合はhtmlを追加
       if ($(`#preview-box__${id}`).length == 0) {
         var html = buildHTML(id);
-        //ラベルの直前のプレビュー群にプレビューを追加
+        //labelの直前のプレビュー群にプレビューを追加
         var prevContent = $('.image-content').prev();
         $(prevContent).append(html);
       }
@@ -61,7 +61,7 @@ $(function(){
       } 
       //=============================================================================
 
-      //ラベルのidとforの値を変更
+      //labelのidとforの値を変更
       var count = $('.product-image').length
       $('.image-box').attr({id: `image-box--${count}`,for: `product_images_attributes_${count}_image`});
     }
