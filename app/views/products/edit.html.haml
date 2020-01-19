@@ -13,102 +13,25 @@
                 出品画像
                 %span.containt__main__container__inner__sell-form__form-require 必須
                 %p.containt__main__container__inner__sell-form__remarks 最大10枚までアップロードできます
-              #image-wrapper
-                - if (@image == 1)
-                  - @product.images.first(1).each do |image|
+              .image-wrapper
+                .image-content
+                  - @product.images.each do |image|
                     .product-image
                       .product-image__content
                         = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
                       .product-image__operetion
                         .product-image__operetion--edit 編集
                         .product-image__operetion--delete 削除
-                - elsif (@image == 2)
-                  - @product.images.first(2).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 3)
-                  - @product.images.first(3).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 4)
-                  - @product.images.first(4).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 5)
-                  - @product.images.first(5).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 5)
-                  - @product.images.first(5).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 6)
-                  - @product.images.first(6).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 7)
-                  - @product.images.first(7).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 8)
-                  - @product.images.first(8).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - elsif (@image == 9)
-                  - @product.images.first(9).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                - else
-                  - @product.images.first(10).each do |image|
-                    .product-image
-                      .product-image__content
-                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
-                      .product-image__operetion
-                        .product-image__operetion--edit 編集
-                        .product-image__operetion--delete 削除
-                %div{class: "image-num-#{@image}", id:"image-box"}
+                  = f.label :"images_attributes_#{@product.images.length}_image", class: "image-box", id: "image-box--#{@product.images.length}" do
+                    %pre.label-text
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+                .hidden-images
                   = f.fields_for :images do |i|
-                    = i.file_field :image, class: "image-option", id:"images", name: "product[images_attributes][][image]"
-                    %label{for: "images"}
-                      %pre.label-text
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
+                    = i.file_field :image, class: "image-field"
+                    = i.check_box :_destroy, class: "image-checkbox"
+                    - @product.images.length.upto(9) do |i|
+                      %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"image-field", type:"file"}
               = render partial: 'error-messages', locals: {product: @product, column: "images"}
             .containt__main__container__inner__sell-form__information
               .containt__main__container__inner__sell-form__information__name
