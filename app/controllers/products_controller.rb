@@ -109,7 +109,7 @@ class ProductsController < ApplicationController
   def update
     product = Product.find(params[:id])
     if product.update(product_update_params) && product.user_id == current_user.id
-      redirect_to root_path, notice: '商品の編集が完了しました。'
+      redirect_to product_path(product), notice: '商品の編集が完了しました。'
     else
       redirect_to edit_product_path(product), alert: '画像が無い為、更新ができませんでした。'
     end

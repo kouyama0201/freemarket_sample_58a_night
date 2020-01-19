@@ -187,12 +187,12 @@ describe ProductsController, type: :controller do
           }.to change(Product, :count).by(0)
         end
 
-        it "トップページにリダイレクトすること" do
+        it "商品詳細ページにリダイレクトすること" do
           product = create(:product)
           patch :update, params: {
               id: product.id, product: attributes_for(:product)
           }
-          expect(response).to redirect_to root_path
+          expect(response).to redirect_to product_path
         end
       end
 
