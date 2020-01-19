@@ -150,7 +150,7 @@
                     = @fee.to_s(:delimited, delimiter: ',')
             .containt__main__container__inner__sell-form__btn-box__edit
               = f.submit "変更する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
-              = link_to root_path do 
+              = link_to product_path(@product) do 
                 .containt__main__container__inner__sell-form__btn-box__btn-gray
                   キャンセル
 
