@@ -14,6 +14,4 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(function(){ // フラッシュのフェードアウト
-  setTimeout("$('.notification').fadeOut('slow')", 2000) 
-})
+
