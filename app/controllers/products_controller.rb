@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     @product = Product.find(params[:id])
     @main_photo = @product.images[0]
     @prefecture = Prefecture.find(@product.delivery_origin.to_i)
