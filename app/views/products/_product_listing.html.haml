@@ -1,5 +1,5 @@
 .main-new-arrival__product
-  = link_to detail_products_path do
+  = link_to product_path(product) do
     .main-new-arrival__product--image
       - product.images.each do |image|
         = image_tag image.image, class: "main-new-arrival__product--image--first", size: "188x188"

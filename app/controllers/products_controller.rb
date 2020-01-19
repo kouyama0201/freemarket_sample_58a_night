@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     @products_toys = Product.where(category_id: 686..798).order("created_at DESC").limit(10)
     @products_chanel = Product.where(brand: "シャネル").order("created_at DESC").limit(10)
     @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュプリーム").order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュープリーム").order("created_at DESC").limit(10)
     @products_nike = Product.where(brand: "ナイキ").order("created_at DESC").limit(10)
   end
 
@@ -21,6 +21,14 @@ class ProductsController < ApplicationController
 
   def category_child
     @category_child = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def show
+    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
+    @product = Product.find(params[:id])
+    @main_photo = @product.images[0]
+    @prefecture = Prefecture.find(@product.delivery_origin.to_i)
+    @category_grandchildren = @product.category
   end
 
   def category_grandchild
@@ -51,14 +59,10 @@ class ProductsController < ApplicationController
       @product.images.build
       @category_parent_array = Category.where(ancestry: nil).pluck(:name)
       render new_product_path(@product)
+      gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     end
   end
 
-  def detail
-  end
-
-  def purchase_confirmation
-  end
 
   private
   def product_params
