@@ -1,4 +1,5 @@
 class CardController < ApplicationController
+  include SetCard
   before_action :set_card, only: [:new, :delete, :show]
 
   def set_card
