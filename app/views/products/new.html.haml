@@ -13,14 +13,24 @@
                 出品画像
                 %span.containt__main__container__inner__sell-form__form-require 必須
                 %p.containt__main__container__inner__sell-form__remarks 最大10枚までアップロードできます
-              #image-wrapper
-                .image-num-0#image-box
+              .image-wrapper
+                .image-content
+                  %label{for: "product_images_attributes_0_image", class: "image-box", id: "image-box--0"}
+                    %pre.label-text
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+                .hidden-images
                   = f.fields_for :images do |i|
-                    = i.file_field :image, class: "image-option", id:"images", name: "product[images_attributes][][image]"
-                    %label{for: "images"}
-                      %pre.label-text
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
+                    = i.file_field :image, class: "image-field"
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][1][image]", id: "product_images_attributes_1_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][2][image]", id: "product_images_attributes_2_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][3][image]", id: "product_images_attributes_3_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][4][image]", id: "product_images_attributes_4_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][5][image]", id: "product_images_attributes_5_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][6][image]", id: "product_images_attributes_6_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][7][image]", id: "product_images_attributes_7_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][8][image]", id: "product_images_attributes_8_image"}
+                    %input{class:"image-field", type: "file", name: "product[images_attributes][9][image]", id: "product_images_attributes_9_image"}
               = render partial: 'error-messages', locals: {product: @product, column: "images"}
             .containt__main__container__inner__sell-form__information
               .containt__main__container__inner__sell-form__information__name
