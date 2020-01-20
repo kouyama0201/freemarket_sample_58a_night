@@ -205,7 +205,6 @@ describe SignupController do
             expect {
               post :create,
               session: {
-                id: user.id,
                 name: "ニックネーム",
                 email: "abc@gmail.com",
                 password: "abc1234567",

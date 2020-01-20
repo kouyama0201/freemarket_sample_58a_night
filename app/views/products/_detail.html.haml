@@ -6,6 +6,10 @@
       .detail__main__content__image
         .detail__main__content__image__main
           = image_tag @main_photo.image, size: "300x300", class: "detail__main__content__image__main__photo"
+        - if @product.transaction_status == 1 # 売り切れの場合
+          .detail__main__content__image__ribbon-lg
+            %div
+              SOLD
         .detail__main__content__image__sub
           - @product.images.each do |image|
             .detail__main__content__image__sub__thumb
@@ -86,7 +90,10 @@
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-      - if user_signed_in? # ログインしているか？
+      - if @product.transaction_status == 1 # 売り切れの場合
+        .detail__main__btn--gray
+          売り切れました
+      - elsif user_signed_in? # ログインしているか？
         - if @product.user_id == current_user.id # ユーザーの商品の場合
           = link_to edit_product_path(@product) do
             .detail__main__btn--red
@@ -103,8 +110,8 @@
           = link_to purchase_path(@product) do
             .detail__main__btn--red
               購入画面に進む
-      - else # 購入ボタンを押すとログインページに遷移
-        = link_to new_user_session_path do
+      - else
+        = link_to new_user_session_path do 
           .detail__main__btn--red
             購入画面に進む
     .detail__main__description
