@@ -95,7 +95,7 @@
           売り切れました
       - elsif user_signed_in? # ログインしているか？
         - if @product.user_id == current_user.id # ユーザーの商品の場合
-          = link_to "" do
+          = link_to edit_product_path(@product) do
             .detail__main__btn--red
               商品を編集する
           %div.detail__main__text-between-btn
@@ -113,7 +113,7 @@
       - else
         = link_to new_user_session_path do 
           .detail__main__btn--red
-            購入画面に進む 
+            購入画面に進む
     .detail__main__description
       = @product.description
     .detail__main__btn-box

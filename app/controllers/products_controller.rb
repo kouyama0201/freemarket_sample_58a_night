@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
@@ -54,7 +55,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.valid?
       @product.save
-      redirect_to root_path
+      redirect_to root_path, notice: '商品を出品しました。'
     else
       @product.images.build
       @category_parent_array = Category.where(ancestry: nil).pluck(:name)
@@ -62,10 +63,66 @@ class ProductsController < ApplicationController
       gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     end
   end
-  
+
+  def edit
+    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
+    @product = Product.find(params[:id])
+    @profit = (@product.price * 0.1).floor
+    @fee = @product.price - @profit
+    # 以下孫カテゴリーから親カテゴリーを辿る際の記述
+    # 選択された孫カテゴリ
+    @selected_grandchild = @product.category
+    # idとnameをハッシュの配列化
+    @category_grandchild_array = [{id: "", name: "---"}]
+    #siblingsにて同じ階層の要素をすべて取得
+    Category.find("#{@selected_grandchild.id}").siblings.each do |grandchild|
+      grandchild_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
+      @category_grandchild_array << grandchild_hash
+    end
+    # 子カテゴリで上記と同様の記述
+    @selected_child = @selected_grandchild.parent
+    @category_child_array = [{id: "", name: "---"}]
+    Category.find("#{@selected_child.id}").siblings.each do |child|
+      child_hash = {id: "#{child.id}", name: "#{child.name}"}
+      @category_child_array << child_hash
+    end
+    # 親カテゴリで上記と同様の記述
+    @selected_parent = @selected_child.parent
+    @category_parent_array = []
+    Category.find("#{@selected_parent.id}").siblings.each do |parent|
+      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+      @category_parent_array << parent_hash
+    end
+    # サイズが登録されている場合
+    if @selected_size = @product.size
+      # 登録されているサイズに関連する、サイズ選択肢用の配列作成
+      @size_array = [{id: "", size: "---"}]
+      Size.find("#{@selected_size.id}").siblings.each do |size|
+        size_hash = {id: "#{size.id}", size: "#{size.size}"}
+        @size_array << size_hash
+      end
+    else # サイズが登録されていない場合
+      @selected_size = nil
+    end
+  end
+
+  def update
+    product = Product.find(params[:id])
+    if product.update(product_update_params) && product.user_id == current_user.id
+      redirect_to product_path(product), notice: '商品の編集が完了しました。'
+    else
+      redirect_to edit_product_path(product), alert: '画像が無い為、更新ができませんでした。'
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
                                     :category_id, :brand, :size_id, images_attributes: [:id, :image] ).merge(user_id: current_user.id)
+  end
+
+  def product_update_params
+    params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
+                                    :category_id, :brand, :size_id, images_attributes: [:id, :image, :_destroy] ).merge(user_id: current_user.id)
   end
 end
