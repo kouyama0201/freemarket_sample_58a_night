@@ -98,3 +98,53 @@
     }
   }
 }
+
+.pagination {
+  display: inline-flex;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  height: 44px;
+  margin-top: 81px;
+  a {
+    color: #333333;
+  }
+  a:hover {
+    background-color: #fafafa;
+  }
+  .page {
+    background-color: #ffffff;
+    height: 44px;
+    line-height: 44px;
+    width: 44px;
+    text-align: center;
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+  }
+  .next {
+    background-color: #ffffff;
+    height: 44px;
+    line-height: 44px;
+    width: 44px;
+    text-align: center;
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+  }
+  .first {
+    background-color: #ffffff;
+    height: 44px;
+    line-height: 44px;
+    width: 44px;
+    text-align: center;
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+  }
+  .last {
+    background-color: #ffffff;
+    height: 44px;
+    line-height: 44px;
+    width: 44px;
+    text-align: center;
+    border: solid 1px #cccccc;
+    border-radius: 4px;
+  }
+}
