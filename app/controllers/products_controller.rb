@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_product, only: [:update, :release, :suspension]
+  before_action :set_product, only: [:edit, :show]
 
   def index
     @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 1).order("created_at DESC").limit(10)
@@ -27,7 +27,6 @@ class ProductsController < ApplicationController
 
   def show
     gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
-    @product = Product.find(params[:id])
     @main_photo = @product.images[0]
     @prefecture = Prefecture.find(@product.delivery_origin.to_i)
     @category_grandchildren = @product.category
@@ -67,7 +66,6 @@ class ProductsController < ApplicationController
 
   def edit
     gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
-    @product = Product.find(params[:id])
     @profit = (@product.price * 0.1).floor
     @fee = @product.price - @profit
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
@@ -108,6 +106,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    product = Product.find(params[:id])
     if product.update(product_update_params) && product.user_id == current_user.id
       redirect_to product_path(product), notice: '商品の編集が完了しました。'
     else
@@ -116,11 +115,13 @@ class ProductsController < ApplicationController
   end
 
   def release
+    product = Product.find(params[:id])
     product.update(transaction_status: "0")
     redirect_to product_path(product), notice: '出品の再開をしました。'
   end
 
   def suspension
+    product = Product.find(params[:id])
     product.update(transaction_status: "1")
     redirect_to product_path(product), notice: '出品の一旦停止をしました。'
   end
@@ -137,6 +138,6 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 end
