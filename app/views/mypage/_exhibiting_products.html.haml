@@ -1,0 +1,16 @@
+- @product.each do |product|
+  = link_to product_path(product) do
+    .exhibiting__product
+      .exhibiting__product--img
+        = image_tag product.images.first.image, size: "50x50"
+        .exhibiting__product--name
+          = product.name
+          - if product.transaction_status == 0
+            .exhibiting__product--selling
+              出品中
+          - else
+            .exhibiting__product--suspension
+              公開停止中
+      .exhibiting__product--detail
+        %i.fas.fa-chevron-right
+      = paginate(@product, remote: true)
