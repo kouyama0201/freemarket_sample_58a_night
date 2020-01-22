@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_product, only: [:update, :release, :suspension]
 
   def index
     @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 1).order("created_at DESC").limit(10)
@@ -107,7 +108,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
     if product.update(product_update_params) && product.user_id == current_user.id
       redirect_to product_path(product), notice: '商品の編集が完了しました。'
     else
@@ -116,13 +116,11 @@ class ProductsController < ApplicationController
   end
 
   def release
-    product = Product.find(params[:id])
     product.update(transaction_status: "0")
     redirect_to product_path(product), notice: '出品の再開をしました。'
   end
 
   def suspension
-    product = Product.find(params[:id])
     product.update(transaction_status: "1")
     redirect_to product_path(product), notice: '出品の一旦停止をしました。'
   end
@@ -136,5 +134,9 @@ class ProductsController < ApplicationController
   def product_update_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
                                     :category_id, :brand, :size_id, images_attributes: [:id, :image, :_destroy] ).merge(user_id: current_user.id)
+  end
+
+  def set_product
+    product = Product.find(params[:id])
   end
 end
