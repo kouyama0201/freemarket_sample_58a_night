@@ -2,14 +2,14 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @products_ladies = Product.where(category_id: 1..205).order("created_at DESC").limit(10)
-    @products_mens = Product.where(category_id: 206..350).order("created_at DESC").limit(10)
-    @products_home_electronics = Product.where(category_id: 899..984).order("created_at DESC").limit(10)
-    @products_toys = Product.where(category_id: 686..798).order("created_at DESC").limit(10)
-    @products_chanel = Product.where(brand: "シャネル").order("created_at DESC").limit(10)
-    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュープリーム").order("created_at DESC").limit(10)
-    @products_nike = Product.where(brand: "ナイキ").order("created_at DESC").limit(10)
+    @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_mens = Product.where(category_id: 206..350).where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_home_electronics = Product.where(category_id: 899..984).where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_toys = Product.where(category_id: 686..798).where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(brand: "シャネル").where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 1).order("created_at DESC").limit(10)
   end
 
   def new
@@ -113,6 +113,18 @@ class ProductsController < ApplicationController
     else
       redirect_to edit_product_path(product), alert: '画像が無い為、更新ができませんでした。'
     end
+  end
+
+  def release
+    product = Product.find(params[:id])
+    product.update(transaction_status: "0")
+    redirect_to product_path(product), notice: '出品の再開をしました。'
+  end
+
+  def suspension
+    product = Product.find(params[:id])
+    product.update(transaction_status: "1")
+    redirect_to product_path(product), notice: '出品の一旦停止をしました。'
   end
 
   private
