@@ -1,0 +1,27 @@
+= render 'layouts/mypage_header'
+- breadcrumb :exhibiting
+= render 'layouts/breadcrumbs'
+= render 'layouts/sidebar'
+.exhibiting
+  .exhibiting__header
+    出品した商品
+  .exhibiting__status
+    .exhibiting__status--selling
+      出品中
+    .exhibiting__status--trading
+      取引中
+    .exhibiting__status--sold
+      売却済み
+  - unless @product.any?
+    .exhibiting__none
+      .exhibiting__none--icon
+        = image_tag "//www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?34046717", size: "85x85"
+      .exhibiting__none--text
+        出品中の商品がありません
+  - else
+    #user_products
+      = render 'exhibiting_products'
+
+
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'
