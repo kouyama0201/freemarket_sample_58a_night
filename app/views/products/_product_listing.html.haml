@@ -3,7 +3,7 @@
     .main-new-arrival__product--image
       - product.images.each do |image|
         = image_tag image.image, class: "main-new-arrival__product--image--first", size: "188x188"
-    - if product.transaction_status == 1 # 売り切れの場合
+    - if product.buyer_id != nil # 売り切れの場合
       .main-new-arrival__product--image__ribbon-sm
         %div
           SOLD
