@@ -1,0 +1,100 @@
+.exhibiting {
+  color: #333333;
+  height: 382px;
+  width: 700px;
+  position: absolute;
+  top: 190px;
+  right: 210px;
+  &__header {
+    background-color: #fafafa;
+    height: 72px;
+    line-height: 72px;
+    padding: 0 16px;
+    font-weight: 600;
+  }
+  &__status {
+    display: inline-flex;
+    height: 72px;
+    line-height: 72px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    &--selling {
+      background-color: #ffffff;
+      width: 234px;
+      border-top: solid 2px #ea352d;
+    }
+    &--trading {
+      background-color: #eeeeee;
+      width: 233px;
+    }
+    &--sold {
+      background-color: #eeeeee;
+      width: 233px;
+    }
+  }
+  &__product {
+    background-color: #ffffff;
+    height: 82px;
+    position: relative;
+    :hover {
+      background-color: #fafafa;
+    }
+    &--img {
+      display: -webkit-box;
+      padding: 16px;
+    }
+    &--name {
+      color: #333333;
+      font-size: 14px;
+      margin-left: 18px;
+      overflow: hidden;
+    }
+    &--selling {
+      background-color: #0099e8;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      height: 12px;
+      line-height: 12px;
+      width: 36px;
+      padding: 5px 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    &--suspension {
+      background-color: #ea352d;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      height: 12px;
+      line-height: 12px;
+      width: 60px;
+      padding: 5px 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    &--detail {
+      color: #333333;
+      top: 35px;
+      right: 15px;
+      position: absolute;
+    }
+  }
+  &__none {
+    background-color: #ffffff;
+    color: #cccccc;
+    height: 236px;
+    text-align: center;
+    &--icon {
+      padding-top: 40px;
+    }
+    &--text {
+      margin-top: 28px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}
