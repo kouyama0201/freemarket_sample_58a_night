@@ -3,14 +3,14 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :show]
 
   def index
-    @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_mens = Product.where(category_id: 206..350).where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_home_electronics = Product.where(category_id: 899..984).where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_toys = Product.where(category_id: 686..798).where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_chanel = Product.where(brand: "シャネル").where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 1).order("created_at DESC").limit(10)
-    @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 1).order("created_at DESC").limit(10)
+    @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_mens = Product.where(category_id: 206..350).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_home_electronics = Product.where(category_id: 899..984).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_toys = Product.where(category_id: 686..798).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(brand: "シャネル").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 2).order("created_at DESC").limit(10)
   end
 
   def new
@@ -122,7 +122,7 @@ class ProductsController < ApplicationController
 
   def suspension
     product = Product.find(params[:id])
-    product.update(transaction_status: "1")
+    product.update(transaction_status: "2")
     redirect_to product_path(product), notice: '出品の一旦停止をしました。'
   end
 
