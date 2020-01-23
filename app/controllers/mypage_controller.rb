@@ -5,7 +5,7 @@ class MypageController < ApplicationController
   end
 
   def exhibiting # 出品した商品 - 出品中
-    @product = @user.products.page(params[:page]).per(12).order("created_at DESC")
+    @product = @user.products.where.not(transaction_status: 1).page(params[:page]).per(12).order("created_at DESC")
     respond_to do |format|
       format.html
       format.js
