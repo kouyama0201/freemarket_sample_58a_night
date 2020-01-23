@@ -6,11 +6,11 @@
       .detail__main__content__image
         .detail__main__content__image__main
           = image_tag @main_photo.image, size: "300x300", class: "detail__main__content__image__main__photo"
-        - if @product.buyer_id != nil # 売り切れの場合
+        - if @product.transaction_status == 1 # 売り切れの場合
           .detail__main__content__image__ribbon-lg
             %div
               SOLD
-        - elsif @product.transaction_status == 1
+        - elsif @product.transaction_status == 2 # 公開停止中の場合
           .detail__main__content__image__ribbon-gr
             %div
               公開停止中
@@ -94,7 +94,7 @@
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-      - if @product.buyer_id != nil # 売り切れの場合
+      - if @product.transaction_status == 1 # 売り切れの場合
         .detail__main__btn--gray
           売り切れました
       - elsif user_signed_in? # ログインしているか？
@@ -108,7 +108,7 @@
             = link_to suspension_product_path(@product), method: :patch do
               .detail__main__btn--gray
                 商品を一時停止する
-          - else # 商品が公開停止中の場合
+          - elsif @product.transaction_status == 2 # 商品が公開停止中の場合
             = link_to release_product_path(@product), method: :patch do
               .detail__main__btn--red
                 出品を再開する

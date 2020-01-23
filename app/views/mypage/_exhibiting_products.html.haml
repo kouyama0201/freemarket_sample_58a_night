@@ -8,7 +8,7 @@
           - if product.transaction_status == 0
             .exhibiting__product--selling
               出品中
-          - else
+          - elsif product.transaction_status == 2
             .exhibiting__product--suspension
               公開停止中
       .exhibiting__product--detail
