@@ -10,6 +10,10 @@
           .detail__main__content__image__ribbon-lg
             %div
               SOLD
+        - elsif @product.transaction_status == 2 # 公開停止中の場合
+          .detail__main__content__image__ribbon-gr
+            %div
+              公開停止中
         .detail__main__content__image__sub
           - @product.images.each do |image|
             .detail__main__content__image__sub__thumb
@@ -100,9 +104,14 @@
               商品を編集する
           %div.detail__main__text-between-btn
             or
-          = link_to "" do
-            .detail__main__btn--gray
-              商品を一時停止する
+          - if @product.transaction_status == 0 # 商品が出品中の場合
+            = link_to suspension_product_path(@product), method: :patch do
+              .detail__main__btn--gray
+                商品を一時停止する
+          - elsif @product.transaction_status == 2 # 商品が公開停止中の場合
+            = link_to release_product_path(@product), method: :patch do
+              .detail__main__btn--red
+                出品を再開する
           = link_to "" do
             .detail__main__btn--gray
               この商品を削除する
@@ -111,7 +120,7 @@
             .detail__main__btn--red
               購入画面に進む
       - else
-        = link_to new_user_session_path do 
+        = link_to new_user_session_path do
           .detail__main__btn--red
             購入画面に進む
     .detail__main__description

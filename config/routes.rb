@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :mypage do
     member do
+      get 'exhibiting'
       get 'profile'
       get 'card'
       get 'identification'
@@ -38,6 +39,10 @@ Rails.application.routes.draw do
   resources :users, only: [:update]
 
   resources :products do
+    member do
+      patch 'release'
+      patch 'suspension'
+    end
     collection do
       get 'category_child', defaults: { format: 'json' }
       get 'category_grandchild', defaults: { format: 'json' }

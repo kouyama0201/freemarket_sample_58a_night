@@ -2,16 +2,17 @@ class ProductsController < ApplicationController
   include ApplyGon
   before_action :apply_gon
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_product, only: [:edit, :show]
 
   def index
-    @products_ladies = Product.where(category_id: 1..205).order("created_at DESC").limit(10)
-    @products_mens = Product.where(category_id: 206..350).order("created_at DESC").limit(10)
-    @products_home_electronics = Product.where(category_id: 899..984).order("created_at DESC").limit(10)
-    @products_toys = Product.where(category_id: 686..798).order("created_at DESC").limit(10)
-    @products_chanel = Product.where(brand: "シャネル").order("created_at DESC").limit(10)
-    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュープリーム").order("created_at DESC").limit(10)
-    @products_nike = Product.where(brand: "ナイキ").order("created_at DESC").limit(10)
+    @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_mens = Product.where(category_id: 206..350).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_home_electronics = Product.where(category_id: 899..984).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_toys = Product.where(category_id: 686..798).where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(brand: "シャネル").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 2).order("created_at DESC").limit(10)
   end
 
   def new
@@ -25,7 +26,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @main_photo = @product.images[0]
     @prefecture = Prefecture.find(@product.delivery_origin.to_i)
     @category_grandchildren = @product.category
@@ -63,7 +63,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
     @profit = (@product.price * 0.1).floor
     @fee = @product.price - @profit
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
@@ -112,6 +111,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def release
+    product = Product.find(params[:id])
+    product.update(transaction_status: "0")
+    redirect_to product_path(product), notice: '出品の再開をしました。'
+  end
+
+  def suspension
+    product = Product.find(params[:id])
+    product.update(transaction_status: "2")
+    redirect_to product_path(product), notice: '出品の一旦停止をしました。'
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
@@ -121,5 +132,9 @@ class ProductsController < ApplicationController
   def product_update_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
                                     :category_id, :brand, :size_id, images_attributes: [:id, :image, :_destroy] ).merge(user_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

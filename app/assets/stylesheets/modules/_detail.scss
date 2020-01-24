@@ -47,6 +47,30 @@
           height: 0;
           border-style: solid;
         }
+        &__ribbon-gr > div {
+          font-size: 18px;
+          color: white;
+          position: absolute;
+          left: -5px;
+          top: 29px;
+          z-index: 2;
+          transform: rotate(-45deg);
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+        &__ribbon-gr::after {
+          border-width: 120px 120px 0 0;
+          border-color: #888 transparent transparent transparent;
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 0;
+          height: 0;
+          border-style: solid;
+        }
         &__main {
           &__photo {
             width: 100%;
