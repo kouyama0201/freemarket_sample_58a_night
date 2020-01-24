@@ -1,4 +1,7 @@
 class MypageController < ApplicationController
+  include ApplyGon
+  before_action :apply_gon
+
   def show # マイページ
   end
 

@@ -1,10 +1,11 @@
 class PurchaseController < ApplicationController
   include SetCard
   before_action :set_card, only: [:show, :pay]
+  include ApplyGon
+  before_action :apply_gon
   before_action :set_product
   
   def show
-    gon.payjp_key = ENV["PAYJP_KEY"] # JSエラー回避用の記述
     @image = @product.images.first
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     customer = Payjp::Customer.retrieve(@card.customer_id)
