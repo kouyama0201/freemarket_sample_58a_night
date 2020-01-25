@@ -6,11 +6,11 @@
   .exhibiting__header
     出品した商品
   .exhibiting__status
-    .exhibiting__status--selling
+    = link_to exhibiting_mypage_path(current_user), class: "exhibiting__status--current" do
       出品中
-    .exhibiting__status--trading
+    .exhibiting__status--other
       取引中
-    .exhibiting__status--sold
+    = link_to sold_mypage_path(current_user), class: "exhibiting__status--other" do
       売却済み
   - unless @product.any?
     .exhibiting__none
@@ -21,7 +21,6 @@
   - else
     #user_products
       = render 'exhibiting_products'
-
 
 = render 'layouts/footer'
 = render 'layouts/exhibit-btn'
