@@ -74,20 +74,20 @@ class ProductsController < ApplicationController
       grandchild_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
       @category_grandchild_array << grandchild_hash
     end
-    # 子カテゴリで上記と同様の記述
-    @selected_child = @selected_grandchild.parent
-    @category_child_array = [{id: "", name: "---"}]
-    Category.find("#{@selected_child.id}").siblings.each do |child|
-      child_hash = {id: "#{child.id}", name: "#{child.name}"}
-      @category_child_array << child_hash
-    end
-    # 親カテゴリで上記と同様の記述
-    @selected_parent = @selected_child.parent
-    @category_parent_array = []
-    Category.find("#{@selected_parent.id}").siblings.each do |parent|
-      parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
-      @category_parent_array << parent_hash
-    end
+    # # 子カテゴリで上記と同様の記述
+    # @selected_child = @selected_grandchild.parent
+    # @category_child_array = [{id: "", name: "---"}]
+    # Category.find("#{@selected_child.id}").siblings.each do |child|
+    #   child_hash = {id: "#{child.id}", name: "#{child.name}"}
+    #   @category_child_array << child_hash
+    # end
+    # # 親カテゴリで上記と同様の記述
+    # @selected_parent = @selected_child.parent
+    # @category_parent_array = []
+    # Category.find("#{@selected_parent.id}").siblings.each do |parent|
+    #   parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
+    #   @category_parent_array << parent_hash
+    # end
     # サイズが登録されている場合
     if @selected_size = @product.size
       # 登録されているサイズに関連する、サイズ選択肢用の配列作成

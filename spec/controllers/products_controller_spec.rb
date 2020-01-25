@@ -217,3 +217,4 @@ describe ProductsController, type: :controller do
     end
   end
 end
+
