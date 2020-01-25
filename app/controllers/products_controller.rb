@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  include ApplyGon
   before_action :apply_gon
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:edit, :show]
@@ -136,5 +135,9 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end

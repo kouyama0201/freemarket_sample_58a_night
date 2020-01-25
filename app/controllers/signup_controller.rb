@@ -1,7 +1,6 @@
 class SignupController < ApplicationController
   include RedirectToTop
   before_action :redirect_to_top, except: :complete
-  include ApplyGon
   before_action :apply_gon
   before_action :validates_registration, only: :phone
   before_action :validates_phone, only: :address  
@@ -180,5 +179,9 @@ class SignupController < ApplicationController
       address_attributes: session[:address]
     )
     render 'signup/address' unless @user.valid?
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end

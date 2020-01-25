@@ -1,5 +1,4 @@
 class MypageController < ApplicationController
-  include ApplyGon
   before_action :apply_gon
   before_action :set_user, only: [:exhibiting, :profile]
 
@@ -29,5 +28,9 @@ class MypageController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end

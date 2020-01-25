@@ -1,7 +1,6 @@
 class PurchaseController < ApplicationController
   include SetCard
   before_action :set_card, only: [:show, :pay]
-  include ApplyGon
   before_action :apply_gon
   before_action :set_product
   
@@ -36,5 +35,9 @@ class PurchaseController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end
