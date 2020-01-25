@@ -1,0 +1,24 @@
+= render 'layouts/mypage_header'
+- breadcrumb :purchased
+= render 'layouts/breadcrumbs'
+= render 'layouts/sidebar'
+.purchased
+  .purchased__header
+    購入した商品
+  .purchased__status
+    .purchased__status--other
+      取引中
+    = link_to purchased_mypage_path(current_user), class: "purchased__status--current" do
+      過去の取引
+  - unless @product.any?
+    .purchased__none
+      .purchased__none--icon
+        = image_tag "//www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?34046717", size: "85x85"
+      .purchased__none--text
+        過去に取引した商品がありません
+  - else
+    #user_products
+      = render 'exhibiting_products'
+
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'
