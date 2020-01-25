@@ -1,6 +1,6 @@
 class MypageController < ApplicationController
   before_action :apply_gon
-  before_action :set_user, only: [:exhibiting, :sold ,:profile]
+  before_action :set_user, only: [:exhibiting, :sold, :purchased, :profile]
 
   def show # マイページ
   end
@@ -13,8 +13,16 @@ class MypageController < ApplicationController
     end
   end
 
-  def sold
+  def sold #出品した商品 - 売却済み
     @product = @user.products.where(transaction_status: 1).page(params[:page]).per(12).order("created_at DESC")
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def purchased #購入した商品 - 過去の取引
+    @product = Product.all.where(buyer_id: current_user.id).page(params[:page]).per(12).order("created_at DESC")
     respond_to do |format|
       format.html
       format.js
