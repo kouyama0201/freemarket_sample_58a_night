@@ -28,7 +28,7 @@
       出品した商品 - 取引中
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to sold_mypage_path(current_user), class: "sidebar__list mypage-sold" do
       出品した商品 - 売却済み
       .sidebar__list--detail
         %i.fas.fa-chevron-right
