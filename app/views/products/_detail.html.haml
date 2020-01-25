@@ -108,13 +108,17 @@
             = link_to suspension_product_path(@product), method: :patch do
               .detail__main__btn--gray
                 商品を一時停止する
+            = link_to "/products/#{@product.id}", method: :delete, data: { confirm: "商品を削除します。よろしいですか?"} do
+              .detail__main__btn--gray
+                この商品を削除する
           - elsif @product.transaction_status == 2 # 商品が公開停止中の場合
             = link_to release_product_path(@product), method: :patch do
               .detail__main__btn--red
                 出品を再開する
-          = link_to "" do
-            .detail__main__btn--gray
-              この商品を削除する
+            = link_to "/products/#{@product.id}", method: :delete, data: { confirm: "商品を削除します。よろしいですか?"} do
+              .detail__main__btn--gray
+                この商品を削除する
+              
         - else # ユーザーの商品ではない場合
           = link_to purchase_path(@product) do
             .detail__main__btn--red

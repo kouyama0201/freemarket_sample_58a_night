@@ -122,6 +122,16 @@ class ProductsController < ApplicationController
     redirect_to product_path(product), notice: '出品の一旦停止をしました。'
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    p @product
+    if @product.user_id == current_user.id
+      p 
+      @product.destroy
+      redirect_to root_path
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
