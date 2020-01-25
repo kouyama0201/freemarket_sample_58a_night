@@ -77,6 +77,19 @@
       border-radius: 2px;
       pointer-events: none;
     }
+    &--purchased {
+      background-color: #888888;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      height: 12px;
+      line-height: 12px;
+      width: 48px;
+      padding: 5px 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
     &--sold {
       background-color: #888888;
       color: #ffffff;
