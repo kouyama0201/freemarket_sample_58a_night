@@ -1,12 +1,20 @@
 class MypageController < ApplicationController
   before_action :apply_gon
-  before_action :set_user, only: [:exhibiting, :profile]
+  before_action :set_user, only: [:exhibiting, :sold ,:profile]
 
   def show # マイページ
   end
 
   def exhibiting # 出品した商品 - 出品中
     @product = @user.products.where.not(transaction_status: 1).page(params[:page]).per(12).order("created_at DESC")
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def sold
+    @product = @user.products.where(transaction_status: 1).page(params[:page]).per(12).order("created_at DESC")
     respond_to do |format|
       format.html
       format.js
