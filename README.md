@@ -21,27 +21,25 @@
 - has_one :sns_credential, dependent: :destroy
 - has_many :products
 - has_many :comments
-- has_many :seller, class_name: "Transaction"
-- has_many :buyer, class_name: "Transaction"
 
 ## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|postal_code|integer|null: false|
+|postal_code|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|string|null: false|
 |building_name|string||
+|phone_optional|string||
 |user|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
+- belongs_to :user, inverse_of: :address
 
-## credit_cardsテーブル
+## cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false|
-|exp_month|integer|null: false|
-|exp_year|integer|null: false|
+|card_id|string|null: false|
+|customer_id|string|null: false|
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
@@ -61,7 +59,7 @@
 |name|string|null: false, index: true|
 |description|text|null: false|
 |category|references|null: false, foreign_key: true|
-|size|string|null: false|
+|size|references|foreign_key: true|
 |brand|references|foreign_key: true|
 |condition|string|null: false|
 |delivery_cost|string|null: false|
@@ -70,24 +68,16 @@
 |preparatory_days|string|null: false|
 |price|integer|null: false|
 |user|references|null: false, foreign_key: true|
+|transaction_status|integer|default: 0|
+|buyer_id|integer||
 ### Association
 - belongs_to :user
 - belongs_to :category
+- belongs_to :size, optional: true
 - belongs_to :brand
-- has_one :transaction
 - has_many :images, dependent: :destroy
+- accepts_nested_attributes_for :images, allow_destroy: true
 - has_many :comments, dependent: :destroy
-
-## transactionsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|seller|references|null: false, foreign_key: true|
-|buyer|references|null: false, foreign_key: true|
-|product|references|null: false, foreign_key: true|
-### Association
-- belongs_to :seller, class_name: "User"
-- belongs_to :buyer, class_name: "User"
-- belongs_to :product
 
 ## commentsテーブル
 |Column|Type|Options|
@@ -105,7 +95,7 @@
 |image|string|null: false|
 |product|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :product
+- belongs_to :product, inverse_of: :images
 
 ## categoriesテーブル
 |Column|Type|Options|
@@ -114,7 +104,29 @@
 |ancestory|references|null: false, foreign_key: true|
 ### Association
 - has_many :products
+- has_many :category_sizes
+- has_many :sizes, through: :category_sizes
 - has_ancestory
+
+## sizesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|size|string||
+|ancestory|references|null: false, foreign_key: true|
+### Association
+- has_many :products
+- has_many :category_sizes
+- has_many :categories, through: :category_sizes
+- has_ancestory
+
+## category_sizesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|category|references|foreign_key: true|
+|size|references|foreign_key: true|
+### Association
+- belongs_to :category
+- belongs_to :size
 
 ## brandsテーブル
 |Column|Type|Options|
