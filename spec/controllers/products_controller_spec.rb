@@ -216,5 +216,25 @@ describe ProductsController, type: :controller do
       end
     end
   end
-end
 
+
+  describe 'DELETE #destroy' do
+    context 'ログイン時' do
+      before do
+        login user
+      end
+      it "商品が削除されること" do
+        product = create(:product, user_id: user.id)
+        expect{
+          delete :destroy, params: { id: product.id }
+        }.to change(Product, :count).by(-1)
+      end
+
+      it "トップページにリダイレクトされるかどうか" do
+        product = create(:product, user_id: user.id)
+        delete :destroy, params: { id: product.id }
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+end
