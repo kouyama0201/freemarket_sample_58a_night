@@ -16,6 +16,16 @@ crumb :exhibiting do
   parent :mypage
 end
 
+crumb :sold do
+  link "出品した商品 - 売却済み", sold_mypage_path(current_user)
+  parent :mypage
+end
+
+crumb :purchased do
+  link "購入した商品 - 過去の取引", purchased_mypage_path(current_user)
+  parent :mypage
+end
+
 crumb :profile do
   link "プロフィール", profile_mypage_path
   parent :mypage

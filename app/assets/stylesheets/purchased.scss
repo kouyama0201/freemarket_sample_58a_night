@@ -1,0 +1,75 @@
+.purchased {
+  color: #333333;
+  height: 382px;
+  width: 700px;
+  position: absolute;
+  top: 190px;
+  right: 210px;
+  &__header {
+    background-color: #fafafa;
+    height: 72px;
+    line-height: 72px;
+    padding: 0 16px;
+    font-weight: 600;
+  }
+  &__status {
+    display: inline-flex;
+    height: 72px;
+    line-height: 72px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    :hover {
+      opacity: 0.7;
+    }
+    &--current {
+      background-color: #ffffff;
+      color: #333333;
+      width: 350px;
+      border-top: solid 2px #ea352d;
+    }
+    &--other {
+      background-color: #eeeeee;
+      color: #333333;
+      width: 350px;
+    }
+  }
+  &__product {
+    background-color: #ffffff;
+    height: 82px;
+    position: relative;
+    :hover {
+      background-color: #fafafa;
+    }
+    &--img {
+      display: -webkit-box;
+      padding: 16px;
+    }
+    &--name {
+      color: #333333;
+      font-size: 14px;
+      margin-left: 18px;
+      overflow: hidden;
+    }
+    &--detail {
+      color: #333333;
+      top: 35px;
+      right: 15px;
+      position: absolute;
+    }
+  }
+  &__none {
+    background-color: #ffffff;
+    color: #cccccc;
+    height: 236px;
+    text-align: center;
+    &--icon {
+      padding-top: 40px;
+    }
+    &--text {
+      margin-top: 28px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+}

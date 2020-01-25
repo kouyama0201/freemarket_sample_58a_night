@@ -11,6 +11,12 @@
           - elsif product.transaction_status == 2
             .exhibiting__product--suspension
               公開停止中
+          - elsif product.transaction_status == 1 && product.buyer_id == current_user.id
+            .exhibiting__product--purchased
+              取引完了
+          - elsif product.transaction_status == 1
+            .exhibiting__product--sold
+              売却済
       .exhibiting__product--detail
         %i.fas.fa-chevron-right
 = paginate(@product, remote: true)

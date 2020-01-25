@@ -19,17 +19,18 @@
     font-size: 16px;
     font-weight: 600;
     text-align: center;
-    &--selling {
+    :hover {
+      opacity: 0.7;
+    }
+    &--current {
       background-color: #ffffff;
+      color: #333333;
       width: 234px;
       border-top: solid 2px #ea352d;
     }
-    &--trading {
+    &--other {
       background-color: #eeeeee;
-      width: 233px;
-    }
-    &--sold {
-      background-color: #eeeeee;
+      color: #333333;
       width: 233px;
     }
   }
@@ -71,6 +72,32 @@
       height: 12px;
       line-height: 12px;
       width: 60px;
+      padding: 5px 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    &--purchased {
+      background-color: #888888;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      height: 12px;
+      line-height: 12px;
+      width: 48px;
+      padding: 5px 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    &--sold {
+      background-color: #888888;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      height: 12px;
+      line-height: 12px;
+      width: 36px;
       padding: 5px 6px;
       margin-top: 8px;
       border-radius: 2px;

@@ -60,7 +60,7 @@
         いいね！一覧
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
-      .mypage-header-box__list__item
+      = link_to exhibiting_mypage_path(current_user), class: "mypage-header-box__list__item" do
         出品した商品 - 出品中
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
@@ -68,7 +68,7 @@
         出品した商品 - 取引中
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
-      .mypage-header-box__list__item
+      = link_to sold_mypage_path(current_user), class: "mypage-header-box__list__item" do
         出品した商品 - 売却済み
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
@@ -76,7 +76,7 @@
         購入した商品 - 取引中
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
-      .mypage-header-box__list__item
+      = link_to purchased_mypage_path(current_user), class: "mypage-header-box__list__item" do
         購入した商品 - 過去の取引
         .mypage-header-box__list__item--detail
           %i.fas.fa-chevron-right
