@@ -1,6 +1,7 @@
 class SignupController < ApplicationController
   include RedirectToTop
   before_action :redirect_to_top, except: :complete
+  before_action :apply_gon
   before_action :validates_registration, only: :phone
   before_action :validates_phone, only: :address  
   before_action :validates_address, only: :pay_way
@@ -19,7 +20,6 @@ class SignupController < ApplicationController
 
   def pay_way # 支払い方法入力
     @user = User.new
-    gon.payjp_key = ENV["PAYJP_KEY"]
   end
   
   def complete # 登録完了
@@ -179,5 +179,9 @@ class SignupController < ApplicationController
       address_attributes: session[:address]
     )
     render 'signup/address' unless @user.valid?
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end

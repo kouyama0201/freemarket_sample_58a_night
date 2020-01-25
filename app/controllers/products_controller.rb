@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :apply_gon
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:edit, :show]
 
@@ -14,11 +15,9 @@ class ProductsController < ApplicationController
   end
 
   def new
-    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @product = Product.new
     @product.images.build
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
   end
 
   def category_child
@@ -26,7 +25,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     @main_photo = @product.images[0]
     @prefecture = Prefecture.find(@product.delivery_origin.to_i)
     @category_grandchildren = @product.category
@@ -60,12 +58,10 @@ class ProductsController < ApplicationController
       @product.images.build
       @category_parent_array = Category.where(ancestry: nil).pluck(:name)
       render new_product_path(@product)
-      gon.payjp_key = ENV["PAYJP_KEY"] # jsエラー回避用の記述
     end
   end
 
   def edit
-    gon.payjp_key = ENV["PAYJP_KEY"] # エラー解消用
     @profit = (@product.price * 0.1).floor
     @fee = @product.price - @profit
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
@@ -139,5 +135,9 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 end
