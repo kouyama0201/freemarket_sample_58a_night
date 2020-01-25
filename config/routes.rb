@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do
       get 'exhibiting'
       get 'sold'
+      get 'purchased'
       get 'profile'
       get 'card'
       get 'identification'
