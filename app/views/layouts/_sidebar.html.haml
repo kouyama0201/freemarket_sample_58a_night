@@ -1,9 +1,9 @@
 .mypage-wrapper
   .sidebar
-    = link_to mypage_path(current_user), class: "sidebar__list" do
+    = link_to mypage_path(current_user), class: "sidebar__list mypage-default" do
       マイページ
       .sidebar__list--detail
-        %i.fas.fa-chevron-right
+        %i.fas.fa-chevron-right.sidebar__list--detail--icon
     .sidebar__list
       お知らせ
       .sidebar__list--detail
@@ -20,7 +20,7 @@
       出品する
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to exhibiting_mypage_path(current_user), class: "sidebar__list" do
       出品した商品 - 出品中
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -68,7 +68,7 @@
         %i.fas.fa-chevron-right
     .sidebar__title
       設定
-    = link_to profile_mypage_path(current_user), class: "sidebar__list" do
+    = link_to profile_mypage_path(current_user), class: "sidebar__list mypage-profile" do
       プロフィール
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -76,7 +76,7 @@
       発送元・お届け先住所変更
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    = link_to card_path(current_user), class: "sidebar__list" do
+    = link_to card_path(current_user), class: "sidebar__list mypage-card" do
       支払い方法
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -84,7 +84,7 @@
       メール/パスワード
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    = link_to identification_mypage_path(current_user), class: "sidebar__list" do
+    = link_to identification_mypage_path(current_user), class: "sidebar__list mypage-identification" do
       本人情報
       .sidebar__list--detail
         %i.fas.fa-chevron-right
@@ -92,7 +92,7 @@
       電話番号の確認
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    = link_to logout_mypage_path(current_user), class: "sidebar__list" do
+    = link_to logout_mypage_path(current_user), class: "sidebar__list mypage-logout" do
       ログアウト
       .sidebar__list--detail
         %i.fas.fa-chevron-right

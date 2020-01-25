@@ -15,22 +15,23 @@
                 %p.containt__main__container__inner__sell-form__remarks 最大10枚までアップロードできます
               .image-wrapper
                 .image-content
-                  %label{for: "product_images_attributes_0_image", class: "image-box", id: "image-box--0"}
+                  - @product.images.each do |image|
+                    .product-image
+                      .product-image__content
+                        = image_tag image.image, class: "product-image__content--icon", width:"95", height:"116"
+                      .product-image__operetion
+                        .product-image__operetion--edit 編集
+                        .product-image__operetion--delete 削除
+                  = f.label :"images_attributes_#{@product.images.length}_image", class: "image-box", id: "image-box--#{@product.images.length}" do
                     %pre.label-text
                       ドラッグアンドドロップ
                       またはクリックしてファイルをアップロード
                 .hidden-images
                   = f.fields_for :images do |i|
                     = i.file_field :image, class: "image-field"
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][1][image]", id: "product_images_attributes_1_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][2][image]", id: "product_images_attributes_2_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][3][image]", id: "product_images_attributes_3_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][4][image]", id: "product_images_attributes_4_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][5][image]", id: "product_images_attributes_5_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][6][image]", id: "product_images_attributes_6_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][7][image]", id: "product_images_attributes_7_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][8][image]", id: "product_images_attributes_8_image"}
-                    %input{class:"image-field", type: "file", name: "product[images_attributes][9][image]", id: "product_images_attributes_9_image"}
+                    = i.check_box :_destroy, class: "image-checkbox"
+                    - @product.images.length.upto(9) do |i|
+                      %input{name: "product[images_attributes][#{i}][image]", id: "product_images_attributes_#{i}_image", class:"image-field", type:"file"}
               = render partial: 'error-messages', locals: {product: @product, column: "images"}
             .containt__main__container__inner__sell-form__information
               .containt__main__container__inner__sell-form__information__name
@@ -53,8 +54,29 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__detail__box__form-group__category
                     .containt__main__container__inner__sell-form__select-wrap
-                      = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category", name: "parent"}
+                      = f.select :category_id, options_for_select(@category_parent_array.map{|c|[c[:name], c[:name]]}, @selected_parent.name), {include_blank: "---"}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "parent_category", name: "parent"}
                       %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    .containt__main__container__inner__sell-form__detail__box__form-group__added#child_wrapper
+                      .containt__main__container__inner__sell-form__select-wrap
+                        = f.select :category_id, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child.id), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "child_category", name: "child"}
+                        %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    .containt__main__container__inner__sell-form__detail__box__form-group__added#grandchild_wrapper
+                      .containt__main__container__inner__sell-form__select-wrap
+                        = f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild.id), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "grandchild_category"}
+                        %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    - if @product.size.present?
+                      .containt__main__container__inner__sell-form__detail__box__form-group__size#size_wrapper
+                        %label 
+                          サイズ
+                          %span.containt__main__container__inner__sell-form__form-require 必須
+                        .containt__main__container__inner__sell-form__select-wrap
+                          = f.select :size_id, options_for_select(@size_array.map{|c|[c[:size], c[:id]]}, @selected_size.id), {}, {class: "containt__main__container__inner__sell-form__select-wrap__list", id: "size"}
+                          %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    .containt__main__container__inner__sell-form__detail__box__form-group__brand#brand_wrapper
+                      %label 
+                        ブランド
+                        %span.containt__main__container__inner__sell-form__form-optional 任意
+                      = f.text_field :brand, class: "containt__main__container__inner__sell-form__select-wrap__brand", name: "product[brand]", placeholder: "例) シャネル"
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__detail__box__form-group
                   %label
@@ -74,6 +96,16 @@
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
                     = f.select :delivery_cost, [["---", ""],["送料込(出品者負担)", "送料込(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], selected: @product.delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list"
+                .containt__main__container__inner__sell-form__delivery__box__form-group__added#delivery_way-parent
+                  %label 
+                    配送の方法
+                    %span.containt__main__container__inner__sell-form__form-require 必須
+                  .containt__main__container__inner__sell-form__delivery__box__select-wrap
+                    %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
+                    - if @product.delivery_cost == "送料込(出品者負担)"
+                      = f.select :delivery_way, [["---", ""],["未定", "未定"],["らくらくメルカリ便", "らくらくメルカリ便"],["ゆうメール", "ゆうメール"],["レターパック", "レターパック"],["普通郵便（定型、定型外）", "普通郵便（定型、定型外）"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["クリックポスト", "クリックポスト"],["ゆうパケット", "ゆうパケット"]], {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_way", name: "product[delivery_way]"
+                    - else
+                      = f.select :delivery_way, [["---", ""],["未定", "未定"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["ゆうメール", "ゆうメール"]], {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_way", name: "product[delivery_way]"
                 .containt__main__container__inner__sell-form__form-interval
                 .containt__main__container__inner__sell-form__delivery__box__form-group
                   %label
@@ -106,29 +138,20 @@
                   .containt__main__container__inner__sell-form__price__box__center__left
                     販売手数料(10%)
                   .containt__main__container__inner__sell-form__price__box__center__right
-                    \-
+                    ¥
+                    %span<>
+                    = @profit.to_s(:delimited, delimiter: ',')
                 .containt__main__container__inner__sell-form__price__box__bottom
                   .containt__main__container__inner__sell-form__price__box__bottom__left
                     販売利益
                   .containt__main__container__inner__sell-form__price__box__bottom__right
-                    \-
-            .containt__main__container__inner__sell-form__btn-box
-              %p.containt__main__container__inner__sell-form__btn-box__text1
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 禁止されている出品
-                、
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 行為
-                を必ずご確認ください。
-              %p.containt__main__container__inner__sell-form__btn-box__text2
-                またブランド品でシリアルナンバー等がある場合はご記載ください。
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 偽ブランドの販売
-                は犯罪であり処罰される可能性があります。
-              %p.containt__main__container__inner__sell-form__btn-box__text3
-                また、出品を持ちまして
-                %a.containt__main__container__inner__sell-form__btn-box--color{href: ""} 加盟店規約
-                に同意したことになります。
-              = f.submit "出品する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
-              = link_to root_path do 
+                    ¥
+                    %span<>
+                    = @fee.to_s(:delimited, delimiter: ',')
+            .containt__main__container__inner__sell-form__btn-box__edit
+              = f.submit "変更する", class: "containt__main__container__inner__sell-form__btn-box__btn-red"
+              = link_to product_path(@product) do 
                 .containt__main__container__inner__sell-form__btn-box__btn-gray
-                  もどる
+                  キャンセル
 
   = render 'layouts/second_footer'

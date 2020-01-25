@@ -19,6 +19,13 @@
     font-size: 16px;
     font-weight: 600;
   }
+  &__list:hover {
+    background-color: #EEEEEE;
+  }
+  &__list:hover > div {
+    color: #333333;
+    right: 11px;
+  }
   &__list {
     display: flex;
     color: #333333;
@@ -27,10 +34,14 @@
     padding: 0 15px 0 16px;
     border-bottom: solid 1.2px #eeeeee;
     justify-content: space-between;
+    cursor: pointer;
+    position: relative;
     &--detail {
       color: #cccccc;
       font-size: 16px;
       line-height: 49px;
+      position: absolute;
+      right: 15px;
     }
   }
 }

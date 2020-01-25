@@ -22,7 +22,13 @@ $(function () {
         rangelength: [1, 1000]
       },
       "product[category_id]": {
-        required: true,
+        required: true
+      },
+      "parent": {
+        required: true
+      },
+      "child": {
+        required: true
       },
       "parent": {
         required: true,
@@ -65,7 +71,13 @@ $(function () {
         rangelength: "1000文字以内で入力してください"
       },
       "product[category_id]": {
-        required: "選択してください",
+        required: "選択してください"
+      },
+      "parent": {
+        required: "選択してください"
+      },
+      "child": {
+        required: "選択してください"
       },
       "parent": {
         required: "選択してください",
@@ -102,7 +114,7 @@ $(function () {
     validClass: "valid",
   });
   // 入力欄or選択欄をフォーカスアウトしたときにバリデーションを実行
-  $("#product_name, #description, #parent_category, #product_condition, #product_delivery_cost, #product_delivery_origin, #product_preparatory_days, #price").blur(function () {
+  $("#product_name, #description, #parent_category, #child_category, #grandchild_category, #size, #product_condition, #product_delivery_cost, #delivery_way, #product_delivery_origin, #product_preparatory_days, #price").blur(function () {
     $(this).valid();
   });
 });

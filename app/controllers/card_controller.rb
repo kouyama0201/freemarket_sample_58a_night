@@ -1,6 +1,7 @@
 class CardController < ApplicationController
   include SetCard
   before_action :set_card, only: [:new, :delete, :show]
+  before_action :apply_gon
 
   def set_card
     @card = Card.find_by(user_id: current_user.id)
@@ -46,6 +47,11 @@ class CardController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
+  end
+
+  private
+  def apply_gon
+    gon.payjp_key = ENV["PAYJP_KEY"]
   end
 
 end

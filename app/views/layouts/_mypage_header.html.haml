@@ -27,5 +27,56 @@
       .header-lower-right-mypage__to-do-list--title
         やることリスト
     .header-lower-right-mypage__user
-      = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: "header-lower-right-mypage__user--image", size: '32x32'
+      = link_to mypage_path(current_user) do
+        = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: "header-lower-right-mypage__user--image", size: '32x32'
       = link_to "マイページ", mypage_path(current_user), class: "header-lower-right-mypage__user--title"
+  .mypage-header-box
+    .mypage-header-box__head
+      %figure.mypage-header-box__head__bgimage
+        %div.mypage-header-box__head__avatar
+          = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: "mypage-header-box__head__avatar--img", size: '60x60'
+        %figcaption.mypage-header-box__head__name
+          = current_user.name
+      %ul.mypage-header-box__head__review
+        %li.mypage-header-box__head__review__text
+          評価: 5
+        %li.mypage-header-box__head__review__text
+          出品数: 20
+      .mypage-header-box__head__review__sales-point
+        %div.mypage-header-box__head__review__sales-point__item
+          %div.mypage-header-box__head__review__sales-point__item__left
+            残高
+          %div.mypage-header-box__head__review__sales-point__item__right
+            ¥7,777
+            %i.fas.fa-chevron-right.mypage-header-box__head__review__sales-point__item__icon
+        %div.mypage-header-box__head__review__sales-point__item
+          %div.mypage-header-box__head__review__sales-point__item__left
+            ポイント
+          %div.mypage-header-box__head__review__sales-point__item__right
+            P777
+            %i.fas.fa-chevron-right.mypage-header-box__head__review__sales-point__item__icon
+    .mypage-header-box__list
+      .mypage-header-box__list__item
+        いいね！一覧
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right
+      .mypage-header-box__list__item
+        出品した商品 - 出品中
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right
+      .mypage-header-box__list__item
+        出品した商品 - 取引中
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right
+      .mypage-header-box__list__item
+        出品した商品 - 売却済み
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right
+      .mypage-header-box__list__item
+        購入した商品 - 取引中
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right
+      .mypage-header-box__list__item
+        購入した商品 - 過去の取引
+        .mypage-header-box__list__item--detail
+          %i.fas.fa-chevron-right

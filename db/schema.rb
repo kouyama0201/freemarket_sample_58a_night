@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(version: 20200101140658) do
     t.string   "delivery_origin",                              null: false
     t.string   "preparatory_days",                             null: false
     t.integer  "category_id"
-    t.integer  "transaction_status",               default: 0
-    t.integer  "buyer_id"
     t.integer  "size_id"
     t.string   "delivery_way",                                 null: false
     t.string   "brand"
+    t.integer  "transaction_status",               default: 0
+    t.integer  "buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree
     t.index ["size_id"], name: "index_products_on_size_id", using: :btree

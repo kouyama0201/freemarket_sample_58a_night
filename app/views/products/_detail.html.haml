@@ -6,6 +6,14 @@
       .detail__main__content__image
         .detail__main__content__image__main
           = image_tag @main_photo.image, size: "300x300", class: "detail__main__content__image__main__photo"
+        - if @product.transaction_status == 1 # 売り切れの場合
+          .detail__main__content__image__ribbon-lg
+            %div
+              SOLD
+        - elsif @product.transaction_status == 2 # 公開停止中の場合
+          .detail__main__content__image__ribbon-gr
+            %div
+              公開停止中
         .detail__main__content__image__sub
           - @product.images.each do |image|
             .detail__main__content__image__sub__thumb
@@ -86,16 +94,24 @@
         (税込)
       %span.detail__main__price--shipping-fee
         送料込み
-      - if user_signed_in? # ログインしているか？
+      - if @product.transaction_status == 1 # 売り切れの場合
+        .detail__main__btn--gray
+          売り切れました
+      - elsif user_signed_in? # ログインしているか？
         - if @product.user_id == current_user.id # ユーザーの商品の場合
-          = link_to "" do
+          = link_to edit_product_path(@product) do
             .detail__main__btn--red
               商品を編集する
           %div.detail__main__text-between-btn
             or
-          = link_to "" do
-            .detail__main__btn--gray
-              商品を一時停止する
+          - if @product.transaction_status == 0 # 商品が出品中の場合
+            = link_to suspension_product_path(@product), method: :patch do
+              .detail__main__btn--gray
+                商品を一時停止する
+          - elsif @product.transaction_status == 2 # 商品が公開停止中の場合
+            = link_to release_product_path(@product), method: :patch do
+              .detail__main__btn--red
+                出品を再開する
           = link_to "" do
             .detail__main__btn--gray
               この商品を削除する
@@ -103,26 +119,10 @@
           = link_to purchase_path(@product) do
             .detail__main__btn--red
               購入画面に進む
-      - else # 購入ボタンを押すとログインページに遷移
+      - else
         = link_to new_user_session_path do
           .detail__main__btn--red
             購入画面に進む
-      -# - if @product.user_id == current_user.id # ログインしている場合、商品がログインユーザーの商品の場合
-      -#   = link_to "" do
-      -#     .detail__main__btn--red
-      -#       商品を編集する
-      -#   %div.detail__main__text-between-btn
-      -#     or
-      -#   = link_to "" do
-      -#     .detail__main__btn--gray
-      -#       商品を一時停止する
-      -#   = link_to "" do
-      -#     .detail__main__btn--gray
-      -#       この商品を削除する
-      -# - else # デフォルトはこれ、ログインしていない場合、ログインしていてもユーザーの商品ではない場合
-      -#   = link_to purchase_path(@product) do
-      -#     .detail__main__btn--red
-      -#       購入画面に進む
     .detail__main__description
       = @product.description
     .detail__main__btn-box

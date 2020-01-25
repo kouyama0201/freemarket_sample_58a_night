@@ -11,6 +11,11 @@ crumb :mypage do
   link "マイページ", mypage_path(current_user)
 end
 
+crumb :exhibiting do
+  link "出品した商品 - 出品中", exhibiting_mypage_path(current_user)
+  parent :mypage
+end
+
 crumb :profile do
   link "プロフィール", profile_mypage_path
   parent :mypage

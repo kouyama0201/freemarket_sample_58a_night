@@ -23,14 +23,12 @@ describe ProductsController, type: :controller do
   end
 
   describe 'POST #create' do
-
     context 'ログイン時' do
       before do
         login user
       end
 
       context 'セーブが成功した場合' do
-
         it '商品が登録されること' do
           image_params = { images_attributes:[FactoryBot.attributes_for(:image), FactoryBot.attributes_for(:image)]}
           product = {product: FactoryBot.attributes_for(:product).merge(image_params, category_id: category.id, user_id: user.id)}
@@ -45,11 +43,9 @@ describe ProductsController, type: :controller do
           post :create, params: product
           expect(response).to redirect_to root_path
         end
-
       end
 
       context 'セーブが失敗した場合' do
-
         it '商品が登録されないこと' do
           image_params = { images_attributes:[FactoryBot.attributes_for(:image), FactoryBot.attributes_for(:image)]}
           product = {product: FactoryBot.attributes_for(:product, name: "").merge(image_params, category_id: category.id, user_id: user.id)}
@@ -159,5 +155,65 @@ describe ProductsController, type: :controller do
       expect(response).to render_template :index
     end
 
+  end
+
+  describe 'GET #edit' do
+    context 'ログイン時' do
+      before do
+        login user
+      end
+
+      it "editアクションのページに遷移するか" do
+        product = create(:product)
+        get :edit, params: { id: product }
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'ログイン時' do
+      before do
+        login user
+      end
+
+      context '更新に成功した場合' do
+        it "商品が更新されること" do
+          product = create(:product)
+          expect{
+            patch :update, params: {
+              id: product.id, product: attributes_for(:product)
+            }
+          }.to change(Product, :count).by(0)
+        end
+
+        it "商品詳細ページにリダイレクトすること" do
+          product = create(:product)
+          patch :update, params: {
+              id: product.id, product: attributes_for(:product)
+          }
+          expect(response).to redirect_to product_path
+        end
+      end
+
+      context '更新に失敗した場合' do
+        it "商品が更新されないこと" do
+          product = create(:product)
+          expect{
+            patch :update, params: {
+              id: product.id, product: attributes_for(:product, name: nil)
+            }
+          }.not_to change(Product, :count)
+        end
+
+        it "編集ページにリダイレクトするかどうか" do
+          product = create(:product)
+          patch :update, params: {
+            id: product.id, product: attributes_for(:product, name: nil)
+          }
+          expect(response).to redirect_to edit_product_path
+        end
+      end
+    end
   end
 end
