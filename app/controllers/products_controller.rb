@@ -125,7 +125,6 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     if @product.user_id == current_user.id && @product.destroy
-      @product.destroy
       redirect_to root_path, notice: '商品を削除しました。'
     else
       redirect_to edit_product_path, alert: '商品の削除に失敗しました。'
