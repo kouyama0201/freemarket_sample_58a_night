@@ -136,4 +136,4 @@
 - has_many :products
 
 ## ER図
-![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/70844017-3610ba80-1e7e-11ea-9415-7483168c51c1.jpeg)
+![freemarket_sample_58a_night ER図](https://user-images.githubusercontent.com/54708394/73121017-d1866680-3fb8-11ea-8762-e36d25af5e3d.jpeg)
