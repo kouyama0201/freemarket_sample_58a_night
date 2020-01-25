@@ -17,6 +17,9 @@ $(window).on('load', function () { // 各ページでのサイドバーのボタ
   } else if (document.URL.match("sold")) {
     $(".mypage-sold").css("background-color", "#EEEEEE");
     $(".mypage-sold").children().css("color", "#333333");
+  } else if (document.URL.match("purchased")) {
+    $(".mypage-purchased").css("background-color", "#EEEEEE");
+    $(".mypage-purchased").children().css("color", "#333333");
   } else {
     $(".mypage-default").css("background-color", "#EEEEEE");
     $(".mypage-default").children().css("color", "#333333");
