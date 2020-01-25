@@ -36,7 +36,7 @@
       購入した商品 - 取引中
       .sidebar__list--detail
         %i.fas.fa-chevron-right
-    .sidebar__list
+    = link_to purchased_mypage_path(current_user), class: "sidebar__list mypage-purchased" do
       購入した商品 - 過去の取引
       .sidebar__list--detail
         %i.fas.fa-chevron-right
