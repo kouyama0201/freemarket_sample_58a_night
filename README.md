@@ -112,7 +112,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |size|string||
-|ancestory|references|null: false, foreign_key: true|
+|ancestry|references|null: false, foreign_key: true|
 ### Association
 - has_many :products
 - has_many :category_sizes
