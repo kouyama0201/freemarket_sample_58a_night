@@ -115,7 +115,7 @@
             = link_to release_product_path(@product), method: :patch do
               .detail__main__btn--red
                 出品を再開する
-            = link_to "/products/#{@product.id}", method: :delete, data: { confirm: "商品を削除します。よろしいですか?"} do
+            = link_to product_path(@product), method: :delete, data: { confirm: "商品を削除します。よろしいですか?"} do
               .detail__main__btn--gray
                 この商品を削除する
               
