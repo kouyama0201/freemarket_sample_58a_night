@@ -131,6 +131,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def brand
+    @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%").limit(100)
+    respond_to do |format|
+      format.json
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :condition, :delivery_cost, :delivery_way, :delivery_origin, :preparatory_days, :price,
