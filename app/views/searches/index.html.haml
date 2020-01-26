@@ -1,0 +1,146 @@
+- if user_signed_in?
+  = render 'layouts/mypage_header'
+- else
+  = render 'layouts/header'
+
+.search
+  .search__content
+    .search__content__detail
+      .search__content__detail__sort
+        %select
+          %option{value: ""} 並び替え
+          %option{value: 1} 価格の安い順
+          %option{value: 2} 価格の高い順
+          %option{value: 3} 出品の新しい順
+          %option{value: 4} いいね!の多い順
+        %i.fas.fa-chevron-down.search__content__detail__sort--icon
+      .search__content__detail__box
+        .search__content__detail__box--head
+          詳細検索
+        .search__content__detail__box--list
+          %i.fas.fa-plus{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--title
+            キーワードを追加する
+        %input{placeholder: "例）値下げ", type: "text", class: "search__content__detail__box--form"}
+        .search__content__detail__box--list
+          %i.fas.fa-list-ul{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--select
+            カテゴリーを選択する
+        .search__content__detail__box--select
+          %select
+            %option{value: ""} すべて
+          %i.fas.fa-chevron-down.search__content__detail__box--select--icon
+        .search__content__detail__box--space
+        .search__content__detail__box--list
+          %i.fas.fa-tags{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--title
+            ブランド名から探す
+        %input{placeholder: "例）シャネル", type: "text", class: "search__content__detail__box--form"}
+        .search__content__detail__box--list
+          %i.fas.fa-expand{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--select
+            サイズを指定する
+        .search__content__detail__box--select
+          %select
+            %option{value: ""} すべて
+          %i.fas.fa-chevron-down.search__content__detail__box--select--icon
+        .search__content__detail__box--space
+        .search__content__detail__box--list
+          %i.fas.fa-coins{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--select
+            価格
+        .search__content__detail__box--select
+          %select
+            %option{value: ""} 選択してください
+            %option{value: 1} 300 ~ 1000
+            %option{value: 2} 1000 ~ 5000
+            %option{value: 3} 5000 ~ 10000
+            %option{value: 4} 10000 ~ 30000
+            %option{value: 5} 30000 ~ 50000
+          %i.fas.fa-chevron-down.search__content__detail__box--select--icon
+        %input{placeholder: "¥ Min",type: "text", class: "search__content__detail__box--price--range"}
+          \~
+        %input{placeholder: "¥ Max",type: "text", class: "search__content__detail__box--price--range"}
+        .search__content__detail__box--space
+        .search__content__detail__box--list
+          %i.fas.fa-star{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--title
+            商品の状態
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list すべて
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 未使用に近い
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list やや傷や汚れあり
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 全体的に状態が悪い
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 新品、未使用
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 目立った傷や汚れなし
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 傷や汚れあり
+        .search__content__detail__box--space
+        .search__content__detail__box--list
+          %i.fas.fa-truck{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--title
+            配送料の負担
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list すべて
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 送料込み(出品者負担)
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 着払い(購入者負担)
+        .search__content__detail__box--space
+        .search__content__detail__box--list
+          %i.fas.fa-shopping-cart{class: "search__content__detail__box--list--icon"}
+          .search__content__detail__box--list--title
+            販売状況
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list すべて
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 売り切れ
+        .search__content__detail__box--checkbox
+          %li
+            %input{type:"checkbox"} 
+              %span.search__content__detail__box--checkbox--list 販売中
+        .search__content__detail__box--space
+        .search__content__detail__box--btn
+          = link_to searches_path do
+            .search__content__detail__box--btn--gray クリア
+          .search__content__detail__box--btn--red 完了
+    .search__content__result
+      - if @search.present?
+        .search__content__result--head
+          = @search
+          %span.search__content__result--text
+            の検索結果
+        .search__content__result--number
+          = "1 - #{@products.count}件表示"
+      - else
+        .search__content__result--all 新着商品
+      - @products.each do |product|
+        = render partial: 'products/product_listing', locals: {product: product}
+    .search-paginate
+      = paginate(@products)
+
+- breadcrumb :search
+= render 'layouts/breadcrumbs_product'
+= render 'layouts/footer'
