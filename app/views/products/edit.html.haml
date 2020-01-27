@@ -95,7 +95,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    = f.select :delivery_cost, [["---", ""],["送料込(出品者負担)", "送料込(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], selected: @product.delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list"
+                    = f.select :delivery_cost, [["---", ""],["送料込み(出品者負担)", "送料込み(出品者負担)"],["着払い(購入者負担)", "着払い(購入者負担)"]], selected: @product.delivery_cost, class: "containt__main__container__inner__sell-form__select-wrap__list"
                 .containt__main__container__inner__sell-form__delivery__box__form-group__added#delivery_way-parent
                   %label 
                     配送の方法
