@@ -13,9 +13,7 @@
     %i.fas.fa-tags{class: "tags-icon"}
     %span ブランドから探す
   .header-lower-right
-    .header-lower-right__signup
-      = link_to new_user_registration_path do
-        %span{class: "signup-btn"} 新規登録
-    .header-lower-right__login
-      = link_to new_user_session_path do
-        %span{class: "login-btn"} ログイン
+    = link_to new_user_registration_path, class: "header-lower-right__signup" do
+      %span{class: "signup-btn"} 新規登録
+    = link_to new_user_session_path, class: "header-lower-right__login" do
+      %span{class: "login-btn"} ログイン
