@@ -22,7 +22,7 @@ $(function () {
         $('#delivery_way-parent').remove();
         var methodBoxHtml = '';
         var insertHTML = '';
-        if (delivery_parentCategory == "送料込(出品者負担)"){
+        if (delivery_parentCategory == "送料込み(出品者負担)"){
           array1.forEach(function(method){
           insertHTML += appendOption(method);
           });

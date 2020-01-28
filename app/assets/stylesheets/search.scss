@@ -24,7 +24,7 @@
       }
       &__box {
         background-color: #ffffff;
-        height: 1227px;
+        height: 891px;
         margin-top: 40px;
         padding: 16px;
         &--head {
@@ -48,8 +48,8 @@
           }
         }
         &--form {
-          height: 30px;
-          width: 214px;
+          height: 46px;
+          width: 248px;
           padding: 10px 16px 8px;
           border: solid 1px #ccc;
           border-radius: 4px;
@@ -72,19 +72,18 @@
           border-radius: 4px;
           margin-top: 8px;
           &--range {
-            height: 30px;
-            width: 80px;
+            height: 46px;
+            width: 114px;
             padding: 10px 16px 8px;
             border: solid 1px #ccc;
             border-radius: 4px;
-            margin-top: 8px;
           }
         }
         &--space {
           margin-bottom: 40px;
         }
         input[type=checkbox] {
-          margin: 10px 0 0 2px;
+          margin: 10px 5px 0 2px;
           transform: scale(1.4);
         }
         &--checkbox {
@@ -92,13 +91,10 @@
           width: 120px;
           list-style: none;
           vertical-align: top;
-          &--list {
-            margin-left: 5px;
-            font-size: 14px;
-          }
+          font-size: 14px;
         }
         &--btn {
-          display: -webkit-box;
+          display: flex;
           font-size: 14px;
           line-height: 50px;
           text-align: center;
@@ -114,6 +110,7 @@
             height: 50px;
             width: 111px;
             margin-left: 26px;
+            cursor: pointer;
           }
         }
       }
