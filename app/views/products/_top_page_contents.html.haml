@@ -3,37 +3,37 @@
 .main-popular
   .main-popular__title
     人気のカテゴリー
-  .main-popular__tags
+  = link_to "#ladies", class:"main-popular__tags" do
     レディース
-  .main-popular__tags
+  = link_to "#mens", class: "main-popular__tags" do
     メンズ
-  .main-popular__tags
+  = link_to "#home_electronics", class: "main-popular__tags" do
     家電・スマホ・カメラ
-  .main-popular__tags
+  = link_to "#toys", class: "main-popular__tags" do
     おもちゃ・ホビー・グッズ
 .main-new-arrival
-  %h3.main-new-arrival__category
+  %h3.main-new-arrival__category#ladies
     レディース新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_ladies.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  %h3.main-new-arrival__category
+  %h3.main-new-arrival__category#mens
     メンズ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_mens.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#home_electronics
     家電・スマホ・カメラ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_home_electronics.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#toys
     おもちゃ・ホビー・グッズ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
@@ -42,37 +42,37 @@
 .main-popular
   .main-popular__title
     人気のブランド
-  .main-popular__tags
+  = link_to "#chanel", class:"main-popular__tags" do
     シャネル
-  .main-popular__tags
+  = link_to "#louisvuitton", class:"main-popular__tags" do
     ルイヴィトン
-  .main-popular__tags
+  = link_to "#supreme", class:"main-popular__tags" do
     シュプリーム
-  .main-popular__tags
+  = link_to "#nike", class:"main-popular__tags" do
     ナイキ
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#chanel
     シャネル新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_chanel.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#louisvuitton
     ルイヴィトン新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_louis_vuitton.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#supreme
     シュプリーム新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞
   - @products_supreme.each do |product|
     = render partial: 'product_listing', locals: {product: product}
 .main-new-arrival
-  .main-new-arrival__category
+  .main-new-arrival__category#nike
     ナイキ新着アイテム
     .main-new-arrival__category__more
       もっと見る ＞

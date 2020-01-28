@@ -79,3 +79,7 @@ input.valid,
 textarea.valid {
   border: seagreen 1px solid;
 }
+
+html {
+  scroll-behavior: smooth;
+}
