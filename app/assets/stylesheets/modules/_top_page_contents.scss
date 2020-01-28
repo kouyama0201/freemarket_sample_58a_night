@@ -23,6 +23,7 @@
   &__tags {
     display: inline-block;
     background-color: #efefef;
+    color: #333333;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
@@ -37,6 +38,9 @@
   height: 490px;
   padding: 42px 210px 100px;
   position: relative;
+  :hover {
+    outline: solid 1px #0095ee;
+  }
   &__category {
     color: #333333;
     font-size: 24px;
@@ -44,6 +48,7 @@
     width: 929px;
     height: 33px;
     float: left;
+    pointer-events: none;
     &__more {
       width: 91px;
       color: #0095ee;
@@ -53,6 +58,7 @@
       right: 209px;
       float: right;
       position: absolute;
+      pointer-events: none;
     }
   }
   &__product {
@@ -67,6 +73,7 @@
     &--image {
       height: 188px;
       overflow: hidden;
+      pointer-events: none;
       &__ribbon-sm > div {
         font-size: 20px;
         color: white;
@@ -77,6 +84,7 @@
         transform: rotate(-45deg);
         letter-spacing: 2px;
         font-weight: 600;
+        pointer-events: none;
       }
       &__ribbon-sm::after {
         border-width: 80px 80px 0 0;
@@ -90,6 +98,7 @@
         width: 0;
         height: 0;
         border-style: solid;
+        pointer-events: none;
       }
     }
     &--price {
@@ -103,6 +112,7 @@
       border-radius: 0 14px 14px 0;
       position: absolute;
       bottom: 73px;
+      pointer-events: none;
     }
     &--name {
       color: #333333;
@@ -112,6 +122,7 @@
       letter-spacing: .02em;
       padding: 5px 10px;
       margin-top: 5px;
+      pointer-events: none;
     } 
   }
 }
