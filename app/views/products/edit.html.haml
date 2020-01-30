@@ -102,7 +102,7 @@
                     %span.containt__main__container__inner__sell-form__form-require 必須
                   .containt__main__container__inner__sell-form__delivery__box__select-wrap
                     %i.fas.fa-chevron-down.fa-lg.containt__main__container__inner__sell-form__select-wrap__icon
-                    - if @product.delivery_cost == "送料込(出品者負担)"
+                    - if @product.delivery_cost == "送料込み(出品者負担)"
                       = f.select :delivery_way, [["---", ""],["未定", "未定"],["らくらくメルカリ便", "らくらくメルカリ便"],["ゆうメール", "ゆうメール"],["レターパック", "レターパック"],["普通郵便（定型、定型外）", "普通郵便（定型、定型外）"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["クリックポスト", "クリックポスト"],["ゆうパケット", "ゆうパケット"]], {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_way", name: "product[delivery_way]"
                     - else
                       = f.select :delivery_way, [["---", ""],["未定", "未定"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["ゆうメール", "ゆうメール"]], {}, class: "containt__main__container__inner__sell-form__select-wrap__list", id: "delivery_way", name: "product[delivery_way]"
