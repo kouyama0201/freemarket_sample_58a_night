@@ -54,7 +54,7 @@ $(function(){
                       <div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field" autocomplete= off>
                           <ul class='brand-search-result'></ul>
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(sizeSelectHtml);
@@ -64,7 +64,7 @@ $(function(){
     brandInputHtml = `<div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field" autocomplete= off>
                           <ul class='brand-search-result'></ul>
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(brandInputHtml);
