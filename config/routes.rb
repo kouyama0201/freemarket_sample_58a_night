@@ -69,10 +69,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :category do
+    collection do
+      get 'new', defaults: { format: 'json' }
+    end
+  end
+  
   resources :searches, only: [:index] do
     collection do
       get 'detail_search'
     end
   end
-
 end

@@ -2,6 +2,7 @@ class CardController < ApplicationController
   include SetCard
   before_action :set_card, only: [:new, :delete, :show]
   before_action :apply_gon
+  before_action :set_parents
 
   def set_card
     @card = Card.find_by(user_id: current_user.id)

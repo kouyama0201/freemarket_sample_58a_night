@@ -1,0 +1,23 @@
+- if user_signed_in?
+  = render 'layouts/mypage_header'
+  .main
+    .container
+      .containt-full-width
+        .category-name
+          #{@category_name.name}の商品一覧
+        .main_containt
+          - @products.each do |product|
+            = render partial: 'products/product_listing', locals: {product: product}                  
+
+- else
+  = render 'layouts/header'
+  .main
+    .container
+      .containt-full-width
+        .category-name
+          #{@category_name.name}の商品一覧
+        .main_containt
+          - @products.each do |product|
+            = render partial: 'products/product_listing', locals: {product: product}                  
+= render 'layouts/footer'
+= render 'layouts/exhibit-btn'
