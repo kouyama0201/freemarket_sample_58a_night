@@ -18,10 +18,6 @@
           - @parents.each do |parent|
             = link_to "#{parent.name}", category_path(parent) , class: "category-parent", id: "#{parent.id}"
         .category_list_children
-        -# .child_category
-        -# - @children.each do |children|
-        -#   .children_list
-        -# = link_to "#{children.name}", "" , class: "child_category", id: "#{children.id}"
         .grand_children_list
     .header-lower-left__brands
       %i.fas.fa-tags{class: "tags-icon"}
