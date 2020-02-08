@@ -6,10 +6,24 @@
     %i.fas.fa-search{class: "search-icon"}
     %input{placeholder: "何かお探しですか？", type: "text", class: "search-box"}
   .header-lower-left
-    %i.fas.fa-list-ul{class: "list-icon"}
-    %span カテゴリーから探す
-    %i.fas.fa-tags{class: "tags-icon"}
-    %span ブランドから探す
+    .header-lower-left__category
+      %div.category_btn
+        %i.fas.fa-list-ul{class: "list-icon"}
+        %span.parent_category
+          カテゴリーから探す
+      .category_box
+        .parents_list
+          - @parents.each do |parent|
+            = link_to "#{parent.name}", category_path(parent) , class: "category-parent", id: "#{parent.id}"
+        .category_list_children
+        -# .child_category
+        -# - @children.each do |children|
+        -#   .children_list
+        -# = link_to "#{children.name}", "" , class: "child_category", id: "#{children.id}"
+        .grand_children_list
+    .header-lower-left__brands
+      %i.fas.fa-tags{class: "tags-icon"}
+      %span ブランドから探す
   .header-lower-right
     .header-lower-right__signup
       = link_to new_user_registration_path do

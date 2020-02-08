@@ -1,6 +1,7 @@
 class MypageController < ApplicationController
   before_action :apply_gon
   before_action :set_user, only: [:exhibiting, :sold, :purchased, :profile]
+  before_action :set_parents
 
   def show # マイページ
   end

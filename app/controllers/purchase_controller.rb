@@ -3,6 +3,7 @@ class PurchaseController < ApplicationController
   before_action :set_card, only: [:show, :pay]
   before_action :apply_gon
   before_action :set_product
+  before_action :set_parents
   
   def show
     @image = @product.images.first

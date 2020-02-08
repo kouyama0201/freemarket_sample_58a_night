@@ -68,4 +68,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :category do
+    collection do
+      get 'new', defaults: { format: 'json' }
+    end
+  end
+
 end

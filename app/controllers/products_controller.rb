@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :apply_gon
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:edit, :show]
+  before_action :set_parents, only: [:index, :show]
 
   def index
     @products_ladies = Product.where(category_id: 1..205).where.not(transaction_status: 2).order("created_at DESC").limit(10)
@@ -12,6 +13,12 @@ class ProductsController < ApplicationController
     @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @parents = Category.where(ancestry: nil)
+    @children = Category.find_by("#{params[:parent_id]}").children
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new

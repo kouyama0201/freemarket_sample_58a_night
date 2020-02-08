@@ -32,16 +32,92 @@
 }
 
 .header-lower-left {
+  display: flex;
   width: 350px;
   margin: 12px 0 0 10px; 
   color: #333333;
   font-size: 14px;
   font-weight: 600;
+  position: relative;
+  &__category{
+    display: inline-block;
+    position: absolute;
+  }
+  &__brands{
+    display: inline-block;
+    left: 150px;
+    position: absolute;
+  }
 }
 .list-icon {
   font-size: 15px;
   color: #ea352d;
   margin-right: 2px;
+}
+
+.category_box{
+  max-width: 660px;
+  background-color: rgb(255, 255, 255);
+  display: none;
+}
+
+.parents_list{
+  line-height: 40px;
+  width: 220px;
+  background-color: rgb(255, 255, 255);
+  color: #333333;
+}
+
+.category-parent{
+  display: block;
+  padding-left: 10px;  
+  padding-right: 10px;
+}
+.category_list_children{
+  width: 220px;
+}
+
+.child_category{
+  line-height: 25px;
+  display: block;
+  background-color: rgb(255, 255, 255);
+  color: #333333;
+  padding-left: 10px;  
+  padding-right: 10px;
+}
+
+.grand_children_list{
+  width: 220px;
+}
+
+.grand_child_category{
+  line-height: 25px;
+  display: block;
+  background-color: rgb(255, 255, 255);
+  color: #333333;
+  padding-left: 10px;  
+  padding-right: 10px;
+}
+
+.category-parent{
+  text-decoration: none;
+  color: #333333;
+}
+
+.category-parent:hover{
+  color: #ffffff;
+}
+
+.now-selected-red{
+  background-color: #ea352d;
+}
+
+.now-selected-gray{
+  background-color: gainsboro;
+}
+
+.grand_child_category:hover{
+  background-color: gainsboro;
 }
 .tags-icon {
   color: #ea352d;
