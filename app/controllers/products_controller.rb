@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
     @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @parents = Category.where(ancestry: nil)
-    @children = Category.find_by("#{params[:parent_id]}").children
+    parent_id = params[:parent_id]
+    @children = Category.find_by(parent_id).children
     respond_to do |format|
       format.html
       format.json
