@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @products_toys = Product.where(category_id: 686..798).where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_chanel = Product.where(brand: "シャネル").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_louis_vuitton = Product.where(brand: "ルイヴィトン").where.not(transaction_status: 2).order("created_at DESC").limit(10)
-    @products_supreme = Product.where(brand: "シュープリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
+    @products_supreme = Product.where(brand: "シュプリーム").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @products_nike = Product.where(brand: "ナイキ").where.not(transaction_status: 2).order("created_at DESC").limit(10)
     @parents = Category.where(ancestry: nil)
     parent_id = params[:parent_id]
@@ -136,6 +136,13 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: '商品を削除しました。'
     else
       redirect_to edit_product_path, alert: '商品の削除に失敗しました。'
+    end
+  end
+
+  def brand
+    @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%").limit(100)
+    respond_to do |format|
+      format.json
     end
   end
 

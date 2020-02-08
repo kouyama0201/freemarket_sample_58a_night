@@ -57,6 +57,7 @@ select {
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus,
+input[type=search]:focus,
 textarea:focus,
 select:focus {
   outline: none;
@@ -77,4 +78,8 @@ select.valid,
 input.valid,
 textarea.valid {
   border: seagreen 1px solid;
+}
+
+html {
+  scroll-behavior: smooth;
 }

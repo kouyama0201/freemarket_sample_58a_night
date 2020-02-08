@@ -55,6 +55,9 @@
       margin-left: 10px;
       color: #333333;
     }
+    &--title:hover {
+      color: #0099e8;
+    }
   }
 }
 .mypage-header-box {
@@ -70,6 +73,7 @@
   &__head {
     text-align: center;
     &__bgimage {
+      cursor: pointer;
       height: 80px;
       background-image: image-url("bg_mypage.jpg");
       background-repeat: no-repeat;

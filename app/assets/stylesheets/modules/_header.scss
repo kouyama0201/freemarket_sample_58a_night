@@ -16,6 +16,10 @@
   top: 18px;
   right: 222px;
   z-index: 1;
+  cursor: pointer;
+}
+.search-btn {
+  display: none;
 }
 .search-box {
   background-color: #f5f5f5;

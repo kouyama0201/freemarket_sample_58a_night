@@ -1,0 +1,115 @@
+- if user_signed_in?
+  = render 'layouts/mypage_header'
+- else
+  = render 'layouts/header'
+
+.search
+  .search__content
+    = search_form_for(@q,url: detail_search_searches_path) do |f|
+      .search__content__detail
+        .search__content__detail__sort
+          = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { onchange: 'this.form.submit()'} )
+          %i.fas.fa-chevron-down.search__content__detail__sort--icon
+        .search__content__detail__box
+          .search__content__detail__box--head
+            詳細検索
+          .search__content__detail__box--list
+            %i.fas.fa-plus{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--title
+              キーワードを追加する
+          = f.search_field :name_cont, placeholder: "例）値下げ", class: "search__content__detail__box--form"
+          .search__content__detail__box--list
+            %i.fas.fa-tags{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--title
+              ブランド名から探す
+          = f.search_field :brand_eq, placeholder: "例）シャネル", class: "search__content__detail__box--form"
+          .search__content__detail__box--list
+            %i.fas.fa-coins{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--select
+              価格
+          = f.search_field :price_gteq, placeholder: "¥ Min", class: "search__content__detail__box--price--range"
+          %span ~
+          = f.search_field :price_lteq, placeholder: "¥ Max", class: "search__content__detail__box--price--range"
+          .search__content__detail__box--space
+          .search__content__detail__box--list
+            %i.fas.fa-star{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--title
+              商品の状態
+          .search__content__detail__box--checkbox
+            %li
+              %input{type:"checkbox"}
+              = "すべて"
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "未使用に近い", nil
+              = "未使用に近い"
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "やや傷や汚れあり", nil
+              = "やや傷や汚れあり"
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "全体的に状態が悪い", nil
+              = "全体的に状態が悪い"
+          .search__content__detail__box--checkbox
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "新品、未使用", nil
+              = "新品、未使用"
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "目立った傷や汚れなし", nil
+              = "目立った傷や汚れなし"
+            %li
+              = f.check_box :condition_eq_any, {multiple: true}, "傷や汚れあり", nil
+              = "傷や汚れあり"
+          .search__content__detail__box--space
+          .search__content__detail__box--list
+            %i.fas.fa-truck{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--title
+              配送料の負担
+          .search__content__detail__box--checkbox
+            %li
+              %input{type:"checkbox"}
+              = "すべて"
+            %li
+              = f.check_box :delivery_cost_eq_any, {multiple: true}, "送料込み(出品者負担)", nil
+              = "送料込み(出品者負担)"
+          .search__content__detail__box--checkbox
+            %li
+              = f.check_box :delivery_cost_eq_any, {multiple: true}, "着払い(購入者負担)", nil
+              = "着払い(購入者負担)"
+          .search__content__detail__box--space
+          .search__content__detail__box--list
+            %i.fas.fa-shopping-cart{class: "search__content__detail__box--list--icon"}
+            .search__content__detail__box--list--title
+              販売状況
+          .search__content__detail__box--checkbox
+            %li
+              %input{type:"checkbox"}
+              = "すべて"
+            %li
+              = f.check_box :transaction_status_in_any, {multiple: true}, "1", nil
+              = "売り切れ"
+          .search__content__detail__box--checkbox
+            %li
+              = f.check_box :transaction_status_in_any, {multiple: true}, "0", nil
+              = "販売中"
+          .search__content__detail__box--space
+          .search__content__detail__box--btn
+            = link_to searches_path do
+              .search__content__detail__box--btn--gray クリア
+            = f.submit "完了", class: "search__content__detail__box--btn--red"
+    .search__content__result
+      - if @search.present?
+        .search__content__result--head
+          = @search
+          %span.search__content__result--text
+            の検索結果
+        .search__content__result--number
+          = "1 - #{@products.count}件表示"
+      - else
+        .search__content__result--all 新着商品
+      - @products.each do |product|
+        = render partial: 'products/product_listing', locals: {product: product}
+    .search-paginate
+      = paginate(@products)
+
+- breadcrumb :search
+= render 'layouts/breadcrumbs_product'
+= render 'layouts/footer'

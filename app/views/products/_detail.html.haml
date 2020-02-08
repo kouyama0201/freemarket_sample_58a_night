@@ -54,7 +54,7 @@
             %tr.detail__main__content__status--box
               %th.detail__main__content__status--box--title
                 ブランド
-              %td.detail__main__content__status--box--right-blue
+              %td.detail__main__content__status--box--right-blue.blue-text
                 = @product.brand
           - if @product.size.present?
             %tr.detail__main__content__status--box
@@ -80,7 +80,7 @@
           %tr.detail__main__content__status--box
             %th.detail__main__content__status--box--title
               配送元地域
-            %td.detail__main__content__status--box--right-blue
+            %td.detail__main__content__status--box--right-blue.blue-text
               = @prefecture.name
           %tr.detail__main__content__status--box
             %th.detail__main__content__status--box--title

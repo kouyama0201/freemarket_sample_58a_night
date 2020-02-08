@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       get 'category_child', defaults: { format: 'json' }
       get 'category_grandchild', defaults: { format: 'json' }
       get 'size', defaults: { format: 'json' }
+      get 'brand', defaults: { format: 'json' }
       get 'delivery_way'
     end
   end
@@ -73,5 +74,10 @@ Rails.application.routes.draw do
       get 'new', defaults: { format: 'json' }
     end
   end
-
+  
+  resources :searches, only: [:index] do
+    collection do
+      get 'detail_search'
+    end
+  end
 end

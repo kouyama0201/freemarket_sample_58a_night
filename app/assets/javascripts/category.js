@@ -54,7 +54,8 @@ $(function(){
                       <div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field" autocomplete= off>
+                          <ul class='brand-search-result'></ul>
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(sizeSelectHtml);
   }
@@ -63,9 +64,15 @@ $(function(){
     brandInputHtml = `<div class="containt__main__container__inner__sell-form__detail__box__form-group__brand" id="brand_wrapper">
                         <label>ブランド</label>
                           <span class='containt__main__container__inner__sell-form__form-optional'>任意</span>
-                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]">
+                          <input class="containt__main__container__inner__sell-form__select-wrap__brand" placeholder="例) シャネル" type="text" name="product[brand]" id="brand-search-field" autocomplete= off>
+                          <ul class='brand-search-result'></ul>
                       </div>`;
     $('.containt__main__container__inner__sell-form__detail__box__form-group__category').append(brandInputHtml);
+  }
+  // ブランドのインクリメンタルサーチの検索結果の1行分のHTML生成
+  function appendBrand(brand) { 
+    var html = `<li id="${brand.id}" class="brand-search-result__item">${brand.name}</li>`
+    $(".brand-search-result").append(html);
   }
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
@@ -159,8 +166,78 @@ $(function(){
           $("#size").blur(function () {
             $(this).valid();
           });
+          // ブランドのインクリメンタルサーチ(サイズ欄ありの場合)
+          $(".containt__main__container__inner__sell-form__select-wrap__brand").on("keyup", function () {
+            var input = $(".containt__main__container__inner__sell-form__select-wrap__brand").val();
+            $.ajax({
+              type: "GET",
+              url: "/products/brand",
+              data: {
+                keyword: input
+              },
+              dataType: "json"
+            })
+            .done(function (brands) {
+              $(".brand-search-result").empty();
+              var array = [];
+              if (brands.length !== 0) {
+                brands.forEach(function (brand) {
+                  const result = $.inArray(brand.id, array);
+                  if (result === -1) {
+                    appendBrand(brand);
+                    $(".brand-search-result__item").on("click", function () {
+                      var selected_brand = $(this).text();
+                      $("#brand-search-field").val(selected_brand);
+                      $(".brand-search-result").empty();
+                    });
+                  }
+                });
+              }
+              if (input.length === 0) {
+                $(".brand-search-result").empty();
+              }
+            })
+            .fail(function () {
+              alert("ブランド検索に失敗しました。");
+            })
+          });
         } else {
           appendBrandBox(); // 紐付くサイズがない場合には、ブランド入力欄のみ生成する
+          // ブランドのインクリメンタルサーチ(サイズ欄なしの場合)
+          $(".containt__main__container__inner__sell-form__select-wrap__brand").on("keyup", function () {
+            var input = $(".containt__main__container__inner__sell-form__select-wrap__brand").val();
+            $.ajax({
+                type: "GET",
+                url: "/products/brand",
+                data: {
+                  keyword: input
+                },
+                dataType: "json"
+              })
+              .done(function (brands) {
+                $(".brand-search-result").empty();
+                var array = [];
+                if (brands.length !== 0) {
+                  brands.forEach(function (brand) {
+                    const result = $.inArray(brand.id, array);
+                    if (result === -1) {
+                      appendBrand(brand);
+                      $(".brand-search-result__item").on("click", function () {
+                      var selected_brand = $(this).text();
+                      $("#brand-search-field").val(selected_brand);
+                      $(".brand-search-result").empty();
+                      });
+                    }
+                  });
+                }
+                if (input.length === 0) {
+                  $(".brand-search-result").empty();
+                }
+              })
+              .fail(function () {
+                alert("ブランド検索に失敗しました");
+              })
+          });
         }
       })
       .fail(function(){
