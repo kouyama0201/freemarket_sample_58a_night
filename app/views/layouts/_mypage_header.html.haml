@@ -8,20 +8,19 @@
       %i.fas.fa-search{class: "search-icon"}
       = submit_tag 'search', name: nil, class: "search-btn"
   .header-lower-left
-    .header-lower-left
-      .header-lower-left__category
-        %div.category_btn
-          %i.fas.fa-list-ul{class: "list-icon"}
-          %span カテゴリーから探す
-        .category_box
-          .parents_list
-            - @parents.each do |parent|
-              = link_to "#{parent.name}", category_path(parent) , class: "category-parent", id: "#{parent.id}"
-          .category_list_children
-          .grand_children_list
-      .header-lower-left__brands
-        %i.fas.fa-tags{class: "tags-icon"}
-        %span ブランドから探す
+    .header-lower-left__category
+      %div.category_btn
+        %i.fas.fa-list-ul{class: "list-icon"}
+        %span カテゴリーから探す
+      .category_box
+        .parents_list
+          - @parents.each do |parent|
+            = link_to "#{parent.name}", category_path(parent) , class: "category-parent", id: "#{parent.id}"
+        .category_list_children
+        .grand_children_list
+    .header-lower-left__brands
+      %i.fas.fa-tags{class: "tags-icon"}
+      %span ブランドから探す
   .header-lower-right-mypage
     .header-lower-right-mypage__likes
       .header-lower-right-mypage__likes--icon
