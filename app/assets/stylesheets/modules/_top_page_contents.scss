@@ -2,10 +2,8 @@
   background-color: #eeeeee;
   height: 390px;
   width: 1440px;
-  position: relative;
   &__banner {
-    left: 345px;
-    position: absolute;
+    width: 100%;  
   }
 }
 

@@ -2,7 +2,7 @@
   %header.registration__header
     %h1.registration__header__left
       = link_to "/" , class: "registration__header__left__logo" do
-        = image_tag "logo.svg", class: "registration__header__left__logo__img"
+        = image_tag "fmarket_logo_red.svg", class: "registration__header__left__logo__img"
     %nav.registration__header__progress-bar
       %ol.registration__header__progress-bar__clearfix
         %li.registration__header__progress-bar__text.active
@@ -30,9 +30,9 @@
             = f.label :name, "ニックネーム", class: "registration__main__form__content__group__label" 
             %span.registration__main__form__content__group__require 必須
             - if session[:name] && session[:sns_existed_flag] == "yes"
-              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）メルカリ太郎", id: "name", value: "#{session[:name]}"
+              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）フリマ太郎", id: "name", value: "#{session[:name]}"
             - else
-              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）メルカリ太郎", id: "name"
+              = f.text_field :name, class: "registration__main__form__content__group__input", placeholder:"例）フリマ太郎", id: "name"
           %div.registration__main__form__content__group
             = f.label :email, "メールアドレス", class: "registration__main__form__content__group__label"
             %span.registration__main__form__content__group__require   必須

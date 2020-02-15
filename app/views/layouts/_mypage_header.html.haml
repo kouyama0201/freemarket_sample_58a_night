@@ -1,7 +1,7 @@
 .mypage-header-wrapper
   .header-upper-title
     = link_to root_path do
-      = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?863303983", size: "134x36"
+      = image_tag "fmarket_logo_red.svg", size: "134x36"
   = form_tag(searches_path, method: :get) do
     = text_field_tag :search, "", placeholder: "何かお探しですか？", class: "search-box"
     %label
