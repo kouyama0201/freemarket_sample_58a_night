@@ -26,7 +26,8 @@ BASIC認証をかけています。ご覧の際は下記のIDとPassを入力し
 ### 画像複数投稿
 [![Screenshot from Gyazo](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a/raw)](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a)
 + jQueryとgem 'carrierwave'を用いて、プレビュー可能な画像複数投稿機能(10枚まで)を実装しました。
-  ※ドラッグアンドドロップは非対応です。
+<br>
+※ドラッグアンドドロップは非対応です。
 ### jQueryによる動的な入力フォーム
 [![Screenshot from Gyazo](https://gyazo.com/d3606b5f50feaa2721f2eba57c853e83/raw)](https://gyazo.com/d3606b5f50feaa2721f2eba57c853e83)
 + カテゴリー・サイズ・ブランド・配送の方法の入力フォームをjQueryにてAjaxで実装しました。
