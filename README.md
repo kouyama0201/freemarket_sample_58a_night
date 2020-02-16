@@ -25,8 +25,7 @@ BASIC認証をかけています。ご覧の際は下記のIDとPassを入力し
 ## 商品出品機能
 ### 画像複数投稿
 [![Screenshot from Gyazo](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a/raw)](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a)
-+ jQueryとgem 'carrierwave'を用いて、プレビュー可能な画像複数投稿機能(10枚まで)を実装しました。
-<br>
++ jQueryとgem 'carrierwave'を用いて、プレビュー可能な画像複数投稿機能(10枚まで)を実装しました。<br>
 ※ドラッグアンドドロップは非対応です。
 
 ### jQueryによる動的な入力フォーム
