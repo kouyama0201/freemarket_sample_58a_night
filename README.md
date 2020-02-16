@@ -20,37 +20,30 @@ BASIC認証をかけています。ご覧の際は下記のIDとPassを入力し
   + メールアドレス:seller@test.com  
   + パスワード:seller123
 
-# tiphp452の担当箇所
-## ユーザー
-### ユーザー新規登録機能
-+ sessionを用いてウィザード形式のユーザー登録機能を実装しました。
-+ クレジットカードの登録は[PAY.JPの外部APIを使用](https://github.com/tiphp452/freemarket_sample_58a_night/blob/master/app/assets/javascripts/payjp.js)しています。
+# kouyama0201の担当箇所
+## DB設計
+## 商品出品機能
+### 画像複数投稿
+[![Screenshot from Gyazo](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a/raw)](https://gyazo.com/84ab861c64ef0f7ea6f8f13f2180df7a)
++ jQueryとgem 'carrierwave'を用いて、プレビュー可能な画像複数投稿機能(10枚まで)を実装しました。※ドラッグアンドドロップは非対応です。
+### jQueryによる動的な入力フォーム
+[![Screenshot from Gyazo](https://gyazo.com/d3606b5f50feaa2721f2eba57c853e83/raw)](https://gyazo.com/d3606b5f50feaa2721f2eba57c853e83)
++ カテゴリー・サイズ・ブランド・配送の方法の入力フォームをjQueryにてAjaxで実装しました。
+### 販売利益の自動計算
++ 入力した価格に応じて販売利益を自動計算する機能をjQueryにて実装しました。
 
-### ユーザーログイン機能
-+ ReCAPTCHAを導入しました。
-### SNS認証機能(開発環境のみ)
-+ gem omniauth-rails_csrf_protection等を用いてgoogleもしくはfacebookのSNS認証によるログイン機能を実装しました。
-### ログアウト機能
-### マイページ
-
-## 商品
-### 商品詳細機能
-+ 複数サムネイルの画像切り替えを実装しました。
-### インクリメンタルサーチ
-![c09a2986f4ae3b18c480b4be520b31f6](https://user-images.githubusercontent.com/54160947/73591342-ce4b2780-4530-11ea-87c6-599ecd933fca.gif)
-+ 出品時のブランド名検索を非同期通信で実装しました。
+## 商品編集機能
+## 商品検索機能
++ キーワード検索機能とgem 'ransack'を用いての詳細検索機能を実装しました。
 
 ## その他
-### ユーザー関係のバリデーション
-![e615c98956245ce779573e5cded0786e](https://user-images.githubusercontent.com/54160947/73591427-b45e1480-4531-11ea-9248-122ad8147065.gif)
+### 商品出品・編集時のバリデーション
+[![Screenshot from Gyazo](https://gyazo.com/5450006eae2047b1316197f6fc457bbf/raw)](https://gyazo.com/5450006eae2047b1316197f6fc457bbf)
 
-[jQueryによる動的なバリデーションチェック](https://github.com/tiphp452/freemarket_sample_58a_night/blob/master/app/assets/javascripts/jquery.validate.handler.user.js)を実装しました。
-### 単体テスト
-+ ユーザー管理、商品一覧機能、商品詳細機能、商品購入機能の単体テスト
-+ PAY.JPの[レスポンスモック](https://github.com/tiphp452/freemarket_sample_58a_night/blob/master/spec/support/payjp_mock.rb)の作成
-### デプロイ
-+ AWS EC2, S3
-+ Capistranoによる自動デプロイ
+[jQueryによる動的なバリデーションチェック](https://github.com/tiphp452/freemarket_sample_58a_night/blob/master/app/assets/javascripts/jquery.validate.handler.product.js)を実装しました。
+### 単体テスト(RSpec)
++ 商品関連メソッド(new, create, edit, update)の単体テスト
++ 商品モデルの単体テスト
 
 # DB設計
 ## ER図
